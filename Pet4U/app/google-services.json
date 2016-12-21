@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1010438662410",
+    "project_id": "firebase-pet4u"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010438662410:android:4fe5541e1da78df1",
+        "android_client_info": {
+          "package_name": "pet4u.pet4u"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1010438662410-djugmkac7i0pqtskb2nakn0hjkdc9tfs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pet4u.pet4u",
+            "certificate_hash": "C75A55DFF748D0B08BA1906BBE54E65836466489"
+          }
+        },
+        {
+          "client_id": "1010438662410-dg38qnsr964ssc8qlvnaioveud8dk1lr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAGFRU8wX_8S5bStXwdhQyYs_bk2xucA0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
