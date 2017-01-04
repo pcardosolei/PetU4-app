@@ -24,10 +24,11 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
-            >
-
-        </activity>
+            android:label="@string/title_activity_login"></activity>
+        <activity
+            android:name=".MainScreenDono"
+            android:label="@string/title_activity_main_screen_dono"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
