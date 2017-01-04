@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
+//import android.R;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -23,8 +24,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         //isLogedIn();
 
 
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, LoginActivity.class);
+        //startActivity(intent);
 
     }
 }
