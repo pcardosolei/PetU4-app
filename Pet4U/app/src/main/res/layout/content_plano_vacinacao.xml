@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_plano_vacinacao"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="pet4u.pet4u.PlanoVacinacao"
+    tools:showIn="@layout/activity_plano_vacinacao">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/vaccines"
+        android:layout_below="@+id/animal_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="110dp"
+        app:srcCompat="@drawable/default_dog"
+        android:id="@+id/animal_image"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        style="@style/NormalText"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Cao da dona joana"
+        android:id="@+id/animal_name"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/animal_image"
+        />
+
+    <TextView
+        style="@style/NormalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="1"
+        android:id="@+id/n_missing_vaccines"
+        android:layout_below="@+id/animal_name"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/animal_image"
+        />
+    <TextView
+        style="@style/NormalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Vacina\\s nao tomadas"
+        android:id="@+id/static_text"
+        android:layout_below="@+id/animal_name"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/n_missing_vaccines"
+        />
+
+</RelativeLayout>

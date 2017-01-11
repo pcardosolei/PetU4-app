@@ -25,7 +25,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         //isLogedIn();
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, PlanoVacinacao.class);
         startActivity(intent);
 
     }
