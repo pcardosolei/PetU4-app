@@ -1,10 +1,6 @@
 package pet4u.pet4u;
 
-import gson.annotations.SerializedName;
-
-/**
- * Created by carlosmorais on 16/12/2016.
- */
+import com.google.gson.annotations.SerializedName;
 
 
 public class UserToken {
