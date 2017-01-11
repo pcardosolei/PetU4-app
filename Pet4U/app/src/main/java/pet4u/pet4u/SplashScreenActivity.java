@@ -10,6 +10,8 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import static pet4u.pet4u.R.id.login;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
@@ -23,8 +25,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         //isLogedIn();
 
-       // Intent intent = new Intent(this, MainScreenDono.class);
-       // startActivity(intent);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
     }
 }
