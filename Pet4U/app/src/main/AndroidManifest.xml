@@ -25,13 +25,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--activity
+        <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"></activity>
         <activity
             android:name="RegisterActivity"
             android:label="@string/title_activity_register"
-            android:theme="@style/AppTheme.NoActionBar"></activity-->
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MainScreenDono"
+            android:label="@string/main_screen_dono"></activity>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
