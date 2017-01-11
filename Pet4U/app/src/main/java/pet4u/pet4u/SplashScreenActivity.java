@@ -23,9 +23,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         //isLogedIn();
 
-
-        //Intent intent = new Intent(this, LoginActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, MainScreenDono.class);
+        startActivity(intent);
 
     }
 }
