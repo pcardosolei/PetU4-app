@@ -80,7 +80,9 @@
                 android:layout_marginTop="16dp"
                 android:text="Register"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText"
+                android:elevation="0dp"
+                tools:targetApi="lollipop" />
 
         </LinearLayout>
     </ScrollView>
