@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" android:id="@+id/topNav">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Informações Gerais" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Ficha Animal" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Vacinação" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Desparasitação" />
+        <item
+            android:id="@+id/calendar"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Calendário" />
+        <item
+            android:id="@+id/notificacoes"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Notificacões" />
+    </group>
+    <group android:checkableBehavior="none" android:id="@+id/midNav">
+
+        <item
+            android:id="@+id/veterinarios"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Veterinários na Area" />
+    </group>
+    <group android:checkableBehavior="none" android:id="@+id/botNav">
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Adicionar Animal" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Definições" />
+            <item
+                android:id="@+id/nav_view"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Ajuda" />
+    </group>
+</menu>
