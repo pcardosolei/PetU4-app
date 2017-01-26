@@ -1,8 +1,14 @@
 <resources>
+    <!-- Strings related to the App -->
     <string name="app_name">Pet4U</string>
     <string name="logo">Logo</string>
     <string name="title_activity_login">Log in</string>
     <string name="title_activity_register">Register</string>
+    <string name="title_activity_main_screen_dono">Main Screen Dono</string>
+
+
+    <!-- Strings related to splash screen -->
+    <string name="filter_title_view_pet4u">Filter</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -16,8 +22,17 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
-    <string name="title_activity_main_screen_dono">MainScreenDono</string>
+    <string name="error_incorrect_username_or_password">Incorrect Email or Password</string>
+
+    <!-- Strings related to register -->
+
+    <!-- Strings related to main screen -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+
+
+
+
+
 </resources>
