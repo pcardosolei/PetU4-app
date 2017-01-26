@@ -1,8 +1,6 @@
 package pet4u.pet4u.managers;
 
-import android.content.Context;
 import android.util.Log;
-
 
 import pet4u.pet4u.UserToken;
 
@@ -11,9 +9,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserLoginManager {
+
     private static UserLoginManager ourInstance;
     private UserToken userToken;
-    private Context context;
     private String bearerToken;
 
     private UserLoginManager() {
@@ -37,9 +35,9 @@ public class UserLoginManager {
                 userToken = response.body();
 
                 int code = response.code();
-                System.out.println(response.toString());
+                System.out.println("RESPONSE: " + response.toString());
 
-                System.out.println(response.toString());
+                //System.out.println(response.toString());
 
                 if (code == 200 || code == 201) {
                     bearerToken = "Bearer " + userToken.getAccessToken();

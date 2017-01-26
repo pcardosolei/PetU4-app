@@ -21,7 +21,7 @@
     <com.github.ybq.android.spinkit.SpinKitView
         android:paddingTop="80dp"
         android:id="@+id/spin_kit"
-        style="@style/SpinKitView.Large.FadingCircle"
+        style="@style/SpinKitViewCustomCircle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
