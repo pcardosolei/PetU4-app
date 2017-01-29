@@ -2,12 +2,13 @@ package pet4u.pet4u.managers;
 
 import com.loopj.android.http.*;
 
+import pet4u.pet4u.AppProperties;
+
 /**
  * Created by Rafael on 26/01/2017.
  */
 
 public class ServerHttpClient {
-    private static final String BASE_URL = "https://api.twitter.com/1/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
@@ -20,6 +21,6 @@ public class ServerHttpClient {
     }
 
     private static String getAbsoluteUrl(String relativeUrl) {
-        return BASE_URL + relativeUrl;
+        return AppProperties.baseUrl + relativeUrl;
     }
 }

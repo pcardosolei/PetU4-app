@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.managers.ServerHttpClient;
 
 import com.loopj.android.http.*;
 
@@ -49,6 +50,8 @@ public class MainScreenDono extends AppCompatActivity implements NavigationView.
 
         //display info...
 
+
+        ServerHttpClient httpClient;
 
     }
 
