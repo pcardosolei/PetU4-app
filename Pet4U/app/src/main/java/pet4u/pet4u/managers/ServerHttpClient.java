@@ -6,6 +6,11 @@ import pet4u.pet4u.AppProperties;
 
 /**
  * Created by Rafael on 26/01/2017.
+ *
+ * Unused!!!!!
+ *
+ * todo: DELETE
+ *
  */
 
 public class ServerHttpClient {
