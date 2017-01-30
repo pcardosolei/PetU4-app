@@ -1,5 +1,6 @@
 package pet4u.pet4u.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,12 @@ public class MainScreenDono extends AppCompatActivity implements NavigationView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Remove this shit
+        Intent intent = new Intent(this, PlanoVacinacao.class);
+        startActivity(intent);
+        //-----------------
+
         setContentView(R.layout.activity_main_screen_dono);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
