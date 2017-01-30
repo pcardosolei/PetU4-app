@@ -187,6 +187,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         showProgress(false);
 
         Intent intent = new Intent(LoginActivity.this, MainScreenDono.class);
+        intent.putExtra("userToken",userToken);
         startActivity(intent);
         finish();
     }
