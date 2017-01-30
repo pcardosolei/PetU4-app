@@ -68,7 +68,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".PlanoVacinacao"
+            android:name=".activities.PlanoVacinacao"
             android:label="@string/title_activity_plano_vacinacao"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

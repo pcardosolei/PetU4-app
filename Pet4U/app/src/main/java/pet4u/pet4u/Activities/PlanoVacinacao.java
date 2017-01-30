@@ -1,4 +1,4 @@
-package pet4u.pet4u;
+package pet4u.pet4u.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -6,6 +6,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
+import pet4u.pet4u.R;
 
 public class PlanoVacinacao extends AppCompatActivity {
 
