@@ -17,7 +17,7 @@
     </style>
 
 
-    <style name="SpinKitViewTheme" parent="SpinKitView.Large.FadingCircle">
+    <style name="SpinKitViewCustomCircle" parent="SpinKitView.Large.FadingCircle">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

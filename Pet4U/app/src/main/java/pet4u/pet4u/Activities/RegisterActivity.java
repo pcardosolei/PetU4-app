@@ -1,4 +1,4 @@
-package pet4u.pet4u;
+package pet4u.pet4u.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -23,9 +23,9 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.UserDTO;
 import pet4u.pet4u.managers.RegisterCallback;
 import pet4u.pet4u.managers.RegisterManager;
-import pet4u.pet4u.UserDTO;
 
 
 public class RegisterActivity extends AppCompatActivity implements RegisterCallback {
