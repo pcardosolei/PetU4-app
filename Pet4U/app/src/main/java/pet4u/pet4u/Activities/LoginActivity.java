@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import pet4u.pet4u.R;
 import pet4u.pet4u.UserToken;
-import pet4u.pet4u.managers.LoginCallback;
+import pet4u.pet4u.callbacks.LoginCallback;
 import pet4u.pet4u.managers.UserLoginManager;
 
 

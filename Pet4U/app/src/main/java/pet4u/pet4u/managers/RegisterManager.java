@@ -3,6 +3,7 @@ package pet4u.pet4u.managers;
 import android.content.Context;
 import android.widget.Toast;
 
+import pet4u.pet4u.callbacks.RegisterCallback;
 import pet4u.pet4u.services.RegisterService;
 import pet4u.pet4u.UserDTO;
 import pet4u.pet4u.AppProperties;
