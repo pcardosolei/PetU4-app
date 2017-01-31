@@ -1,4 +1,5 @@
 package pet4u.pet4u.user;
+import java.util.Arrays;
 
 /**
  * Created by Rafael on 30/01/2017.
@@ -105,4 +106,21 @@ public class Account {
     public void setVeterinarioId(int veterinarioId) {
         this.veterinarioId = veterinarioId;
     }
+    @Override
+    public String toString() {
+        return "Account{" +
+                "activated=" + activated +
+                ", authorities=" + Arrays.toString(authorities) +
+                ", clienteId=" + clienteId +
+                ", clinicaId=" + clinicaId +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", id=" + id +
+                ", langKey='" + langKey + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", login='" + login + '\'' +
+                ", veterinarioId=" + veterinarioId +
+                '}';
+    }
+
 }

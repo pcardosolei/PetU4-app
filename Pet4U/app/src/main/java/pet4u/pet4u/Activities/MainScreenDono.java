@@ -1,26 +1,27 @@
 package pet4u.pet4u.activities;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import pet4u.pet4u.R;
+
+import pet4u.pet4u.user.Account;
 import pet4u.pet4u.UserToken;
-import pet4u.pet4u.managers.ServerHttpClient;
+import pet4u.pet4u.managers.AccountCallback;
+import pet4u.pet4u.managers.UserManager;
 
-import com.loopj.android.http.*;
 
-public class MainScreenDono extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainScreenDono extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AccountCallback {
 
     private UserToken userToken;
 
@@ -62,8 +63,9 @@ public class MainScreenDono extends AppCompatActivity implements NavigationView.
 
         userToken = (UserToken) getIntent().getSerializableExtra("userToken");
 
-
-        ServerHttpClient httpClient = new ServerHttpClient();
+        //ServerHttpClient httpClient = new ServerHttpClient();
+        UserManager userManager = new UserManager(userToken);
+        userManager.getAccount(MainScreenDono.this);
 
     }
 
@@ -122,5 +124,31 @@ public class MainScreenDono extends AppCompatActivity implements NavigationView.
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    // TODO: 30/01/2017 VERIFICAR ESTES 2
+
+    @Override
+    public void onSuccess(Account account) {
+        TextView tv = (TextView) findViewById(R.id.tv_nome);
+        tv.setText(account.getFirstName() + " " + account.getLastName());
+        tv = (TextView) findViewById(R.id.tv_email);
+        tv.setText(account.getEmail());
+
+
+        System.out.println("\n\nTeste de Account:\n" + account.toString()+ "\n\n");
+
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+        Log.e("LoginActivity->", "performLogin->onFailure ERROR " + t.getMessage());
+
+        TextView tv = (TextView) findViewById(R.id.tv_nome);
+        tv.setText("FAILURE");
+
+        // TODO: Manage Errors
+
+
     }
 }

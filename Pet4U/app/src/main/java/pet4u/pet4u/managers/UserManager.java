@@ -55,7 +55,9 @@ public class UserManager {
             Log.e("UserTokenManager->", "constructor->source.getBytes('UTF-8') ERROR: " + e);
             return;
         }
-        Call<Account> call = getAccServ.getAccount(userToken.getAccessToken());
+
+        System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        Call<Account> call = getAccServ.getAccount("Bearer " + userToken.getAccessToken());
 
         call.enqueue(new Callback<Account>() {
             @Override

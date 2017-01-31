@@ -37,10 +37,9 @@
             android:layout_width="100dp"
             android:layout_height="25dp"
             android:id="@+id/tv_nome"
-            android:layout_marginEnd="46dp"
             android:layout_marginTop="19dp"
             android:layout_alignTop="@+id/imageView2"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignStart="@+id/tv_email" />
 
         <TextView
             android:text="Email"
