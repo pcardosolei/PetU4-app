@@ -4,9 +4,7 @@ import android.util.Log;
 
 import pet4u.pet4u.AppProperties;
 import pet4u.pet4u.callbacks.AccountCallback;
-import pet4u.pet4u.callbacks.AddressCallback;
 import pet4u.pet4u.callbacks.ClientCallback;
-import pet4u.pet4u.services.AddressService;
 import pet4u.pet4u.services.ClientService;
 import pet4u.pet4u.user.Account;
 import pet4u.pet4u.UserToken;

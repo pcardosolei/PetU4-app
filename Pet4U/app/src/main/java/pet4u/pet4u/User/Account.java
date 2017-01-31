@@ -1,5 +1,4 @@
 package pet4u.pet4u.user;
-
 import java.util.Arrays;
 
 /**
@@ -107,7 +106,6 @@ public class Account {
     public void setVeterinarioId(int veterinarioId) {
         this.veterinarioId = veterinarioId;
     }
-
     @Override
     public String toString() {
         return "Account{" +
@@ -124,4 +122,5 @@ public class Account {
                 ", veterinarioId=" + veterinarioId +
                 '}';
     }
+
 }

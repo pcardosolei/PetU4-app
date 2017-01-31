@@ -1,5 +1,5 @@
 package pet4u.pet4u.activities;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,7 +14,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import pet4u.pet4u.R;
+
 import pet4u.pet4u.callbacks.ClientCallback;
+
 import pet4u.pet4u.user.Account;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.callbacks.AccountCallback;
@@ -22,7 +24,9 @@ import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.Address;
 import pet4u.pet4u.user.Client;
 
+
 import static java.lang.Thread.sleep;
+
 
 public class MainScreenDono
         extends AppCompatActivity
@@ -39,6 +43,7 @@ public class MainScreenDono
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main_screen_dono);
 
         // TODO: 26/01/2017  Tava a dar erro... teve q ser commentado...
