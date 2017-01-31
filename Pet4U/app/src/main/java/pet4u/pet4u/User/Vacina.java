@@ -6,7 +6,8 @@ import java.util.Date;
  * Created by NunoOliv on 31-Jan-17.
  */
 
-public class Vacina {
+public class Vacina implements Comparable<Vacina>{
+
     private int id;
     private Date date;
     private String nome;
@@ -43,7 +44,13 @@ public class Vacina {
         return nome;
     }
 
+
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public int compareTo(Vacina o) {
+        return getDate().compareTo(o.getDate());
     }
 }
