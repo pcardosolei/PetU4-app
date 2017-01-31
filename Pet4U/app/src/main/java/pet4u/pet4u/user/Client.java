@@ -11,7 +11,7 @@ public class Client {
     private String foto;
     private String genero;
     private int id;
-    private Address addressDTO;
+    private Address moradaDTO;
     private String nif;
     private String nome;
     private String placeid ;
@@ -58,12 +58,12 @@ public class Client {
         this.id = id;
     }
 
-    public Address getAddressDTO() {
-        return addressDTO;
+    public Address getMoradaDTO() {
+        return moradaDTO;
     }
 
-    public void setAddressDTO(Address addressDTO) {
-        this.addressDTO = addressDTO;
+    public void setMoradaDTO(Address moradaDTO) {
+        this.moradaDTO = moradaDTO;
     }
 
     public String getNif() {
@@ -114,7 +114,7 @@ public class Client {
                 ", foto='" + foto + '\'' +
                 ", genero='" + genero + '\'' +
                 ", id=" + id +
-                ", addressDTO=" + addressDTO +
+                ", moradaDTO=" + moradaDTO +
                 ", nif='" + nif + '\'' +
                 ", nome='" + nome + '\'' +
                 ", placeid='" + placeid + '\'' +

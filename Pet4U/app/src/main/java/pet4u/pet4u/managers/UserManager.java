@@ -4,11 +4,14 @@ import android.util.Log;
 
 import pet4u.pet4u.AppProperties;
 import pet4u.pet4u.callbacks.AccountCallback;
+import pet4u.pet4u.callbacks.AddressCallback;
 import pet4u.pet4u.callbacks.ClientCallback;
+import pet4u.pet4u.services.AddressService;
 import pet4u.pet4u.services.ClientService;
 import pet4u.pet4u.user.Account;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.services.AccountService;
+import pet4u.pet4u.user.Address;
 import pet4u.pet4u.user.Client;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +28,7 @@ public class UserManager {
     private UserToken userToken;
     private Account account;
     private Client client;
+    private Address address;
 
 
     public UserManager (){
@@ -57,11 +61,11 @@ public class UserManager {
 
             clientService = retrofit.create(ClientService.class);
         }catch  (Exception e) {
-            Log.e("UserTokenManager->", "constructor->source.getBytes('UTF-8') ERROR: " + e);
+            Log.e("UserManager->", "constructor->source.getBytes('UTF-8') ERROR: " + e);
             return;
         }
 
-        System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
         Call<Client> call = clientService.getCliente("Bearer " + userToken.getAccessToken(), id);
 
         call.enqueue(new Callback<Client>() {
@@ -92,6 +96,54 @@ public class UserManager {
 
     }
 
+
+    /*public synchronized void getAddress(final AddressCallback addressCallback){
+        address = new Address();
+        Retrofit retrofit;
+        AddressService addressService;
+
+        try {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(AppProperties.baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            addressService = retrofit.create(AddressService.class);
+        }catch  (Exception e) {
+            Log.e("UserManager", "constructor->source.getBytes('UTF-8') ERROR: " + e);
+            return;
+        }
+
+        //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        Call<Address> call = addressService.getAdress("Bearer " + userToken.getAccessToken(), client.getId());  // TODO: 31/01/2017  TA MAAAALLL
+
+        call.enqueue(new Callback<Address>() {
+            @Override
+            public void onResponse(Call<Address> call, Response<Address> response) {
+                Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
+                address = response.body();
+
+                int code = response.code();
+                System.out.println("RESPONSE: " + response.toString());
+
+                //System.out.println(response.toString());
+
+                if (code == 200 || code == 201) {
+                    //bearerToken = "Bearer " + userToken.getAccessToken();
+                    addressCallback.onSuccessAddress(address);
+                } else {
+                    addressCallback.onFailureAddress(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Address> call, Throwable t) {
+                Log.e("UserLoginManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+                addressCallback.onFailureAddress(t);
+            }
+        });
+    }*/
+
     public synchronized void getAccount(final AccountCallback accountCallback) {
         account = new Account();
         Retrofit retrofit;
@@ -109,13 +161,13 @@ public class UserManager {
             return;
         }
 
-        System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
         Call<Account> call = getAccServ.getAccount("Bearer " + userToken.getAccessToken());
 
         call.enqueue(new Callback<Account>() {
             @Override
             public void onResponse(Call<Account> call, Response<Account> response) {
-                Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
+                Log.i("UserManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
                 account = response.body();
 
                 int code = response.code();

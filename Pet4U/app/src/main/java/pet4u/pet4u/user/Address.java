@@ -51,4 +51,15 @@ public class Address {
     public void setRua(String rua) {
         this.rua = rua;
     }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "cidade='" + cidade + '\'' +
+                ", codPostal='" + codPostal + '\'' +
+                ", id=" + id +
+                ", pais='" + pais + '\'' +
+                ", rua='" + rua + '\'' +
+                '}';
+    }
 }
