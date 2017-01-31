@@ -29,11 +29,6 @@ public class MainScreenDono extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Remove this shit
-        Intent intent = new Intent(this, PlanoVacinacao.class);
-        startActivity(intent);
-        //-----------------
-
         setContentView(R.layout.activity_main_screen_dono);
 
         // TODO: 26/01/2017  Tava a dar erro... teve q ser commentado...
