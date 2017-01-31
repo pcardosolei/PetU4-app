@@ -13,7 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import pet4u.pet4u.R;
+
+import pet4u.pet4u.callbacks.AnimalsCallback;
 
 import pet4u.pet4u.callbacks.ClientCallback;
 
@@ -22,23 +27,22 @@ import pet4u.pet4u.UserToken;
 import pet4u.pet4u.callbacks.AccountCallback;
 import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.Address;
+import pet4u.pet4u.user.Animal;
 import pet4u.pet4u.user.Client;
-
-
-import static java.lang.Thread.sleep;
-
 
 public class MainScreenDono
         extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         AccountCallback,
-        ClientCallback{
+        ClientCallback,
+        AnimalsCallback{
 
     private UserManager userManager;
     private UserToken userToken;
     private Account account;
     private Client client;
     private Address address;
+    private ArrayList<Animal> animals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,7 +165,7 @@ public class MainScreenDono
 
     @Override
     public void onFailureGetAccount(Throwable t) {
-        Log.e("MainScreenDono->", "onCreate->onFailure ERROR " + t.getMessage());
+        Log.e("MainScreenDono->", "Account->onFailure ERROR " + t.getMessage());
 
         TextView tv = (TextView) findViewById(R.id.tv_nome);
         tv.setText("FAILURE");
@@ -175,6 +179,9 @@ public class MainScreenDono
     @Override
     public void onSuccessCliente(Client client) {
         this.client=client;
+        this.address = client.getMoradaDTO();
+
+        userManager.getAnimals(MainScreenDono.this, client.getId());
 
         // TODO: 31/01/2017 Teste, remover.
         System.out.println("\n\nTest Client:\n" + client.toString()+ "\n\n");
@@ -182,8 +189,20 @@ public class MainScreenDono
 
     @Override
     public void onFailureCliente(Throwable t) {
-        Log.e("MainScreenDono->", "onCreate->onFailure ERROR " + t.getMessage());
+        Log.e("MainScreenDono->", "Client->onFailure ERROR " + t.getMessage());
 
         // TODO: 31/01/2017 check errors 
+    }
+
+    @Override
+    public void onSuccessAnimals(ArrayList<Animal> animals) {
+        this.animals = animals;
+
+        System.out.println("\n\nTest Animals:\n" + animals.toString()+ "\n\n");
+    }
+
+    @Override
+    public void onFailureAnimals(Throwable t) {
+        Log.e("MainScreenDono->", "Animals->onFailure ERROR " + t.getMessage());
     }
 }
