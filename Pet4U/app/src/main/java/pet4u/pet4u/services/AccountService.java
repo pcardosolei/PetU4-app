@@ -10,7 +10,7 @@ import retrofit2.http.Header;
  * Created by Rafael on 30/01/2017.
  */
 
-public interface GetAccountService {
+public interface AccountService {
     @GET("/api/account")
     Call<Account> getAccount(
             @Header("Authorization") String Authorization

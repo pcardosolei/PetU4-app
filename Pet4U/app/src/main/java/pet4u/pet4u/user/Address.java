@@ -4,7 +4,7 @@ package pet4u.pet4u.user;
  * Created by Rafael on 30/01/2017.
  */
 
-public class Morada {
+public class Address {
 
     private String cidade ;
     private String codPostal;

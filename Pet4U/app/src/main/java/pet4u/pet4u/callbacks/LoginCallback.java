@@ -1,4 +1,4 @@
-package pet4u.pet4u.managers;
+package pet4u.pet4u.callbacks;
 
 import pet4u.pet4u.UserToken;
 

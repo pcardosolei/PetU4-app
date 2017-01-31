@@ -3,9 +3,13 @@ package pet4u.pet4u.managers;
 import android.util.Log;
 
 import pet4u.pet4u.AppProperties;
+import pet4u.pet4u.callbacks.AccountCallback;
+import pet4u.pet4u.callbacks.ClientCallback;
+import pet4u.pet4u.services.ClientService;
 import pet4u.pet4u.user.Account;
 import pet4u.pet4u.UserToken;
-import pet4u.pet4u.services.GetAccountService;
+import pet4u.pet4u.services.AccountService;
+import pet4u.pet4u.user.Client;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,6 +24,7 @@ public class UserManager {
     private static UserManager ourInstance;
     private UserToken userToken;
     private Account account;
+    private Client client;
 
 
     public UserManager (){
@@ -39,10 +44,10 @@ public class UserManager {
         return ourInstance;
     }
 
-    public synchronized void getAccount(final AccountCallback accountCallback) {
-        account = new Account();
+    public synchronized void getCliente(final ClientCallback clientCallback, int id){
+        client = new Client();
         Retrofit retrofit;
-        GetAccountService getAccServ;
+        ClientService clientService;
 
         try {
             retrofit = new Retrofit.Builder()
@@ -50,7 +55,55 @@ public class UserManager {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            getAccServ = retrofit.create(GetAccountService.class);
+            clientService = retrofit.create(ClientService.class);
+        }catch  (Exception e) {
+            Log.e("UserTokenManager->", "constructor->source.getBytes('UTF-8') ERROR: " + e);
+            return;
+        }
+
+        System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        Call<Client> call = clientService.getCliente("Bearer " + userToken.getAccessToken(), id);
+
+        call.enqueue(new Callback<Client>() {
+            @Override
+            public void onResponse(Call<Client> call, Response<Client> response) {
+                Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
+                client = response.body();
+
+                int code = response.code();
+                System.out.println("RESPONSE: " + response.toString());
+
+                //System.out.println(response.toString());
+
+                if (code == 200 || code == 201) {
+                    //bearerToken = "Bearer " + userToken.getAccessToken();
+                    clientCallback.onSuccessCliente(client);
+                } else {
+                    clientCallback.onFailureCliente(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Client> call, Throwable t) {
+                Log.e("UserLoginManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+                clientCallback.onFailureCliente(t);
+            }
+        });
+
+    }
+
+    public synchronized void getAccount(final AccountCallback accountCallback) {
+        account = new Account();
+        Retrofit retrofit;
+        AccountService getAccServ;
+
+        try {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(AppProperties.baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            getAccServ = retrofit.create(AccountService.class);
         }catch  (Exception e) {
             Log.e("UserTokenManager->", "constructor->source.getBytes('UTF-8') ERROR: " + e);
             return;
@@ -72,16 +125,16 @@ public class UserManager {
 
                 if (code == 200 || code == 201) {
                     //bearerToken = "Bearer " + userToken.getAccessToken();
-                    accountCallback.onSuccess(account);
+                    accountCallback.onSuccessGetAccount(account);
                 } else {
-                    accountCallback.onFailure(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                    accountCallback.onFailureGetAccount(new Throwable("ERROR " + code + ", " + response.raw().message()));
                 }
             }
 
             @Override
             public void onFailure(Call<Account> call, Throwable t) {
                 Log.e("UserLoginManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
-                accountCallback.onFailure(t);
+                accountCallback.onFailureGetAccount(t);
             }
         });
     }

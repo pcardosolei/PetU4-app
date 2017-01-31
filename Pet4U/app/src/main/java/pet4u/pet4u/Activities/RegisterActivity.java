@@ -24,7 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import pet4u.pet4u.R;
 import pet4u.pet4u.UserDTO;
-import pet4u.pet4u.managers.RegisterCallback;
+import pet4u.pet4u.callbacks.RegisterCallback;
 import pet4u.pet4u.managers.RegisterManager;
 
 

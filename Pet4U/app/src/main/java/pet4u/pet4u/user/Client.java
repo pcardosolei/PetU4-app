@@ -4,14 +4,14 @@ package pet4u.pet4u.user;
  * Created by Rafael on 30/01/2017.
  */
 
-public class Cliente {
+public class Client {
 
     private String codigoassociacao;
     private String dataNasc;
     private String foto;
     private String genero;
     private int id;
-    private Morada moradaDTO;
+    private Address addressDTO;
     private String nif;
     private String nome;
     private String placeid ;
@@ -58,12 +58,12 @@ public class Cliente {
         this.id = id;
     }
 
-    public Morada getMoradaDTO() {
-        return moradaDTO;
+    public Address getAddressDTO() {
+        return addressDTO;
     }
 
-    public void setMoradaDTO(Morada moradaDTO) {
-        this.moradaDTO = moradaDTO;
+    public void setAddressDTO(Address addressDTO) {
+        this.addressDTO = addressDTO;
     }
 
     public String getNif() {
@@ -104,5 +104,22 @@ public class Cliente {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "codigoassociacao='" + codigoassociacao + '\'' +
+                ", dataNasc='" + dataNasc + '\'' +
+                ", foto='" + foto + '\'' +
+                ", genero='" + genero + '\'' +
+                ", id=" + id +
+                ", addressDTO=" + addressDTO +
+                ", nif='" + nif + '\'' +
+                ", nome='" + nome + '\'' +
+                ", placeid='" + placeid + '\'' +
+                ", telemovel=" + telemovel +
+                ", userId=" + userId +
+                '}';
     }
 }

@@ -1,4 +1,4 @@
-package pet4u.pet4u.managers;
+package pet4u.pet4u.callbacks;
 
 
 public interface RegisterCallback {

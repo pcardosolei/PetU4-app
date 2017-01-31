@@ -14,14 +14,27 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.callbacks.ClientCallback;
 import pet4u.pet4u.user.Account;
 import pet4u.pet4u.UserToken;
-import pet4u.pet4u.managers.AccountCallback;
+import pet4u.pet4u.callbacks.AccountCallback;
 import pet4u.pet4u.managers.UserManager;
+import pet4u.pet4u.user.Address;
+import pet4u.pet4u.user.Client;
 
-public class MainScreenDono extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AccountCallback {
+import static java.lang.Thread.sleep;
 
+public class MainScreenDono
+        extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener,
+        AccountCallback,
+        ClientCallback{
+
+    private UserManager userManager;
     private UserToken userToken;
+    private Account account;
+    private Client client;
+    private Address address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +69,11 @@ public class MainScreenDono extends AppCompatActivity implements NavigationView.
         userToken = (UserToken) getIntent().getSerializableExtra("userToken");
 
         //ServerHttpClient httpClient = new ServerHttpClient();
-        UserManager userManager = new UserManager(userToken);
+        userManager = new UserManager(userToken);
+
         userManager.getAccount(MainScreenDono.this);
+
+
 
     }
 
@@ -121,20 +137,26 @@ public class MainScreenDono extends AppCompatActivity implements NavigationView.
     // TODO: 30/01/2017 VERIFICAR ESTES 2
 
     @Override
-    public void onSuccess(Account account) {
+    public void onSuccessGetAccount(Account account) {
+        this.account = account;
         TextView tv = (TextView) findViewById(R.id.tv_nome);
         tv.setText(account.getFirstName() + " " + account.getLastName());
         tv = (TextView) findViewById(R.id.tv_email);
-        tv.setText(account.getEmail());
+        tv.setText(this.account.getEmail());
 
 
-        System.out.println("\n\nTeste de Account:\n" + account.toString()+ "\n\n");
+        // TODO: 31/01/2017 Teste, remover.
+
+        System.out.println("\n\nTest Account:\n" + account.toString()+ "\n\n");
+
+
+        userManager.getCliente(MainScreenDono.this, account.getClienteId());
 
     }
 
     @Override
-    public void onFailure(Throwable t) {
-        Log.e("LoginActivity->", "performLogin->onFailure ERROR " + t.getMessage());
+    public void onFailureGetAccount(Throwable t) {
+        Log.e("MainScreenDono->", "onCreate->onFailure ERROR " + t.getMessage());
 
         TextView tv = (TextView) findViewById(R.id.tv_nome);
         tv.setText("FAILURE");
@@ -142,5 +164,21 @@ public class MainScreenDono extends AppCompatActivity implements NavigationView.
         // TODO: Manage Errors
 
 
+    }
+
+
+    @Override
+    public void onSuccessCliente(Client client) {
+        this.client=client;
+
+        // TODO: 31/01/2017 Teste, remover.
+        System.out.println("\n\nTest Client:\n" + client.toString()+ "\n\n");
+    }
+
+    @Override
+    public void onFailureCliente(Throwable t) {
+        Log.e("MainScreenDono->", "onCreate->onFailure ERROR " + t.getMessage());
+
+        // TODO: 31/01/2017 check errors 
     }
 }
