@@ -2,8 +2,10 @@ package pet4u.pet4u;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class UserToken {
+
+public class UserToken implements Serializable{
     @SerializedName("access_token")
     private String accessToken;
 
