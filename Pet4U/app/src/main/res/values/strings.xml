@@ -5,7 +5,8 @@
     <string name="title_activity_login">Log in</string>
     <string name="title_activity_register">Register</string>
     <string name="title_activity_main_screen_dono">Main Screen Dono</string>
-
+    <string name="title_activity_plano_vacinacao">Plano de Vacinacao</string>
+    <string name="title_activity_consultas">Consultas</string>
 
     <!-- Strings related to splash screen -->
     <string name="filter_title_view_pet4u">Filter</string>
@@ -30,6 +31,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_plano_vacinacao">Plano de Vacinacao</string>
+
 
 </resources>
