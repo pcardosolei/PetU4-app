@@ -202,7 +202,9 @@ public class MainScreenDono
 
         System.out.println("\n\nTest Animals:\n" + animals.toString()+ "\n\n");
 
-        userManager.getEventos(MainScreenDono.this, animals.get(1).getId());
+        userManager.getEventos(MainScreenDono.this, animals.get(0).getId());
+
+        System.out.println("Test Animal Foto: " + animals.get(0).getFotos().get(0).getPath());
     }
 
     @Override
