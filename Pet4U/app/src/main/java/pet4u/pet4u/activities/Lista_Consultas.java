@@ -1,41 +1,62 @@
 package pet4u.pet4u.activities;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.callbacks.EventosCallback;
+import pet4u.pet4u.managers.UserManager;
+import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.Consulta;
+import pet4u.pet4u.user.DateConverter;
+import pet4u.pet4u.user.EventoDTO;
 
-public class Lista_Consultas extends AppCompatActivity {
+public class Lista_Consultas extends AppCompatActivity implements EventosCallback {
+
+    AnimalDTO animal;
+    UserManager user;
 
     //Create Array of Consultas
-    List<Consulta> consultas_passadas = new ArrayList<>();
-    List<Consulta> consultas_futuras = new ArrayList<>();
+    List<Consulta> consultas = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_consultas);
 
+        //Get User and animal
+        getIntent();
+
         // Get Consultas
         getConsultas();
 
 
         // Populate List View
-        populateListViewPast();
+        populate_ListView();
 
-        populateListViewFuture();
+
 
         //
     }
 
 
     private void getConsultas() {
-        //Apagar getSampleConsultas apos ligaçao a base de dados
-        getSampleConsultas();
+
+        user.getEventos(Lista_Consultas.this, animal.getId());
     }
 
     private void getSampleConsultas() {
@@ -44,10 +65,68 @@ public class Lista_Consultas extends AppCompatActivity {
 
     }
 
-    private void populateListViewFuture() {
+
+    private void populate_ListView() {
+
+        //sort consultas by date from decending order.
+        Collections.sort(consultas);
+        Collections.reverse(consultas);
+
+        //Build Adapter
+        ArrayAdapter<Consulta> adapter = new ConsultaListAdapter();
+
+        ListView list = (ListView) findViewById(R.id.list_atended_consultas);
+        list.setAdapter(adapter);
     }
 
-    private void populateListViewPast() {
+    @Override
+    public void onSuccessEventos(ArrayList<EventoDTO> eventos) {
+
+        for ( EventoDTO evento : eventos) {
+
+            consultas.add(new Consulta(evento.getConsultaDTO(), DateConverter.stringToDate(evento.getData()),evento.getClinicaDTO().getNome()));
+
+        }
     }
 
+    @Override
+    public void onFailureEventos(Throwable t) {
+        Log.e("Lista_Consultas->", "EventoDTO->onFailure ERROR " + t.getMessage());
+    }
+
+
+
+    private class ConsultaListAdapter extends ArrayAdapter<Consulta> {
+
+        public ConsultaListAdapter() {
+            super(Lista_Consultas.this, R.layout.listview_consulta, consultas);
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View listview_consulta = convertView;
+
+            //make shure the view is created
+            if (listview_consulta == null) {
+                listview_consulta = getLayoutInflater().inflate(R.layout.listview_consulta, parent, false);
+            }
+
+            //get consulta
+
+            Consulta curr_consulta = consultas.get(position);
+
+            //Fill View
+            TextView clinica_name = (TextView) listview_consulta.findViewById(R.id.item_clinica);
+            clinica_name.setText(curr_consulta.getClinica());
+
+            TextView consulta_date = (TextView) listview_consulta.findViewById(R.id.item_ConsultaDate);
+            Date date = curr_consulta.getDate();
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            consulta_date.setText(format.format(date));
+
+
+            return listview_consulta;
+        }
+    }
 }

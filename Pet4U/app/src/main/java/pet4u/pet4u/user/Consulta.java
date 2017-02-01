@@ -6,18 +6,29 @@ import java.util.Date;
  * Created by NunoOliv on 01-Feb-17.
  */
 
-public class Consulta {
+public class Consulta implements Comparable<Consulta>{
     private int id;
     private String descriçao;
     private boolean pertilhado;
     private Date data;
+    private String clinica;
 
-    public Consulta(int id, String descriçao, boolean pertilhado, Date data) {
+    public Consulta(int id, String descriçao, boolean pertilhado, Date data, String clinica) {
         this.id = id;
         this.descriçao = descriçao;
         this.pertilhado = pertilhado;
         this.data = data;
+        this.clinica = clinica;
     }
+
+    public Consulta(ConsultaDTO c, Date data, String clinica) {
+        this.id = c.getId();
+        this.descriçao = c.getDescricao();
+        this.pertilhado = c.isPartilha();
+        this.data = data;
+        this.clinica = clinica;
+    }
+
 
     public int getId() {
         return id;
@@ -43,34 +54,24 @@ public class Consulta {
         this.pertilhado = pertilhado;
     }
 
-    public Date getData() {
+    public Date getDate() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setDate(Date data) {
         this.data = data;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public String getClinica() {
+        return clinica;
+    }
 
-        Consulta consulta = (Consulta) o;
-
-        if (getId() != consulta.getId()) return false;
-        if (isPertilhado() != consulta.isPertilhado()) return false;
-        if (!getDescriçao().equals(consulta.getDescriçao())) return false;
-        return getData().equals(consulta.getData());
-
+    public void setClinica(String clinica) {
+        this.clinica = clinica;
     }
 
     @Override
-    public int hashCode() {
-        int result = getId();
-        result = 31 * result + getDescriçao().hashCode();
-        result = 31 * result + (isPertilhado() ? 1 : 0);
-        result = 31 * result + getData().hashCode();
-        return result;
+    public int compareTo(Consulta o) {
+        return getDate().compareTo(o.getDate());
     }
 }
