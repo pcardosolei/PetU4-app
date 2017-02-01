@@ -2,15 +2,25 @@ package pet4u.pet4u.managers;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import pet4u.pet4u.AppProperties;
 import pet4u.pet4u.callbacks.AccountCallback;
+
+import pet4u.pet4u.callbacks.AnimalsCallback;
 import pet4u.pet4u.callbacks.ClientCallback;
+import pet4u.pet4u.callbacks.EventosCallback;
+import pet4u.pet4u.services.AnimalsService;
+
 import pet4u.pet4u.services.ClientService;
-import pet4u.pet4u.user.Account;
+import pet4u.pet4u.services.EventosService;
+import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.services.AccountService;
-import pet4u.pet4u.user.Address;
-import pet4u.pet4u.user.Client;
+import pet4u.pet4u.user.AddressDTO;
+import pet4u.pet4u.user.AnimalDTO;
+import pet4u.pet4u.user.ClientDTO;
+import pet4u.pet4u.user.EventoDTO;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,14 +29,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Rafael on 30/01/2017.
+ * Package: ${PACKAGE_NAME}.
+ * Project: Pet4U.
  */
 
 public class UserManager {
     private static UserManager ourInstance;
     private UserToken userToken;
-    private Account account;
-    private Client client;
-    private Address address;
+    private AccountDTO accountDTO;
+    private ClientDTO clientDTO;
+    private AddressDTO addressDTO;
+    private ArrayList<AnimalDTO> animals;
+    private ArrayList<EventoDTO> eventos;
 
 
     public UserManager (){
@@ -46,8 +60,57 @@ public class UserManager {
         return ourInstance;
     }
 
-    public synchronized void getCliente(final ClientCallback clientCallback, int id){
-        client = new Client();
+
+    public synchronized void getEventos(final EventosCallback eventosCallback, int animalID){
+        eventos = new ArrayList<>();
+        Retrofit retrofit;
+        EventosService eventosService;
+
+        try {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(AppProperties.baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            eventosService = retrofit.create(EventosService.class);
+        }catch  (Exception e) {
+            Log.e("UserManager->", "constructor->source.getBytes('UTF-8') ERROR: " + e);
+            return;
+        }
+
+        //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        Call<ArrayList<EventoDTO>> call = eventosService.getEventos("Bearer " + userToken.getAccessToken(), animalID);
+
+        call.enqueue(new Callback<ArrayList<EventoDTO>>() {
+            @Override
+            public void onResponse(Call<ArrayList<EventoDTO>> call, Response<ArrayList<EventoDTO>> response) {
+                Log.i("UserManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
+                eventos = response.body();
+
+                int code = response.code();
+                //System.out.println("RESPONSE: " + response.toString());
+
+                //System.out.println(response.toString());
+
+                if (code == 200 || code == 201) {
+                    //bearerToken = "Bearer " + userToken.getAccessToken();
+                    eventosCallback.onSuccessEventos(eventos);
+                } else {
+                    eventosCallback.onFailureEventos(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<EventoDTO>> call, Throwable t) {
+                Log.e("UserLoginManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+                eventosCallback.onFailureEventos(t);
+            }
+        });
+    }
+
+
+    public synchronized void getCliente(final ClientCallback clientCallback, int accountID){
+        clientDTO = new ClientDTO();
         Retrofit retrofit;
         ClientService clientService;
 
@@ -64,30 +127,30 @@ public class UserManager {
         }
 
         //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
-        Call<Client> call = clientService.getCliente("Bearer " + userToken.getAccessToken(), id);
+        Call<ClientDTO> call = clientService.getCliente("Bearer " + userToken.getAccessToken(), accountID);
 
-        call.enqueue(new Callback<Client>() {
+        call.enqueue(new Callback<ClientDTO>() {
             @Override
-            public void onResponse(Call<Client> call, Response<Client> response) {
+            public void onResponse(Call<ClientDTO> call, Response<ClientDTO> response) {
                 Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
-                client = response.body();
+                clientDTO = response.body();
 
                 int code = response.code();
-                System.out.println("RESPONSE: " + response.toString());
+                //System.out.println("RESPONSE: " + response.toString());
 
                 //System.out.println(response.toString());
 
                 if (code == 200 || code == 201) {
                     //bearerToken = "Bearer " + userToken.getAccessToken();
-                    clientCallback.onSuccessCliente(client);
+                    clientCallback.onSuccessCliente(clientDTO);
                 } else {
                     clientCallback.onFailureCliente(new Throwable("ERROR " + code + ", " + response.raw().message()));
                 }
             }
 
             @Override
-            public void onFailure(Call<Client> call, Throwable t) {
-                Log.e("UserLoginManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+            public void onFailure(Call<ClientDTO> call, Throwable t) {
+                Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
                 clientCallback.onFailureCliente(t);
             }
         });
@@ -95,10 +158,10 @@ public class UserManager {
     }
 
 
-    /*public synchronized void getAddress(final AddressCallback addressCallback){
-        address = new Address();
+    public synchronized void getAnimals(final AnimalsCallback animalsCallback, int id){
+        animals = new ArrayList<>();
         Retrofit retrofit;
-        AddressService addressService;
+        AnimalsService animalsService;
 
         try {
             retrofit = new Retrofit.Builder()
@@ -106,44 +169,44 @@ public class UserManager {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            addressService = retrofit.create(AddressService.class);
+            animalsService = retrofit.create(AnimalsService.class);
         }catch  (Exception e) {
             Log.e("UserManager", "constructor->source.getBytes('UTF-8') ERROR: " + e);
             return;
         }
 
         //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
-        Call<Address> call = addressService.getAdress("Bearer " + userToken.getAccessToken(), client.getId());  // TODO: 31/01/2017  TA MAAAALLL
+        Call<ArrayList<AnimalDTO>> call = animalsService.getAnimals("Bearer " + userToken.getAccessToken(), id);
 
-        call.enqueue(new Callback<Address>() {
+        call.enqueue(new Callback<ArrayList<AnimalDTO>>() {
             @Override
-            public void onResponse(Call<Address> call, Response<Address> response) {
+            public void onResponse(Call<ArrayList<AnimalDTO>> call, Response<ArrayList<AnimalDTO>> response) {
                 Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
-                address = response.body();
+                animals = response.body();
 
                 int code = response.code();
-                System.out.println("RESPONSE: " + response.toString());
+                //System.out.println("RESPONSE: " + response.toString());
 
                 //System.out.println(response.toString());
 
                 if (code == 200 || code == 201) {
                     //bearerToken = "Bearer " + userToken.getAccessToken();
-                    addressCallback.onSuccessAddress(address);
+                    animalsCallback.onSuccessAnimals(animals);
                 } else {
-                    addressCallback.onFailureAddress(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                    animalsCallback.onFailureAnimals(new Throwable("ERROR " + code + ", " + response.raw().message()));
                 }
             }
 
             @Override
-            public void onFailure(Call<Address> call, Throwable t) {
-                Log.e("UserLoginManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
-                addressCallback.onFailureAddress(t);
+            public void onFailure(Call<ArrayList<AnimalDTO>> call, Throwable t) {
+                Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+                animalsCallback.onFailureAnimals(t);
             }
         });
-    }*/
+    }
 
     public synchronized void getAccount(final AccountCallback accountCallback) {
-        account = new Account();
+        accountDTO = new AccountDTO();
         Retrofit retrofit;
         AccountService getAccServ;
 
@@ -160,30 +223,30 @@ public class UserManager {
         }
 
         //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
-        Call<Account> call = getAccServ.getAccount("Bearer " + userToken.getAccessToken());
+        Call<AccountDTO> call = getAccServ.getAccount("Bearer " + userToken.getAccessToken());
 
-        call.enqueue(new Callback<Account>() {
+        call.enqueue(new Callback<AccountDTO>() {
             @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
+            public void onResponse(Call<AccountDTO> call, Response<AccountDTO> response) {
                 Log.i("UserManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
-                account = response.body();
+                accountDTO = response.body();
 
                 int code = response.code();
-                System.out.println("RESPONSE: " + response.toString());
+                //System.out.println("RESPONSE: " + response.toString());
 
                 //System.out.println(response.toString());
 
                 if (code == 200 || code == 201) {
                     //bearerToken = "Bearer " + userToken.getAccessToken();
-                    accountCallback.onSuccessGetAccount(account);
+                    accountCallback.onSuccessGetAccount(accountDTO);
                 } else {
                     accountCallback.onFailureGetAccount(new Throwable("ERROR " + code + ", " + response.raw().message()));
                 }
             }
 
             @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-                Log.e("UserLoginManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+            public void onFailure(Call<AccountDTO> call, Throwable t) {
+                Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
                 accountCallback.onFailureGetAccount(t);
             }
         });

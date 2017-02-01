@@ -2,9 +2,10 @@ package pet4u.pet4u.user;
 
 /**
  * Created by Rafael on 30/01/2017.
+ * Pet4U
  */
 
-public class Address {
+public class AddressDTO {
 
     private String cidade ;
     private String codPostal;
@@ -54,7 +55,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
+        return "AddressDTO{" +
                 "cidade='" + cidade + '\'' +
                 ", codPostal='" + codPostal + '\'' +
                 ", id=" + id +
