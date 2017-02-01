@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,9 +18,19 @@ import java.util.Date;
 import java.util.List;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.callbacks.EventosCallback;
+import pet4u.pet4u.managers.UserManager;
+import pet4u.pet4u.user.AnimalDTO;
+import pet4u.pet4u.user.ClientDTO;
+import pet4u.pet4u.user.DateConverter;
+import pet4u.pet4u.user.EventoDTO;
 import pet4u.pet4u.user.Vacina;
+import pet4u.pet4u.user.VacinaDTO;
 
-public class PlanoVacinacao extends AppCompatActivity {
+public class PlanoVacinacao extends AppCompatActivity implements EventosCallback {
+
+    AnimalDTO animal;
+    UserManager user;
 
     List<Vacina> vacinas= new ArrayList<Vacina>();
 
@@ -28,13 +39,15 @@ public class PlanoVacinacao extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plano_vacinacao);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        //Get User and animal
+        getIntent();
+
 
         // GET ARRAY OF Vacinas
         getVacinas();
 
-        // Set number of vaccines
+
 
         populate_ListView();
 
@@ -53,14 +66,17 @@ public class PlanoVacinacao extends AppCompatActivity {
 
 
     }
-    //Get CVaccine list from DB
+    //Get Vaccine list from DB
     private void getVacinas() {
+        user.getEventos(PlanoVacinacao.this, animal.getId());
+
     }
 
 
     private void populate_ListView() {
         // Create list of items
         //test
+        /*
         vacinas.add(new Vacina(1, new Date(2017-1900,10,2), "Tetano"));
         vacinas.add(new Vacina(2, new Date(2016-1900,10,2), "Raiva"));
         vacinas.add(new Vacina(3, new Date(2018-1900,10,2), "Tetano"));
@@ -73,7 +89,7 @@ public class PlanoVacinacao extends AppCompatActivity {
         vacinas.add(new Vacina(11, new Date(2017-1900,2,2), "Tetano"));
         vacinas.add(new Vacina(212, new Date(2016-1900,9,2), "Raiva"));
         vacinas.add(new Vacina(32, new Date(2018-1900,1,2), "Tetano"));
-
+        */
         //Oreder Vaccines
 
         Collections.sort(vacinas);
@@ -85,6 +101,25 @@ public class PlanoVacinacao extends AppCompatActivity {
         //coonfigure list view
         ListView list = (ListView) findViewById(R.id.vaccines);
         list.setAdapter(adapter);
+    }
+
+    @Override
+    public void onSuccessEventos(ArrayList<EventoDTO> eventos) {
+        List<VacinaDTO> vac;
+
+        for ( EventoDTO evento : eventos) {
+
+            vac = evento.getVacinasDTO();
+
+            for (VacinaDTO v : vac ) {
+                vacinas.add(new Vacina(v, DateConverter.stringToDate(evento.getData())));
+            }
+        }
+    }
+
+    @Override
+    public void onFailureEventos(Throwable t) {
+        Log.e("PlanoVacinacao->", "EventoDTO->onFailure ERROR " + t.getMessage());
     }
 
     private class VacinaListAdapter extends ArrayAdapter<Vacina> {

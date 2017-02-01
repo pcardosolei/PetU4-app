@@ -24,6 +24,12 @@ public class Vacina implements Comparable<Vacina>{
         this.nome = "";
     }
 
+    public Vacina(VacinaDTO v, Date d) {
+        this.id = v.getId();
+        this.nome = v.getNome();
+        this.date = d;
+    }
+
     public int getId() {
         return id;
     }
