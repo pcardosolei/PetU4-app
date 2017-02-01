@@ -3,9 +3,11 @@ import java.util.Arrays;
 
 /**
  * Created by Rafael on 30/01/2017.
+ * Package: ${PACKAGE_NAME}.
+ * Project: Pet4U.
  */
 
-public class Account {
+public class AccountDTO {
 
     private boolean activated;
     private String[] authorities;
@@ -108,7 +110,7 @@ public class Account {
     }
     @Override
     public String toString() {
-        return "Account{" +
+        return "AccountDTO{" +
                 "activated=" + activated +
                 ", authorities=" + Arrays.toString(authorities) +
                 ", clienteId=" + clienteId +

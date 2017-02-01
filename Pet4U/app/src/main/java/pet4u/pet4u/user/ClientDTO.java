@@ -2,16 +2,17 @@ package pet4u.pet4u.user;
 
 /**
  * Created by Rafael on 30/01/2017.
+ * Pet4U
  */
 
-public class Client {
+public class ClientDTO {
 
     private String codigoassociacao;
     private String dataNasc;
     private String foto;
     private String genero;
     private int id;
-    private Address moradaDTO;
+    private AddressDTO moradaDTO;
     private String nif;
     private String nome;
     private String placeid ;
@@ -58,11 +59,11 @@ public class Client {
         this.id = id;
     }
 
-    public Address getMoradaDTO() {
+    public AddressDTO getMoradaDTO() {
         return moradaDTO;
     }
 
-    public void setMoradaDTO(Address moradaDTO) {
+    public void setMoradaDTO(AddressDTO moradaDTO) {
         this.moradaDTO = moradaDTO;
     }
 
@@ -108,7 +109,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "ClientDTO{" +
                 "codigoassociacao='" + codigoassociacao + '\'' +
                 ", dataNasc='" + dataNasc + '\'' +
                 ", foto='" + foto + '\'' +

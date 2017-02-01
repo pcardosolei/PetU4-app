@@ -1,13 +1,8 @@
 package pet4u.pet4u.managers;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 import pet4u.pet4u.AppProperties;
 import pet4u.pet4u.callbacks.AccountCallback;
@@ -19,12 +14,12 @@ import pet4u.pet4u.services.AnimalsService;
 
 import pet4u.pet4u.services.ClientService;
 import pet4u.pet4u.services.EventosService;
-import pet4u.pet4u.user.Account;
+import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.services.AccountService;
-import pet4u.pet4u.user.Address;
-import pet4u.pet4u.user.Animal;
-import pet4u.pet4u.user.Client;
+import pet4u.pet4u.user.AddressDTO;
+import pet4u.pet4u.user.AnimalDTO;
+import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.EventoDTO;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,15 +29,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Rafael on 30/01/2017.
+ * Package: ${PACKAGE_NAME}.
+ * Project: Pet4U.
  */
 
 public class UserManager {
     private static UserManager ourInstance;
     private UserToken userToken;
-    private Account account;
-    private Client client;
-    private Address address;
-    private ArrayList<Animal> animals;
+    private AccountDTO accountDTO;
+    private ClientDTO clientDTO;
+    private AddressDTO addressDTO;
+    private ArrayList<AnimalDTO> animals;
     private ArrayList<EventoDTO> eventos;
 
 
@@ -65,7 +62,7 @@ public class UserManager {
 
 
     public synchronized void getEventos(final EventosCallback eventosCallback, int animalID){
-        eventos = new ArrayList<EventoDTO>();
+        eventos = new ArrayList<>();
         Retrofit retrofit;
         EventosService eventosService;
 
@@ -113,7 +110,7 @@ public class UserManager {
 
 
     public synchronized void getCliente(final ClientCallback clientCallback, int accountID){
-        client = new Client();
+        clientDTO = new ClientDTO();
         Retrofit retrofit;
         ClientService clientService;
 
@@ -130,13 +127,13 @@ public class UserManager {
         }
 
         //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
-        Call<Client> call = clientService.getCliente("Bearer " + userToken.getAccessToken(), accountID);
+        Call<ClientDTO> call = clientService.getCliente("Bearer " + userToken.getAccessToken(), accountID);
 
-        call.enqueue(new Callback<Client>() {
+        call.enqueue(new Callback<ClientDTO>() {
             @Override
-            public void onResponse(Call<Client> call, Response<Client> response) {
+            public void onResponse(Call<ClientDTO> call, Response<ClientDTO> response) {
                 Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
-                client = response.body();
+                clientDTO = response.body();
 
                 int code = response.code();
                 //System.out.println("RESPONSE: " + response.toString());
@@ -145,14 +142,14 @@ public class UserManager {
 
                 if (code == 200 || code == 201) {
                     //bearerToken = "Bearer " + userToken.getAccessToken();
-                    clientCallback.onSuccessCliente(client);
+                    clientCallback.onSuccessCliente(clientDTO);
                 } else {
                     clientCallback.onFailureCliente(new Throwable("ERROR " + code + ", " + response.raw().message()));
                 }
             }
 
             @Override
-            public void onFailure(Call<Client> call, Throwable t) {
+            public void onFailure(Call<ClientDTO> call, Throwable t) {
                 Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
                 clientCallback.onFailureCliente(t);
             }
@@ -179,11 +176,11 @@ public class UserManager {
         }
 
         //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
-        Call<ArrayList<Animal>> call = animalsService.getAnimals("Bearer " + userToken.getAccessToken(), id);
+        Call<ArrayList<AnimalDTO>> call = animalsService.getAnimals("Bearer " + userToken.getAccessToken(), id);
 
-        call.enqueue(new Callback<ArrayList<Animal>>() {
+        call.enqueue(new Callback<ArrayList<AnimalDTO>>() {
             @Override
-            public void onResponse(Call<ArrayList<Animal>> call, Response<ArrayList<Animal>> response) {
+            public void onResponse(Call<ArrayList<AnimalDTO>> call, Response<ArrayList<AnimalDTO>> response) {
                 Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
                 animals = response.body();
 
@@ -201,7 +198,7 @@ public class UserManager {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Animal>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<AnimalDTO>> call, Throwable t) {
                 Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
                 animalsCallback.onFailureAnimals(t);
             }
@@ -209,7 +206,7 @@ public class UserManager {
     }
 
     public synchronized void getAccount(final AccountCallback accountCallback) {
-        account = new Account();
+        accountDTO = new AccountDTO();
         Retrofit retrofit;
         AccountService getAccServ;
 
@@ -226,13 +223,13 @@ public class UserManager {
         }
 
         //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
-        Call<Account> call = getAccServ.getAccount("Bearer " + userToken.getAccessToken());
+        Call<AccountDTO> call = getAccServ.getAccount("Bearer " + userToken.getAccessToken());
 
-        call.enqueue(new Callback<Account>() {
+        call.enqueue(new Callback<AccountDTO>() {
             @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
+            public void onResponse(Call<AccountDTO> call, Response<AccountDTO> response) {
                 Log.i("UserManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
-                account = response.body();
+                accountDTO = response.body();
 
                 int code = response.code();
                 //System.out.println("RESPONSE: " + response.toString());
@@ -241,14 +238,14 @@ public class UserManager {
 
                 if (code == 200 || code == 201) {
                     //bearerToken = "Bearer " + userToken.getAccessToken();
-                    accountCallback.onSuccessGetAccount(account);
+                    accountCallback.onSuccessGetAccount(accountDTO);
                 } else {
                     accountCallback.onFailureGetAccount(new Throwable("ERROR " + code + ", " + response.raw().message()));
                 }
             }
 
             @Override
-            public void onFailure(Call<Account> call, Throwable t) {
+            public void onFailure(Call<AccountDTO> call, Throwable t) {
                 Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
                 accountCallback.onFailureGetAccount(t);
             }

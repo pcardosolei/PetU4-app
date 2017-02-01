@@ -2,9 +2,10 @@ package pet4u.pet4u.user;
 
 /**
  * Created by Rafael on 31/01/2017.
+ * Pet4U
  */
 
-public class Animal {
+public class AnimalDTO {
 
 
     private String dataNasc;
@@ -55,7 +56,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
+        return "AnimalDTO{" +
                 "dataNasc='" + dataNasc + '\'' +
                 ", genero='" + genero + '\'' +
                 ", id=" + id +

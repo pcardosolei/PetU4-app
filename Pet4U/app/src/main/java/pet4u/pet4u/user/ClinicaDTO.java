@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class ClinicaDTO {
 
-    private ArrayList<Animal> animais;
-    private ArrayList<Client> clientes;
+    private ArrayList<AnimalDTO> animais;
+    private ArrayList<ClientDTO> clientes;
     private String codigoassociacao;
     private int creatorId;
     private int id;
@@ -18,19 +18,19 @@ public class ClinicaDTO {
     private String nome;
     private String placeid;
 
-    public ArrayList<Animal> getAnimais() {
+    public ArrayList<AnimalDTO> getAnimais() {
         return animais;
     }
 
-    public void setAnimais(ArrayList<Animal> animais) {
+    public void setAnimais(ArrayList<AnimalDTO> animais) {
         this.animais = animais;
     }
 
-    public ArrayList<Client> getClientes() {
+    public ArrayList<ClientDTO> getClientes() {
         return clientes;
     }
 
-    public void setClientes(ArrayList<Client> clientes) {
+    public void setClientes(ArrayList<ClientDTO> clientes) {
         this.clientes = clientes;
     }
 
