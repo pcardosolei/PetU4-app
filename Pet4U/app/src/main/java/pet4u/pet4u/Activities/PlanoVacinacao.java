@@ -28,13 +28,12 @@ public class PlanoVacinacao extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plano_vacinacao);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         // GET ARRAY OF Vacinas
         getVacinas();
 
-        // Set number of vaccines
+
 
         populate_ListView();
 
