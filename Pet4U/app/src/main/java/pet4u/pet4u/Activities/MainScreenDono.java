@@ -20,6 +20,7 @@ import pet4u.pet4u.callbacks.AnimalsCallback;
 
 import pet4u.pet4u.callbacks.ClientCallback;
 
+import pet4u.pet4u.callbacks.EventosCallback;
 import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.callbacks.AccountCallback;
@@ -27,13 +28,15 @@ import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.AddressDTO;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
+import pet4u.pet4u.user.EventoDTO;
 
 public class MainScreenDono
         extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         AccountCallback,
         ClientCallback,
-        AnimalsCallback{
+        AnimalsCallback,
+        EventosCallback{
 
     private UserManager userManager;
     private UserToken userToken;
@@ -41,6 +44,7 @@ public class MainScreenDono
     private ClientDTO clientDTO;
     private AddressDTO addressDTO;
     private ArrayList<AnimalDTO> animals;
+    private ArrayList<EventoDTO> eventoDTOs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,10 +201,26 @@ public class MainScreenDono
         this.animals = animals;
 
         System.out.println("\n\nTest Animals:\n" + animals.toString()+ "\n\n");
+
+        userManager.getEventos(MainScreenDono.this, animals.get(1).getId());
     }
 
     @Override
     public void onFailureAnimals(Throwable t) {
         Log.e("MainScreenDono->", "Animals->onFailure ERROR " + t.getMessage());
+    }
+
+    @Override
+    public void onSuccessEventos(ArrayList<EventoDTO> eventos) {
+        eventoDTOs = eventos;
+
+        System.out.println("\n\nTest Eventos:\n" + eventos.toString()+ "\n\n");
+
+
+    }
+
+    @Override
+    public void onFailureEventos(Throwable t) {
+        Log.e("MainScreenDono->", "Eventos->onFailure ERROR " + t.getMessage());
     }
 }

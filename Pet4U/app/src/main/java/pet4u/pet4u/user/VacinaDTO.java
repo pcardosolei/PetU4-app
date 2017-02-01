@@ -39,7 +39,7 @@ public class VacinaDTO {
         return "VacinaDTO{" +
                 "eventoId=" + eventoId +
                 ", id=" + id +
-                ", nome=" + nome +
+                ", nome='" + nome + '\'' +
                 '}';
     }
 }
