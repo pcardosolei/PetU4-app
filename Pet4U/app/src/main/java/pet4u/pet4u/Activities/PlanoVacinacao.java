@@ -17,9 +17,16 @@ import java.util.Date;
 import java.util.List;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.managers.UserManager;
+import pet4u.pet4u.user.AnimalDTO;
+import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.Vacina;
 
 public class PlanoVacinacao extends AppCompatActivity {
+
+    AnimalDTO animal;
+    UserManager user;
+    ClientDTO client;
 
     List<Vacina> vacinas= new ArrayList<Vacina>();
 
@@ -52,8 +59,10 @@ public class PlanoVacinacao extends AppCompatActivity {
 
 
     }
-    //Get CVaccine list from DB
+    //Get Vaccine list from DB
     private void getVacinas() {
+        user.getEventos(PlanoVacinacao.this, animal.ge);
+
     }
 
 
