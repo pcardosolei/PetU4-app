@@ -34,16 +34,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         FadingCircle doubleBounce = new FadingCircle();
         progressBar.setIndeterminateDrawable(doubleBounce);*/
 
-        Intent intent = getIntent();
-        String action = intent.getAction();
-        Uri data = intent.getData();
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
         start();
-
     }
 
     @Override
@@ -74,6 +69,10 @@ public class SplashScreenActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+        //Intent intent = new Intent(this, AnimalActivity.class);
+        //startActivity(intent);
+
+        finish();
     }
 
     /**
