@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 /**
  * Created by Rafael on 01/02/2017.
+ * Pet4U
  */
 
 public class EventoDTO {
 
     private int animalId;
-    //private ClinicaDTO clinicaDTO;
+    private ClinicaDTO clinicaDTO;
     private ConsultaDTO consultaDTO;
     private int consultaId ;
     private String data ;
@@ -17,6 +18,14 @@ public class EventoDTO {
     private int id;
     private ArrayList<VacinaDTO> vacinasDTO;
 
+
+    public ClinicaDTO getClinicaDTO() {
+        return clinicaDTO;
+    }
+
+    public void setClinicaDTO(ClinicaDTO clinicaDTO) {
+        this.clinicaDTO = clinicaDTO;
+    }
 
     public ConsultaDTO getConsultaDTO() {
         return consultaDTO;
@@ -78,6 +87,7 @@ public class EventoDTO {
     public String toString() {
         return "EventoDTO{" +
                 "animalId=" + animalId +
+                ", clinicaDTO=" + clinicaDTO +
                 ", consultaDTO=" + consultaDTO +
                 ", consultaId=" + consultaId +
                 ", data='" + data + '\'' +
