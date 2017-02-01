@@ -3,30 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:background="@color/colorPrimary"
+    android:gravity="center">
 
-    <ImageView
-        android:layout_height="223dp"
-        android:layout_width="match_parent"
-        android:paddingTop="20dp"
-        android:src="@drawable/logo"
-        android:id="@+id/iv_logo"
-        android:contentDescription="@string/logo"
-
-        android:layout_weight="0.81" />
-
-    <com.github.ybq.android.spinkit.SpinKitView
-        android:paddingTop="80dp"
-        android:id="@+id/spin_kit"
-        style="@style/SpinKitViewCustomCircle"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:SpinKit_Color="@color/colorPrimary"
-        android:layout_marginBottom="157dp"
-        android:layout_weight="0.14" />
-
+        android:textSize="30dp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:text="PET4U"/>
 </LinearLayout>

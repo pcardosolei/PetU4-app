@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_animal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:flexWrap="wrap"
+    app:alignItems="stretch"
+    app:alignContent="stretch"
+    app:flexDirection="column"
+    tools:context="pet4u.pet4u.activities.AnimalActivity">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/animal_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <ImageView
+            android:id="@+id/foto_animal"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/default_dog"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_nome_animal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:text="Nome:"/>
+
+            <TextView
+                android:id="@+id/tv_display_nome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/tv_nome_animal"
+                android:padding="5dp"
+                android:text="Bobby"/>
+
+            <TextView
+                android:id="@+id/tv_nasceu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:layout_below="@id/tv_nome_animal"
+                android:text="Nasceu em:"/>
+
+            <TextView
+                android:id="@+id/tv_display_nascimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_nome_animal"
+                android:layout_toEndOf="@id/tv_nasceu"
+                android:padding="5dp"
+                android:text="20/10/2010"/>
+
+            <TextView
+                android:id="@+id/tv_genero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:layout_below="@id/tv_nasceu"
+                android:text="Genero:"/>
+
+            <TextView
+                android:id="@+id/tv_display_genero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_nasceu"
+                android:layout_toEndOf="@id/tv_genero"
+                android:padding="5dp"
+                android:text="Macho"/>
+
+            <TextView
+                android:id="@+id/tv_peso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:layout_below="@id/tv_genero"
+                android:text="Peso atual:"/>
+
+            <TextView
+                android:id="@+id/tv_display_peso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_genero"
+                android:layout_toEndOf="@id/tv_peso"
+                android:padding="5dp"
+                android:text="10 kg"/>
+
+            <TextView
+                android:id="@+id/tv_porte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:layout_below="@id/tv_peso"
+                android:text="Porte:"/>
+
+            <TextView
+                android:id="@+id/tv_display_porte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_peso"
+                android:layout_toEndOf="@id/tv_porte"
+                android:padding="5dp"
+                android:text="Grande"/>
+
+            <TextView
+                android:id="@+id/tv_raca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:layout_below="@id/tv_porte"
+                android:text="Raça:"/>
+
+            <TextView
+                android:id="@+id/tv_display_raca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_porte"
+                android:layout_toEndOf="@id/tv_raca"
+                android:padding="5dp"
+                android:text="Bulldog"/>
+        </RelativeLayout>
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <TextView
+        android:id="@+id/tv_historico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/animal_header"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="17dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:text="Últimos eventos"/>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@id/tv_historico"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="5dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:layout_below="@id/line"/>
+
+</RelativeLayout>
