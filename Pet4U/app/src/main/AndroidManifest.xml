@@ -11,9 +11,10 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /-->
+
     <!--
 uses-sdk
         android:minSdkVersion="19"
@@ -46,6 +47,7 @@ uses-sdk
         <activity
             android:name=".activities.MainScreenDono"
             android:label="@string/title_activity_main_screen_dono" />
+
         <!--
      ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -60,7 +62,16 @@ uses-sdk
             android:label="@string/title_activity_plano_vacinacao"
             android:theme="@style/AppTheme.NoActionBar" />
 
+
         <activity android:name=".activities.AnimalActivity"/>
+
+        <activity
+            android:name=".activities.Lista_Consultas"
+            android:label="@string/title_activity_plano_vacinacao"
+            android:theme="@style/AppTheme.NoActionBar"/>
+      
+    </application>
+
 
     </application>
 </manifest>

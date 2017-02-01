@@ -1,10 +1,13 @@
 package pet4u.pet4u.user;
 
+import java.util.ArrayList;
+
 /**
  * Created by Rafael on 31/01/2017.
+ * Pet4U
  */
 
-public class Animal {
+public class AnimalDTO {
 
 
     private String dataNasc;
@@ -16,6 +19,51 @@ public class Animal {
     private int racaId ;
     private String racaNome ;
     private String tipo ;
+    private ArrayList<FotoDTO> fotos;
+
+    public ArrayList<FotoDTO> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(ArrayList<FotoDTO> fotos) {
+        this.fotos = fotos;
+    }
+
+    public String getDataNasc() {
+        return dataNasc;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public String getPorte() {
+        return porte;
+    }
+
+    public int getRacaId() {
+        return racaId;
+    }
+
+    public String getRacaNome() {
+        return racaNome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
 
     public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
@@ -55,7 +103,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" +
+        return "AnimalDTO{" +
                 "dataNasc='" + dataNasc + '\'' +
                 ", genero='" + genero + '\'' +
                 ", id=" + id +
@@ -65,6 +113,7 @@ public class Animal {
                 ", racaId=" + racaId +
                 ", racaNome='" + racaNome + '\'' +
                 ", tipo='" + tipo + '\'' +
+                ", fotos=" + fotos +
                 '}';
     }
 
