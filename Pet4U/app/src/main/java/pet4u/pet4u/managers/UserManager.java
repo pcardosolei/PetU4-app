@@ -17,7 +17,6 @@ import pet4u.pet4u.services.EventosService;
 import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.services.AccountService;
-import pet4u.pet4u.user.AddressDTO;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.EventoDTO;
@@ -38,7 +37,6 @@ public class UserManager {
     private UserToken userToken;
     private AccountDTO accountDTO;
     private ClientDTO clientDTO;
-    private AddressDTO addressDTO;
     private ArrayList<AnimalDTO> animals;
     private ArrayList<EventoDTO> eventos;
 

@@ -1,5 +1,7 @@
 package pet4u.pet4u.user;
 
+import java.util.ArrayList;
+
 /**
  * Created by Rafael on 31/01/2017.
  * Pet4U
@@ -17,7 +19,15 @@ public class AnimalDTO {
     private int racaId ;
     private String racaNome ;
     private String tipo ;
+    private ArrayList<FotoDTO> fotos;
 
+    public ArrayList<FotoDTO> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(ArrayList<FotoDTO> fotos) {
+        this.fotos = fotos;
+    }
 
     public String getDataNasc() {
         return dataNasc;
@@ -103,6 +113,7 @@ public class AnimalDTO {
                 ", racaId=" + racaId +
                 ", racaNome='" + racaNome + '\'' +
                 ", tipo='" + tipo + '\'' +
+                ", fotos=" + fotos +
                 '}';
     }
 

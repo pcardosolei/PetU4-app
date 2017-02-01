@@ -36,6 +36,7 @@ uses-sdk
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
+
                 <!--  -->
                 <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
                 <data
@@ -75,10 +76,12 @@ uses-sdk
             android:name=".activities.PlanoVacinacao"
             android:label="@string/title_activity_plano_vacinacao"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".activities.Lista_Consultas"
             android:label="@string/title_activity_plano_vacinacao"
             android:theme="@style/AppTheme.NoActionBar"/>
+      
     </application>
 
 </manifest>
