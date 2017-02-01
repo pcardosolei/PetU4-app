@@ -8,7 +8,7 @@ public class VacinaDTO {
 
     private int eventoId;
     private int id ;
-    private int nome ;
+    private String nome ;
 
     public int getEventoId() {
         return eventoId;
@@ -26,11 +26,11 @@ public class VacinaDTO {
         this.id = id;
     }
 
-    public int getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(int nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -39,7 +39,7 @@ public class VacinaDTO {
         return "VacinaDTO{" +
                 "eventoId=" + eventoId +
                 ", id=" + id +
-                ", nome=" + nome +
+                ", nome='" + nome + '\'' +
                 '}';
     }
 }
