@@ -18,6 +18,43 @@ public class AnimalDTO {
     private String racaNome ;
     private String tipo ;
 
+
+    public String getDataNasc() {
+        return dataNasc;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getPeso() {
+        return peso;
+    }
+
+    public String getPorte() {
+        return porte;
+    }
+
+    public int getRacaId() {
+        return racaId;
+    }
+
+    public String getRacaNome() {
+        return racaNome;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
     public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }

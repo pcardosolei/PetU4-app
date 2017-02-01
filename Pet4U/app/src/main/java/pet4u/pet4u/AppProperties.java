@@ -9,5 +9,5 @@ public class AppProperties {
     public static String clientSecret = "my-secret-token-to-change-in-production";
     public static String grantType = "password";
     public static String scope = "read write";
-    public static String baseUrl = "http://139.59.210.86:8080/";
+    public static String baseUrl = "http://128.199.53.78:8080/";
 }
