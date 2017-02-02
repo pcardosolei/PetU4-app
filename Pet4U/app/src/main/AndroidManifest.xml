@@ -66,7 +66,7 @@ uses-sdk
         <activity android:name=".activities.AnimalActivity"/>
 
         <activity
-            android:name=".activities.Lista_Consultas"
+            android:name=".activities.ListaConsultas"
             android:label="@string/title_activity_plano_vacinacao"
             android:theme="@style/AppTheme.NoActionBar"/>
       

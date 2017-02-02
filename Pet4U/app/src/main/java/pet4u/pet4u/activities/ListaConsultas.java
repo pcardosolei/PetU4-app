@@ -1,5 +1,6 @@
 package pet4u.pet4u.activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,10 +25,11 @@ import pet4u.pet4u.user.Consulta;
 import pet4u.pet4u.user.DateConverter;
 import pet4u.pet4u.user.EventoDTO;
 
-public class Lista_Consultas extends AppCompatActivity implements EventosCallback {
+public class ListaConsultas extends AppCompatActivity implements EventosCallback {
 
     AnimalDTO animal;
     UserManager user;
+
 
     //Create Array of Consultas
     List<Consulta> consultas = new ArrayList<>();
@@ -38,11 +40,11 @@ public class Lista_Consultas extends AppCompatActivity implements EventosCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_consultas);
 
-        //Get User and animal
-        getIntent();
+        //Get User and animal // TODO: 02/02/2017 Acabar
+        Intent intent = getIntent();
 
         // Get Consultas
-        getConsultas();
+        //getConsultas();
 
 
         // Populate List View
@@ -56,7 +58,7 @@ public class Lista_Consultas extends AppCompatActivity implements EventosCallbac
 
     private void getConsultas() {
 
-        user.getEventos(Lista_Consultas.this, animal.getId());
+        user.getEventos(ListaConsultas.this, animal.getId());
     }
 
     private void getSampleConsultas() {
@@ -91,7 +93,7 @@ public class Lista_Consultas extends AppCompatActivity implements EventosCallbac
 
     @Override
     public void onFailureEventos(Throwable t) {
-        Log.e("Lista_Consultas->", "EventoDTO->onFailure ERROR " + t.getMessage());
+        Log.e("ListaConsultas->", "EventoDTO->onFailure ERROR " + t.getMessage());
     }
 
 
@@ -99,7 +101,7 @@ public class Lista_Consultas extends AppCompatActivity implements EventosCallbac
     private class ConsultaListAdapter extends ArrayAdapter<Consulta> {
 
         public ConsultaListAdapter() {
-            super(Lista_Consultas.this, R.layout.listview_consulta, consultas);
+            super(ListaConsultas.this, R.layout.listview_consulta, consultas);
         }
 
         @NonNull

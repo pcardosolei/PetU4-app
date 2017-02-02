@@ -45,7 +45,7 @@ public class PlanoVacinacao extends AppCompatActivity implements EventosCallback
 
 
         // GET ARRAY OF Vacinas
-        getVacinas();
+        //getVacinas();
 
 
 
