@@ -1,4 +1,8 @@
 package pet4u.pet4u.activities;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,8 +14,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import pet4u.pet4u.R;
@@ -21,6 +29,7 @@ import pet4u.pet4u.callbacks.AnimalsCallback;
 import pet4u.pet4u.callbacks.ClientCallback;
 
 import pet4u.pet4u.callbacks.EventosCallback;
+import pet4u.pet4u.managers.DownloadImageTask;
 import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.callbacks.AccountCallback;
@@ -29,6 +38,7 @@ import pet4u.pet4u.user.AddressDTO;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.EventoDTO;
+import pet4u.pet4u.user.FotoDTO;
 
 public class MainScreenDono
         extends AppCompatActivity
@@ -205,6 +215,17 @@ public class MainScreenDono
         userManager.getEventos(MainScreenDono.this, animals.get(0).getId());
 
         System.out.println("Test Animal Foto: " + animals.get(0).getFotos().get(0).getPath());
+
+        //Download First Ficture
+        try {
+            FotoDTO fotoAux = animals.get(0).getFotos().get(0);
+            ImageView im = (ImageView) findViewById(R.id.im_fotoPerfil);
+            new DownloadImageTask(im).execute(fotoAux.getPath());
+        }catch (Exception e){
+            Log.e("MainScreenDono", "Foto fail, probably has none: " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -226,3 +247,4 @@ public class MainScreenDono
         Log.e("MainScreenDono->", "Eventos->onFailure ERROR " + t.getMessage());
     }
 }
+

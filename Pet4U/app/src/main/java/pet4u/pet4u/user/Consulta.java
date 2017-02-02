@@ -74,4 +74,15 @@ public class Consulta implements Comparable<Consulta>{
     public int compareTo(Consulta o) {
         return getDate().compareTo(o.getDate());
     }
+
+    @Override
+    public String toString() {
+        return "Consulta{" +
+                "id=" + id +
+                ", descriçao='" + descriçao + '\'' +
+                ", pertilhado=" + pertilhado +
+                ", data=" + data +
+                ", clinica='" + clinica + '\'' +
+                '}';
+    }
 }
