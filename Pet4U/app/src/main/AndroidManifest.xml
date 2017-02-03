@@ -47,7 +47,8 @@ uses-sdk
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.MainScreenDono"
-            android:label="@string/title_activity_main_screen_dono" />
+            android:label="@string/title_activity_main_screen_dono"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--
      ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -71,7 +72,7 @@ uses-sdk
             android:label="@string/title_activity_plano_vacinacao"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".activities.UserProfile"/>
+        <activity android:name=".activities.UserProfileActivity"/>
       
     </application>
 

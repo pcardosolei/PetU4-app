@@ -6,6 +6,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,6 +25,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import pet4u.pet4u.R;
 
@@ -56,15 +61,19 @@ public class MainScreenDono
     private ArrayList<AnimalDTO> animals;
     private ArrayList<EventoDTO> eventoDTOs;
 
+
+    RecyclerView rv_animais;
+    RecyclerView rv_eventos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main_screen_dono);
 
         // TODO: 26/01/2017  Tava a dar erro... teve q ser commentado...
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Pet4U");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -78,14 +87,42 @@ public class MainScreenDono
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         // TODO: 26/01/2017  Tava a dar erro... teve q ser commentado...
-        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        //drawer.setDrawerListener(toggle);
-        //toggle.syncState();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //display info...
+
+
+        rv_animais = (RecyclerView)findViewById(R.id.rv_animais);
+        rv_eventos = (RecyclerView)findViewById(R.id.rv_eventos);
+
+        // Carregar eventos para as cards:
+        rv_animais.setHasFixedSize(true);
+        //rv_eventos.setHasFixedSize(true);
+
+        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
+        rv_animais.setLayoutManager(llm);
+        rv_eventos.setLayoutManager(llm);
+
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card("Bobby", "", R.drawable.dog_icon));
+        cards.add(new Card("Pantufa", "", R.drawable.cat_icon_black));
+
+        List<Card> eventCards = new ArrayList<>();
+        eventCards.add(new Card("Consulta","10/10/2010",R.drawable.ic_today_black_24dp));
+        eventCards.add(new Card("Vacina","10/10/2010", R.drawable.ic_colorize_black_24dp));
+        eventCards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp));
+        eventCards.add(new Card("Desparasitação", "04/01/2017", R.drawable.ic_local_hospital_black_24dp));
+
+        RVAdapter adapter = new RVAdapter(cards);
+        rv_animais.setAdapter(adapter);
+        adapter=new RVAdapter(eventCards);
+        rv_eventos.setAdapter(adapter);
+
 
         userToken = (UserToken) getIntent().getSerializableExtra("userToken");
 
@@ -160,10 +197,10 @@ public class MainScreenDono
     @Override
     public void onSuccessGetAccount(AccountDTO accountDTO) {
         this.accountDTO = accountDTO;
-        TextView tv = (TextView) findViewById(R.id.tv_nome);
-        tv.setText(accountDTO.getFirstName() + " " + accountDTO.getLastName());
-        tv = (TextView) findViewById(R.id.tv_email);
-        tv.setText(this.accountDTO.getEmail());
+        //TextView tv = (TextView) findViewById(R.id.tv_nome);
+        //tv.setText(accountDTO.getFirstName() + " " + accountDTO.getLastName());
+        //tv = (TextView) findViewById(R.id.tv_email);
+        //tv.setText(this.accountDTO.getEmail());
 
 
         // TODO: 31/01/2017 Teste, remover.

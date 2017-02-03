@@ -15,7 +15,7 @@ import java.util.List;
 
 import pet4u.pet4u.R;
 
-public class UserProfile extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity {
     TextView display_nome;
     TextView display_nascimento;
     TextView display_genero;
@@ -50,8 +50,8 @@ public class UserProfile extends AppCompatActivity {
         rv.setLayoutManager(llm);
 
         List<Card> cards = new ArrayList<>();
-        cards.add(new Card("Bobby", "30/01/2017", R.drawable.dog_icon));
-        cards.add(new Card("Pantufa", "25/01/2017", R.drawable.cat_icon_black));
+        cards.add(new Card("Bobby", "", R.drawable.dog_icon));
+        cards.add(new Card("Pantufa", "", R.drawable.cat_icon_black));
 
 
         RVAdapter adapter = new RVAdapter(cards);
