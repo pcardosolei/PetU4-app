@@ -70,6 +70,8 @@ uses-sdk
             android:name=".activities.ListaConsultas"
             android:label="@string/title_activity_plano_vacinacao"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".activities.UserProfile"/>
       
     </application>
 

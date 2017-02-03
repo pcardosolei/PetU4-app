@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="pet4u.pet4u.activities.UserProfile">
+
+    <!--android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.design.widget.AppBarLayout-->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/edit_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_mode_edit_black_48dp"
+        app:layout_anchorGravity="center_vertical|center_horizontal"
+        android:layout_gravity="bottom|right" />
+
+    <include layout="@layout/content_user_profile" />
+
+</android.support.design.widget.CoordinatorLayout>

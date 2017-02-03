@@ -61,10 +61,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         //vamos passar o login a frente;
 
         //jumpstart....
-        //Intent intent = new Intent(this, PlanoVacinacao.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, UserProfile.class);
+        startActivity(intent);
 
-        boolean login = true;
+        /*boolean login = true;
 
         if (login) {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -72,7 +72,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         } else {
             Intent intent = new Intent(this, MainScreenDono.class);
             startActivity(intent);
-        }
+        }*/
 
         //Intent intent = new Intent(this, AnimalActivity.class);
         //startActivity(intent);
