@@ -35,7 +35,7 @@ public class AnimalActivity extends AppCompatActivity {
         display_peso = (TextView)findViewById(R.id.tv_display_peso);
         display_porte = (TextView)findViewById(R.id.tv_display_porte);
         display_raca = (TextView)findViewById(R.id.tv_display_raca);
-        display_historico = (TextView)findViewById(R.id.tv_animais);
+        display_historico = (TextView)findViewById(R.id.tv_eventos);
 
         rv = (RecyclerView)findViewById(R.id.rv);
 

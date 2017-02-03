@@ -150,7 +150,7 @@
     </com.google.android.flexbox.FlexboxLayout>
 
     <TextView
-        android:id="@+id/tv_animais"
+        android:id="@+id/tv_eventos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/animal_header"
@@ -169,7 +169,7 @@
         android:background="@android:color/darker_gray"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_below="@id/tv_animais"/>
+        android:layout_below="@id/tv_eventos"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"

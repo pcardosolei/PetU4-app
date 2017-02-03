@@ -11,6 +11,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.measurement.internal.EventParams;
 
 import pet4u.pet4u.R;
 
@@ -61,7 +62,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         //vamos passar o login a frente;
 
         //jumpstart....
-        Intent intent = new Intent(this, UserProfile.class);
+        Intent intent = new Intent(this, EventoActivity.class);
         startActivity(intent);
 
         /*boolean login = true;

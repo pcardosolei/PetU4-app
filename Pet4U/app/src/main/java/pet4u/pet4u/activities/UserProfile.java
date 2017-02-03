@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -39,7 +38,7 @@ public class UserProfile extends AppCompatActivity {
         display_morada = (TextView)findViewById(R.id.tv_display_peso);
         display_telemovel = (TextView)findViewById(R.id.tv_display_porte);
         display_email = (TextView)findViewById(R.id.tv_display_raca);
-        display_historico = (TextView)findViewById(R.id.tv_animais);
+        display_historico = (TextView)findViewById(R.id.tv_eventos);
 
         rv = (RecyclerView)findViewById(R.id.rv);
 
