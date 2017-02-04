@@ -1,4 +1,5 @@
 package pet4u.pet4u.activities;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +20,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -162,19 +165,36 @@ public class MainScreenDono
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainScreenDono.this);
+        AlertDialog alertDialog;
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.action_settings:
                 // TODO: 04/02/2017  
                 // User chose the "Settings" item, show the app settings UI...
-                Snackbar.make(item.getActionView(), "In Development...",
-                        Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
+                // set dialog message
+                alertDialogBuilder.setMessage("Feature is still in development...");
+
+                // create alert dialog
+                alertDialog = alertDialogBuilder.create();
+                // show it
+                alertDialog.show();
+
+                //Snackbar.make(CoordinatorLayout , "In Development...",
+                //        Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 return true;
 
             case R.id.action_addAnimal:
-                // TODO: 04/02/2017  
-                Snackbar.make(item.getActionView(), "In Development...",
-                        Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                // TODO: 04/02/2017
+
+                // set dialog message
+                alertDialogBuilder.setMessage("Feature is still in development...");
+
+                // create alert dialog
+                alertDialog = alertDialogBuilder.create();
+                // show it
+                alertDialog.show();
                 
                 return true;
 

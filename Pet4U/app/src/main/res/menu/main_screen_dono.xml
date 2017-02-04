@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_addAnimal"
-        android:icon="@drawable/ic_add_black_48dp"
+        android:icon="@drawable/ic_add_white_48dp"
         android:title="@string/add_animal"
         app:showAsAction="ifRoom"/>
 
