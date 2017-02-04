@@ -75,20 +75,20 @@ public class MainScreenDono
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Pet4U");
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         // TODO: 26/01/2017  Tava a dar erro... teve q ser commentado...
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -137,6 +137,7 @@ public class MainScreenDono
 
     }
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -162,11 +163,29 @@ public class MainScreenDono
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                // TODO: 04/02/2017  
+                // User chose the "Settings" item, show the app settings UI...
+                Snackbar.make(item.getActionView(), "In Development...",
+                        Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                return true;
+
+            case R.id.action_addAnimal:
+                // TODO: 04/02/2017  
+                Snackbar.make(item.getActionView(), "In Development...",
+                        Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
 
-        return super.onOptionsItemSelected(item);
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
