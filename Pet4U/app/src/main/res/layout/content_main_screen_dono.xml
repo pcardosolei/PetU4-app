@@ -20,16 +20,18 @@
         android:layout_height="0dp"
         android:weightSum="1"
         android:orientation="horizontal"
-        android:layout_weight="0.4">
+        android:layout_weight="0.4"
+        android:id="@+id/ll_upper">
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="0.25">
+            android:layout_weight="0.25"
+            android:id="@+id/rl_imgName">
 
             <ImageView
-                app:srcCompat="@drawable/logo"
+                app:srcCompat="@drawable/ic_face_black_48dp"
                 android:id="@+id/im_fotoPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="100dp" />
@@ -59,7 +61,8 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.75">
+            android:layout_weight="0.75"
+            android:id="@+id/rl_animals">
 
             <TextView
                 android:id="@+id/tv_animais"
@@ -102,7 +105,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6">
+        android:layout_weight="0.6"
+        android:id="@+id/rl_lower">
 
         <TextView
             android:id="@+id/tv_eventos"

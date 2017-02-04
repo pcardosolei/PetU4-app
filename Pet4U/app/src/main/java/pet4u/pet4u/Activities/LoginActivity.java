@@ -69,6 +69,11 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+
+        // TODO: 04/02/2017 remove... debug only 
+        mEmailView.setText("android");
+        mPasswordView.setText("user");
+
 /*
         //login da google
 

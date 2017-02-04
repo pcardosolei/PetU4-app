@@ -101,16 +101,20 @@ public class MainScreenDono
         rv_eventos = (RecyclerView)findViewById(R.id.rv_eventos);
 
         // Carregar eventos para as cards:
-        rv_animais.setHasFixedSize(true);
+        //rv_animais.setHasFixedSize(true);
         //rv_eventos.setHasFixedSize(true);
 
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         rv_animais.setLayoutManager(llm);
+        llm = new LinearLayoutManager(getApplicationContext());
         rv_eventos.setLayoutManager(llm);
 
         List<Card> cards = new ArrayList<>();
         cards.add(new Card("Bobby", "", R.drawable.dog_icon));
         cards.add(new Card("Pantufa", "", R.drawable.cat_icon_black));
+        cards.add(new Card("Tigrinha","",R.drawable.cat_icon_black));
+        cards.add(new Card("Riscas","",R.drawable.cat_icon_black));
+
 
         List<Card> eventCards = new ArrayList<>();
         eventCards.add(new Card("Consulta","10/10/2010",R.drawable.ic_today_black_24dp));
@@ -126,9 +130,7 @@ public class MainScreenDono
 
         userToken = (UserToken) getIntent().getSerializableExtra("userToken");
 
-        //ServerHttpClient httpClient = new ServerHttpClient();
         userManager = new UserManager(userToken);
-
         userManager.getAccount(MainScreenDono.this);
 
 
@@ -257,7 +259,7 @@ public class MainScreenDono
         try {
             FotoDTO fotoAux = animals.get(0).getFotos().get(0);
             ImageView im = (ImageView) findViewById(R.id.im_fotoPerfil);
-            new DownloadImageTask(im).execute(fotoAux.getPath());
+            //new DownloadImageTask(im).execute(fotoAux.getPath());
         }catch (Exception e){
             Log.e("MainScreenDono", "Foto fail, probably has none: " + e.getMessage());
             e.printStackTrace();
