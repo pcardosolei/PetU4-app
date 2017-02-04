@@ -1,43 +1,28 @@
 package pet4u.pet4u.activities;
-import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import pet4u.pet4u.R;
-
 import pet4u.pet4u.callbacks.AnimalsCallback;
-
 import pet4u.pet4u.callbacks.ClientCallback;
-
 import pet4u.pet4u.callbacks.EventosCallback;
-import pet4u.pet4u.managers.DownloadImageTask;
 import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.callbacks.AccountCallback;
@@ -214,19 +199,34 @@ public class MainScreenDono
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        switch (id){
+            case (R.id.nav_camera):
+                break;
+            case (R.id.nav_gallery):
+                break;
+            case (R.id.nav_slideshow):
+                break;
+            case (R.id.nav_manage):
+                break;
+            case (R.id.nav_share):
+                break;
+            case (R.id.nav_send):
+                break;
+            default:
 
         }
+
+        // TODO: 04/02/2017
+        // User chose the "Settings" item, show the app settings UI...
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainScreenDono.this);
+        AlertDialog alertDialog;
+        // set dialog message
+        alertDialogBuilder.setMessage("Feature is still in development...");
+
+        // create alert dialog
+        alertDialog = alertDialogBuilder.create();
+        // show it
+        alertDialog.show();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
