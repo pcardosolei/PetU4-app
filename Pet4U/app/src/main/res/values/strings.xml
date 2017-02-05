@@ -32,6 +32,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_user_profile">UserProfile</string>
+    <string name="add_animal">Adicionar Animal</string>
 
     <!-- Strings related to register -->
     <string name="foto_perfil_desc">Foto de Perfil</string>
