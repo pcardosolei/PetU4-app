@@ -195,7 +195,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         intent.putExtra("userToken",userToken);
         startActivity(intent);
         finish();
-    }
+}
 
     @Override
     public void onFailure(Throwable t) {

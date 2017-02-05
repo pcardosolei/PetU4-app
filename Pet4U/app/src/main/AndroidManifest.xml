@@ -12,10 +12,11 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!--android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--
+android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /-->
-
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /
+    -->
     <!--
 uses-sdk
         android:minSdkVersion="19"
@@ -63,17 +64,17 @@ uses-sdk
             android:name=".activities.PlanoVacinacao"
             android:label="@string/title_activity_plano_vacinacao"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
-        <activity android:name=".activities.AnimalActivity"/>
-
+        <activity android:name=".activities.AnimalActivity" />
         <activity
             android:name=".activities.ListaConsultas"
             android:label="@string/title_activity_plano_vacinacao"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".activities.UserProfileActivity"/>
-      
+        <activity android:name=".activities.UserProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".activities.EventoActivity" />
+
     </application>
 
 </manifest>

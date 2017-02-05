@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_activity_evento"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="pet4u.pet4u.activities.EventoActivity"
+    tools:showIn="@layout/activity_evento"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:id="@+id/evento_header"
+            >
+
+
+            <TextView
+                android:id="@+id/tv_clinica"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="17dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="Clinica da doutora excelenticima Celia Costa"
+                android:layout_alignParentStart="true"
+                />
+
+            <TextView
+                android:text="20/11/2012"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:layout_alignParentBottom="true"
+                android:layout_alignEnd="@+id/tv_clinica"
+                android:layout_marginEnd="7dp"
+                android:id="@+id/event_date"
+                />
+
+        </LinearLayout>
+
+
+
+
+        <View
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_below="@id/evento_header"/>
+
+        <TextView
+            android:id="@+id/evento_consulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="Consulta com muito texto que vai ocupar mais do que umas linhas so para ter a certeza que o texto e scrollable e que fica minimamento bonito e legivel. Gosto muito deste texto Ola mae tudo bem contigo. Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae "
+            android:layout_below="@id/line3"
+            android:layout_alignParentStart="true"
+
+            android:scrollbars = "vertical"/>
+
+
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@id/evento_consulta"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+
+        <TextView
+            android:id="@+id/tv_eventos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="17dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="Eventos"
+            android:layout_alignParentStart="true" />
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_below="@id/tv_eventos"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_eventos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_below="@+id/line2"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</LinearLayout>
