@@ -1,13 +1,12 @@
 package pet4u.pet4u.activities;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,19 +16,13 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import pet4u.pet4u.R;
-
 import pet4u.pet4u.callbacks.AnimalsCallback;
-
 import pet4u.pet4u.callbacks.ClientCallback;
-
 import pet4u.pet4u.callbacks.EventosCallback;
-import pet4u.pet4u.managers.DownloadImageTask;
 import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.callbacks.AccountCallback;
@@ -56,47 +49,82 @@ public class MainScreenDono
     private ArrayList<AnimalDTO> animals;
     private ArrayList<EventoDTO> eventoDTOs;
 
+
+    RecyclerView rv_animais;
+    RecyclerView rv_eventos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main_screen_dono);
 
         // TODO: 26/01/2017  Tava a dar erro... teve q ser commentado...
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Pet4U");
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         // TODO: 26/01/2017  Tava a dar erro... teve q ser commentado...
-        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        //drawer.setDrawerListener(toggle);
-        //toggle.syncState();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //display info...
 
+
+        rv_animais = (RecyclerView)findViewById(R.id.rv_animais);
+        rv_eventos = (RecyclerView)findViewById(R.id.rv_eventos);
+
+        // Carregar eventos para as cards:
+        //rv_animais.setHasFixedSize(true);
+        //rv_eventos.setHasFixedSize(true);
+
+        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
+        rv_animais.setLayoutManager(llm);
+        llm = new LinearLayoutManager(getApplicationContext());
+        rv_eventos.setLayoutManager(llm);
+
+        List<Card> cards = new ArrayList<>();
+        cards.add(new Card("Bobby", "", R.drawable.dog_icon));
+        cards.add(new Card("Pantufa", "", R.drawable.cat_icon_black));
+        cards.add(new Card("Tigrinha","",R.drawable.cat_icon_black));
+        cards.add(new Card("Riscas","",R.drawable.cat_icon_black));
+
+
+        List<Card> eventCards = new ArrayList<>();
+        eventCards.add(new Card("Consulta","10/10/2010",R.drawable.ic_today_black_24dp));
+        eventCards.add(new Card("Vacina","10/10/2010", R.drawable.ic_colorize_black_24dp));
+        eventCards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp));
+        eventCards.add(new Card("Desparasitação", "04/01/2017", R.drawable.ic_local_hospital_black_24dp));
+
+        RVAdapter adapter = new RVAdapter(cards);
+        rv_animais.setAdapter(adapter);
+        adapter=new RVAdapter(eventCards);
+        rv_eventos.setAdapter(adapter);
+
+
         userToken = (UserToken) getIntent().getSerializableExtra("userToken");
 
-        //ServerHttpClient httpClient = new ServerHttpClient();
         userManager = new UserManager(userToken);
-
         userManager.getAccount(MainScreenDono.this);
 
 
 
     }
+
 
     @Override
     public void onBackPressed() {
@@ -122,12 +150,47 @@ public class MainScreenDono
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainScreenDono.this);
+        AlertDialog alertDialog;
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                // TODO: 04/02/2017  
+                // User chose the "Settings" item, show the app settings UI...
+
+                // set dialog message
+                alertDialogBuilder.setMessage("Feature is still in development...");
+
+                // create alert dialog
+                alertDialog = alertDialogBuilder.create();
+                // show it
+                alertDialog.show();
+
+                //Snackbar.make(CoordinatorLayout , "In Development...",
+                //        Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                return true;
+
+            case R.id.action_addAnimal:
+                // TODO: 04/02/2017
+
+                // set dialog message
+                alertDialogBuilder.setMessage("Feature is still in development...");
+
+                // create alert dialog
+                alertDialog = alertDialogBuilder.create();
+                // show it
+                alertDialog.show();
+                
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
         }
 
-        return super.onOptionsItemSelected(item);
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -136,19 +199,34 @@ public class MainScreenDono
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        switch (id){
+            case (R.id.nav_camera):
+                break;
+            case (R.id.nav_gallery):
+                break;
+            case (R.id.nav_slideshow):
+                break;
+            case (R.id.nav_manage):
+                break;
+            case (R.id.nav_share):
+                break;
+            case (R.id.nav_send):
+                break;
+            default:
 
         }
+
+        // TODO: 04/02/2017
+        // User chose the "Settings" item, show the app settings UI...
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainScreenDono.this);
+        AlertDialog alertDialog;
+        // set dialog message
+        alertDialogBuilder.setMessage("Feature is still in development...");
+
+        // create alert dialog
+        alertDialog = alertDialogBuilder.create();
+        // show it
+        alertDialog.show();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -160,10 +238,10 @@ public class MainScreenDono
     @Override
     public void onSuccessGetAccount(AccountDTO accountDTO) {
         this.accountDTO = accountDTO;
-        TextView tv = (TextView) findViewById(R.id.tv_nome);
-        tv.setText(accountDTO.getFirstName() + " " + accountDTO.getLastName());
-        tv = (TextView) findViewById(R.id.tv_email);
-        tv.setText(this.accountDTO.getEmail());
+        //TextView tv = (TextView) findViewById(R.id.tv_nome);
+        //tv.setText(accountDTO.getFirstName() + " " + accountDTO.getLastName());
+        //tv = (TextView) findViewById(R.id.tv_email);
+        //tv.setText(this.accountDTO.getEmail());
 
 
         // TODO: 31/01/2017 Teste, remover.
@@ -220,7 +298,7 @@ public class MainScreenDono
         try {
             FotoDTO fotoAux = animals.get(0).getFotos().get(0);
             ImageView im = (ImageView) findViewById(R.id.im_fotoPerfil);
-            new DownloadImageTask(im).execute(fotoAux.getPath());
+            //new DownloadImageTask(im).execute(fotoAux.getPath());
         }catch (Exception e){
             Log.e("MainScreenDono", "Foto fail, probably has none: " + e.getMessage());
             e.printStackTrace();
