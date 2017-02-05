@@ -39,12 +39,12 @@
                 android:paddingBottom="5dp"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp"
-                android:text="Clinica da doutora excelenticima Celia Costa"
+                android:text="Clinica Veterinária X"
                 android:layout_alignParentStart="true"
                 />
 
             <TextView
-                android:text="20/11/2012"
+                android:text="20/11/2016"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
@@ -77,7 +77,7 @@
             android:paddingBottom="5dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
-            android:text="Consulta com muito texto que vai ocupar mais do que umas linhas so para ter a certeza que o texto e scrollable e que fica minimamento bonito e legivel. Gosto muito deste texto Ola mae tudo bem contigo. Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola MaeOla Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae Ola Mae "
+            android:text="Descrição da Consulta"
             android:layout_below="@id/line3"
             android:layout_alignParentStart="true"
 
