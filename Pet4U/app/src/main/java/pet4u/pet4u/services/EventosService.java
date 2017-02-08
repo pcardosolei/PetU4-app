@@ -19,5 +19,4 @@ public interface EventosService {
             @Header("Authorization") String Authorization,
             @Path("animalId") int animalId
     );
-
 }

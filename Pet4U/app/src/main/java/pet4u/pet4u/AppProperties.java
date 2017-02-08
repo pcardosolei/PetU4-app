@@ -14,5 +14,5 @@ public class AppProperties {
     // main server : http://128.199.53.78:8080/
     // local server http://192.168.56.1:8080
     // server do carlos: http://192.168.43.242:8080/
-    //
+    // site final http://pet4uweb.me
 }

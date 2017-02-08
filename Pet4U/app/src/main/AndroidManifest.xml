@@ -65,8 +65,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
 
-        <activity android:name=".activities.UserProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.UserProfileActivity"/>
 
         <activity android:name=".activities.EventoActivity" />
 

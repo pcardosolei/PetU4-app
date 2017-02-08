@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import pet4u.pet4u.R;
 import pet4u.pet4u.callbacks.AnimalsCallback;
 import pet4u.pet4u.callbacks.ClientCallback;
+import pet4u.pet4u.callbacks.ConsultaCallback;
 import pet4u.pet4u.callbacks.EventosCallback;
 import pet4u.pet4u.managers.AnimalCard;
 import pet4u.pet4u.managers.Card;
@@ -46,6 +47,7 @@ import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.AddressDTO;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
+import pet4u.pet4u.user.ConsultaDTO;
 import pet4u.pet4u.user.EventoDTO;
 import pet4u.pet4u.user.FotoDTO;
 
@@ -55,7 +57,8 @@ public class MainScreenDono
         AccountCallback,
         ClientCallback,
         AnimalsCallback,
-        EventosCallback{
+        EventosCallback,
+        ConsultaCallback{
 
     private UserManager userManager;
     private UserToken userToken;
@@ -383,6 +386,12 @@ public class MainScreenDono
     public void onSuccessEventos(ArrayList<EventoDTO> eventos) {
         eventoDTOs = eventos;
 
+
+        for(EventoDTO event : eventoDTOs){
+            userManager.getConsulta(MainScreenDono.this, event.getConsultaId());
+
+        }
+
         //System.out.println("\n\nTest Eventos:\n" + eventos.toString()+ "\n\n");
 
 
@@ -399,6 +408,18 @@ public class MainScreenDono
         if(clientDTO!=null) intent.putExtra("client", clientDTO);
         if(animals!=null) intent.putExtra("animals", animals);
         startActivity(intent);
+    }
+
+    @Override
+    public void onSuccessConsulta(ConsultaDTO consultaDTO) {
+        for(EventoDTO event : eventoDTOs){
+            if(event.getConsultaId() == consultaDTO.getId()) event.setConsultaDTO(consultaDTO);
+        }
+    }
+
+    @Override
+    public void onFailureConsulta(Throwable t) {
+        Log.e("MainScreenDono->", "Consulta->onFailure ERROR " + t.getMessage());
     }
 }
 

@@ -9,16 +9,20 @@ import pet4u.pet4u.callbacks.AccountCallback;
 
 import pet4u.pet4u.callbacks.AnimalsCallback;
 import pet4u.pet4u.callbacks.ClientCallback;
+import pet4u.pet4u.callbacks.ConsultaCallback;
 import pet4u.pet4u.callbacks.EventosCallback;
 import pet4u.pet4u.services.AnimalsService;
 
 import pet4u.pet4u.services.ClientService;
+import pet4u.pet4u.services.ConsultaService;
 import pet4u.pet4u.services.EventosService;
 import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.UserToken;
 import pet4u.pet4u.services.AccountService;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
+import pet4u.pet4u.user.Consulta;
+import pet4u.pet4u.user.ConsultaDTO;
 import pet4u.pet4u.user.EventoDTO;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,6 +43,7 @@ public class UserManager {
     private ClientDTO clientDTO;
     private ArrayList<AnimalDTO> animals;
     private ArrayList<EventoDTO> eventos;
+    private ConsultaDTO consultaDTO;
 
 
     public UserManager (){
@@ -56,6 +61,55 @@ public class UserManager {
         }
 
         return ourInstance;
+    }
+
+
+    public synchronized void getConsulta(final ConsultaCallback consultaCallback, int consultaID){
+        consultaDTO = new ConsultaDTO();
+        Retrofit retrofit;
+        ConsultaService consultaService;
+
+        try {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(AppProperties.baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            consultaService = retrofit.create(ConsultaService.class);
+        }catch  (Exception e) {
+            Log.e("UserManager", "getConsulta -> constructor->source.getBytes('UTF-8') ERROR: " + e);
+            return;
+        }
+
+        //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        Call<ConsultaDTO> call = consultaService.getConsulta("Bearer " + userToken.getAccessToken(), consultaID);
+
+        call.enqueue(new Callback<ConsultaDTO>() {
+            @Override
+            public void onResponse(Call<ConsultaDTO> call, Response<ConsultaDTO> response) {
+                Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
+                consultaDTO = response.body();
+
+                int code = response.code();
+                //System.out.println("RESPONSE: " + response.toString());
+
+                //System.out.println(response.toString());
+
+                if (code == 200 || code == 201) {
+                    //bearerToken = "Bearer " + userToken.getAccessToken();
+                    consultaCallback.onSuccessConsulta(consultaDTO);
+                } else {
+                    consultaCallback.onFailureConsulta(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ConsultaDTO> call, Throwable t) {
+                Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+                consultaCallback.onFailureConsulta(t);
+            }
+        });
+
     }
 
 
