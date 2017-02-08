@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import pet4u.pet4u.callbacks.RegisterCallback;
 import pet4u.pet4u.services.RegisterService;
-import pet4u.pet4u.user.RegisterCliente;
+import pet4u.pet4u.user.RegisterClienteDTO;
 import pet4u.pet4u.AppProperties;
 
 import retrofit2.Call;
@@ -43,7 +43,7 @@ public class RegisterManager {
 
     /* POST - REGISTER ACCOUNT */
 
-    public synchronized void registerAccount(final RegisterCallback registerCallback, RegisterCliente registerCliente) {
+    public synchronized void registerAccount(final RegisterCallback registerCallback, RegisterClienteDTO registerCliente) {
         Call<Void> call = registerService.registerAccount(registerCliente);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -54,7 +54,7 @@ public class RegisterManager {
                     Toast.makeText(context, "User created", Toast.LENGTH_LONG);
 
                 } else {
-                    registerCallback.onFailure(new Throwable("ERROR" + code + ", " + response.raw().message()));
+                    registerCallback.onFailureRegister(new Throwable("ERROR" + code + ", " + response.raw().message()));
                 }
             }
 

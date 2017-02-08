@@ -4,21 +4,21 @@ package pet4u.pet4u.user;
  * Created by carlosmorais on 16/12/2016.
  */
 
-public class RegisterCliente {
+public class RegisterClienteDTO {
     private String login;
     private String email;
     private String password;
-    private String langKey;
+    private String lang;
 
-    public RegisterCliente() {
-        this.langKey = "pt-pt";
+    public RegisterClienteDTO() {
+        this.lang = "pt-pt";
     }
 
-    public RegisterCliente(String login, String email, String password) {
+    public RegisterClienteDTO(String login, String email, String password) {
         this.login = login;
         this.email = email;
         this.password = password;
-        this.langKey = "pt-pt";
+        this.lang = "pt-pt";
     }
 
     public String getLogin() { return login; }
@@ -39,14 +39,14 @@ public class RegisterCliente {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RegisterCliente registerCliente = (RegisterCliente) o;
+        RegisterClienteDTO registerCliente = (RegisterClienteDTO) o;
 
         if (login != null ? !login.equals(registerCliente.login) : registerCliente.login != null) return false;
         if (email != null ? !email.equals(registerCliente.email) : registerCliente.email != null) return false;
         if (password != null ? !password.equals(registerCliente.password) : registerCliente.password != null)
             return false;
 
-        return langKey != null ? langKey.equals(registerCliente.langKey) : registerCliente.langKey == null;
+        return lang != null ? lang.equals(registerCliente.lang) : registerCliente.lang == null;
 
     }
 
@@ -55,7 +55,7 @@ public class RegisterCliente {
         int result = login != null ? login.hashCode() : 0;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (langKey != null ? langKey.hashCode() : 0);
+        result = 31 * result + (lang != null ? lang.hashCode() : 0);
         return result;
     }
 

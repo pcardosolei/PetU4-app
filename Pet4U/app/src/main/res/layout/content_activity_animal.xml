@@ -106,7 +106,7 @@
                 android:padding="5dp"
                 android:text="10 kg"/>
 
-            <TextView
+            <!--TextView
                 android:id="@+id/tv_telemovel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                 android:layout_below="@id/tv_morada"
                 android:layout_toEndOf="@id/tv_telemovel"
                 android:padding="5dp"
-                android:text="Grande"/>
+                android:text="Grande"/-->
 
             <TextView
                 android:id="@+id/tv_email"
@@ -132,14 +132,14 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 android:paddingTop="5dp"
-                android:layout_below="@id/tv_telemovel"
+                android:layout_below="@id/tv_morada"
                 android:text="Raça:"/>
 
             <TextView
                 android:id="@+id/tv_display_raca"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_telemovel"
+                android:layout_below="@id/tv_morada"
                 android:layout_toEndOf="@id/tv_email"
                 android:padding="5dp"
                 android:text="Bulldog"/>

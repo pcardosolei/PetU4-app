@@ -21,7 +21,7 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import pet4u.pet4u.R;
-import pet4u.pet4u.user.RegisterCliente;
+import pet4u.pet4u.user.RegisterClienteDTO;
 import pet4u.pet4u.callbacks.RegisterCallback;
 import pet4u.pet4u.managers.RegisterManager;
 
@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
     private EditText email;
     private EditText password;
     private EditText password2;
-    private RegisterCliente registerCliente;
+    private RegisterClienteDTO registerCliente;
 
     // ATTR
     String playerPosicionCampo;
@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
         password = (EditText) findViewById(R.id.password);
         password2 = (EditText) findViewById(R.id.password2);
 
-        Button registerButton = (Button) findViewById(R.id.register_button2);
+        Button registerButton = (Button) findViewById(R.id.register_button);
         registerButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
         password2.setError(null);
         email.setError(null);
 
-        registerCliente = new RegisterCliente();
+        registerCliente = new RegisterClienteDTO();
         // Store values at the  Add attempt.
 
         String usernameDTO = username.getText().toString().toLowerCase();
