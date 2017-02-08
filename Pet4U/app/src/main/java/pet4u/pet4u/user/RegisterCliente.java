@@ -1,24 +1,24 @@
-package pet4u.pet4u;
+package pet4u.pet4u.user;
 
 /**
  * Created by carlosmorais on 16/12/2016.
  */
 
-public class UserDTO {
+public class RegisterCliente {
     private String login;
     private String email;
     private String password;
     private String langKey;
 
-    public UserDTO() {
-        this.langKey = "en";
+    public RegisterCliente() {
+        this.langKey = "pt-pt";
     }
 
-    public UserDTO(String login, String email, String password) {
+    public RegisterCliente(String login, String email, String password) {
         this.login = login;
         this.email = email;
         this.password = password;
-        this.langKey = "en";
+        this.langKey = "pt-pt";
     }
 
     public String getLogin() { return login; }
@@ -39,14 +39,14 @@ public class UserDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserDTO userDTO = (UserDTO) o;
+        RegisterCliente registerCliente = (RegisterCliente) o;
 
-        if (login != null ? !login.equals(userDTO.login) : userDTO.login != null) return false;
-        if (email != null ? !email.equals(userDTO.email) : userDTO.email != null) return false;
-        if (password != null ? !password.equals(userDTO.password) : userDTO.password != null)
+        if (login != null ? !login.equals(registerCliente.login) : registerCliente.login != null) return false;
+        if (email != null ? !email.equals(registerCliente.email) : registerCliente.email != null) return false;
+        if (password != null ? !password.equals(registerCliente.password) : registerCliente.password != null)
             return false;
 
-        return langKey != null ? langKey.equals(userDTO.langKey) : userDTO.langKey == null;
+        return langKey != null ? langKey.equals(registerCliente.langKey) : registerCliente.langKey == null;
 
     }
 

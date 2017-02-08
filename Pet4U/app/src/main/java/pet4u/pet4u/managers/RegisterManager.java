@@ -5,7 +5,7 @@ import android.widget.Toast;
 
 import pet4u.pet4u.callbacks.RegisterCallback;
 import pet4u.pet4u.services.RegisterService;
-import pet4u.pet4u.UserDTO;
+import pet4u.pet4u.user.RegisterCliente;
 import pet4u.pet4u.AppProperties;
 
 import retrofit2.Call;
@@ -43,8 +43,8 @@ public class RegisterManager {
 
     /* POST - REGISTER ACCOUNT */
 
-    public synchronized void registerAccount(final RegisterCallback registerCallback, UserDTO userDTO) {
-        Call<Void> call = registerService.registerAccount(userDTO);
+    public synchronized void registerAccount(final RegisterCallback registerCallback, RegisterCliente registerCliente) {
+        Call<Void> call = registerService.registerAccount(registerCliente);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

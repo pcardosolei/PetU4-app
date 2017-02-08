@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         }
     }
 
-    private void toRegisterAct(){
+    private void toRegisterAct(View view){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }

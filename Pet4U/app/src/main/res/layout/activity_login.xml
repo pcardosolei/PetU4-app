@@ -90,7 +90,8 @@
                 android:background="@color/buttonColor"
                 tools:ignore="HardcodedText"
                 android:elevation="0dp"
-                tools:targetApi="lollipop" />
+                tools:targetApi="lollipop"
+                android:onClick="toRegisterAct"/>
 
         </LinearLayout>
     </ScrollView>

@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,7 +21,7 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import pet4u.pet4u.R;
-import pet4u.pet4u.UserDTO;
+import pet4u.pet4u.user.RegisterCliente;
 import pet4u.pet4u.callbacks.RegisterCallback;
 import pet4u.pet4u.managers.RegisterManager;
 
@@ -35,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
     private EditText email;
     private EditText password;
     private EditText password2;
-    private UserDTO userDTO;
+    private RegisterCliente registerCliente;
 
     // ATTR
     String playerPosicionCampo;
@@ -53,15 +51,15 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        //toolbar.setTitle(getTitle());
 
         // Show the Up button in the action bar.
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+       // ActionBar actionBar = getSupportActionBar();
+        //if (actionBar != null) {
+        //    actionBar.setDisplayHomeAsUpEnabled(true);
+        //}
 
 
         // Set up the Add form.
@@ -97,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
         password2.setError(null);
         email.setError(null);
 
-        userDTO = new UserDTO();
+        registerCliente = new RegisterCliente();
         // Store values at the  Add attempt.
 
         String usernameDTO = username.getText().toString().toLowerCase();
@@ -120,40 +118,40 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
             cancel = true;
         }
         if (passwordDTO.length() < 5) {
-            password.setError("Ha de tener mínimo 4 carácteres");
+            password.setError("Password tem que ter no mínimo 4 caracteres!");
             focusView = password;
             cancel = true;
-        }
+    }
         if (!passwordDTO.equals(password2DTO)) {
-            password.setError("Han de ser iguales.");
+            password.setError("As passwords têm que ser iguais.");
             focusView = password;
             cancel = true;
         }
 
-        userDTO.setLogin(usernameDTO);
-        userDTO.setEmail(emailDTO);
+        registerCliente.setLogin(usernameDTO);
+        registerCliente.setEmail(emailDTO);
 
-        userDTO.setPassword(passwordDTO);
+        registerCliente.setPassword(passwordDTO);
 
 
         if (cancel) {
             focusView.requestFocus();
         } else {
             showProgress(true);
-            RegisterManager.getInstance(v.getContext()).registerAccount(RegisterActivity.this, userDTO);
+            RegisterManager.getInstance(v.getContext()).registerAccount(RegisterActivity.this, registerCliente);
             Intent i = new Intent(v.getContext(), LoginActivity.class);
             startActivity(i);
-            Toast.makeText(getApplicationContext(), "Creado nuevo usuario " + userDTO.getLogin(), Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(), "Creado nuevo usuario " + registerCliente.getLogin(), Toast.LENGTH_LONG);
         }
     }
 
     @Override
-    public void onSuccess() {
-
+    public void onSuccessRegister() {
+        finish();
     }
 
     @Override
-    public void onFailure(Throwable t) {
+    public void onFailureRegister(Throwable t) {
         showProgress(false);
     }
 

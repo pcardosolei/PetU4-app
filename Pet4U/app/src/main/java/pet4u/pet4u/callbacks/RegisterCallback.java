@@ -2,6 +2,6 @@ package pet4u.pet4u.callbacks;
 
 
 public interface RegisterCallback {
-    void onSuccess();
-    void onFailure(Throwable t);
+    void onSuccessRegister();
+    void onFailureRegister(Throwable t);
 }

@@ -1,7 +1,6 @@
 package pet4u.pet4u.services;
 
-
-import pet4u.pet4u.UserDTO;
+import pet4u.pet4u.user.RegisterCliente;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -12,9 +11,9 @@ import retrofit2.http.POST;
  */
 
 public interface RegisterService {
-    @POST("api/register")
+    @POST("/api/register/cliente")
     Call<Void> registerAccount(
-            @Body UserDTO userDTO
+            @Body RegisterCliente registerCliente
     );
 
 }
