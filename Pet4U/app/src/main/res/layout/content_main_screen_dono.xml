@@ -139,8 +139,6 @@
             android:paddingEnd="20dp"
             android:layout_below="@id/line2"/>
 
-
-
     </RelativeLayout>
 
 </LinearLayout>

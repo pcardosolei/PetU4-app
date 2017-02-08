@@ -1,4 +1,4 @@
-package pet4u.pet4u.activities;
+package pet4u.pet4u.managers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Card {
     String data;
     int iconId;
 
-    Card(String texto, String data, int iconId) {
+    public Card(String texto, String data, int iconId) {
         this.texto = texto;
         this.data = data;
         this.iconId = iconId;

@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pet4u.pet4u.R;
-
-import static pet4u.pet4u.R.id.rv;
+import pet4u.pet4u.managers.Card;
+import pet4u.pet4u.managers.RVAdapter;
 
 public class EventoActivity extends AppCompatActivity {
 

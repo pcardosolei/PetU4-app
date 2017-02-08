@@ -101,6 +101,12 @@ public class AnimalDTO {
         this.tipo = tipo;
     }
 
+    public int getPhotoNumber(){
+        if(this.fotos == null) return 0;
+        else return this.fotos.size();
+    }
+
+
     @Override
     public String toString() {
         return "AnimalDTO{" +

@@ -77,7 +77,7 @@ public class UserManager {
         }
 
         //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
-        Call<ArrayList<EventoDTO>> call = eventosService.getEventos("Bearer " + userToken.getAccessToken(), animalID);
+        Call<ArrayList<EventoDTO>> call = eventosService.getEventosAnimal("Bearer " + userToken.getAccessToken(), animalID);
 
         call.enqueue(new Callback<ArrayList<EventoDTO>>() {
             @Override

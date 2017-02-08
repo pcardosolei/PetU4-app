@@ -15,7 +15,7 @@ import retrofit2.http.Path;
 public interface EventosService {
 
     @GET("/api/evento/vacinas/animal/{animalId}")
-    Call<ArrayList<EventoDTO>> getEventos(
+    Call<ArrayList<EventoDTO>> getEventosAnimal(
             @Header("Authorization") String Authorization,
             @Path("animalId") int animalId
     );

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.managers.Card;
+import pet4u.pet4u.managers.RVAdapter;
 
 public class UserProfileActivity extends AppCompatActivity {
     TextView display_nome;

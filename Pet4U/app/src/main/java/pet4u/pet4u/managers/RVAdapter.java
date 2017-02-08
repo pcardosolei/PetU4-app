@@ -1,4 +1,4 @@
-package pet4u.pet4u.activities;
+package pet4u.pet4u.managers;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +19,7 @@ import pet4u.pet4u.R;
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.CardViewHolder>{
     List<Card> cards;
 
-    RVAdapter(List<Card> cards){
+    public RVAdapter(List<Card> cards){
         this.cards = cards;
     }
 
