@@ -27,6 +27,7 @@
             android:id="@+id/iv_foto_perfil"
             android:layout_width="200dp"
             android:layout_height="150dp"
+            android:paddingRight="5dp"
             android:contentDescription="@string/foto_perfil_desc"
             app:srcCompat="@drawable/ic_face_black_48dp" />
 
@@ -79,7 +80,7 @@
                 android:textStyle="bold"
                 android:paddingTop="5dp"
                 android:layout_below="@id/tv_nasceu"
-                android:text="Genero:"/>
+                android:text="Género:"/>
 
             <TextView
                 android:id="@+id/tv_display_genero"
