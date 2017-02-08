@@ -1,4 +1,5 @@
 package pet4u.pet4u.user;
+import java.io.Serializable;
 import java.util.Arrays;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Arrays;
  * Project: Pet4U.
  */
 
-public class AccountDTO {
+public class AccountDTO implements Serializable{
 
     private boolean activated;
     private String[] authorities;

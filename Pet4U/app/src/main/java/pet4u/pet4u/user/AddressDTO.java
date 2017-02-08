@@ -1,11 +1,13 @@
 package pet4u.pet4u.user;
 
+import java.io.Serializable;
+
 /**
  * Created by Rafael on 30/01/2017.
  * Pet4U
  */
 
-public class AddressDTO {
+public class AddressDTO implements Serializable{
 
     private String cidade ;
     private String codPostal;
@@ -51,6 +53,11 @@ public class AddressDTO {
 
     public void setRua(String rua) {
         this.rua = rua;
+    }
+
+
+    public String getMoradaCompleta(){
+        return new String(this.rua+", "+this.cidade+", "+this.pais+", "+this.codPostal);
     }
 
     @Override

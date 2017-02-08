@@ -1,12 +1,14 @@
 package pet4u.pet4u.user;
 
+import java.io.Serializable;
+
 /**
  * Created by Rafael on 01/02/2017.
  * Package: pet4u.pet4u.user.
  * Project: Pet4U.
  */
 
-public class FotoDTO {
+public class FotoDTO implements Serializable{
 
     private int animalId;
     private int id;

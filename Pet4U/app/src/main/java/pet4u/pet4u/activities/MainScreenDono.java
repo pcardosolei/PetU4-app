@@ -1,5 +1,6 @@
 package pet4u.pet4u.activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,6 +20,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -389,6 +391,14 @@ public class MainScreenDono
     @Override
     public void onFailureEventos(Throwable t) {
         Log.e("MainScreenDono->", "Eventos->onFailure ERROR " + t.getMessage());
+    }
+
+    public void goToUserProfile( View view){
+        Intent intent = new Intent(MainScreenDono.this, UserProfileActivity.class);
+        if(accountDTO!=null) intent.putExtra("account", accountDTO);
+        if(clientDTO!=null) intent.putExtra("client", clientDTO);
+        if(animals!=null) intent.putExtra("animals", animals);
+        startActivity(intent);
     }
 }
 

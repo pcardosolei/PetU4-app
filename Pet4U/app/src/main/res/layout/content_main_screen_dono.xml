@@ -28,7 +28,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="0.25"
-            android:id="@+id/rl_imgName">
+            android:id="@+id/rl_imgName"
+            android:onClick="goToUserProfile">
 
             <ImageView
                 app:srcCompat="@drawable/ic_face_black_48dp"

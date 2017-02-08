@@ -1,11 +1,13 @@
 package pet4u.pet4u.user;
 
+import java.io.Serializable;
+
 /**
  * Created by Rafael on 30/01/2017.
  * Pet4U
  */
 
-public class ClientDTO {
+public class ClientDTO implements Serializable {
 
     private String codigoassociacao;
     private String dataNasc;
