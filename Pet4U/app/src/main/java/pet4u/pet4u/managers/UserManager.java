@@ -2,6 +2,7 @@ package pet4u.pet4u.managers;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import pet4u.pet4u.AppProperties;
@@ -17,11 +18,9 @@ import pet4u.pet4u.services.ClientService;
 import pet4u.pet4u.services.ConsultaService;
 import pet4u.pet4u.services.EventosService;
 import pet4u.pet4u.user.AccountDTO;
-import pet4u.pet4u.UserToken;
 import pet4u.pet4u.services.AccountService;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
-import pet4u.pet4u.user.Consulta;
 import pet4u.pet4u.user.ConsultaDTO;
 import pet4u.pet4u.user.EventoDTO;
 import retrofit2.Call;
@@ -36,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Project: Pet4U.
  */
 
-public class UserManager {
+public class UserManager implements Serializable{
     private static UserManager ourInstance;
     private UserToken userToken;
     private AccountDTO accountDTO;

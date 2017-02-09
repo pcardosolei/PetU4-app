@@ -31,6 +31,7 @@ import pet4u.pet4u.managers.Card;
 import pet4u.pet4u.managers.DownloadImageTask;
 import pet4u.pet4u.managers.RVAdapter;
 import pet4u.pet4u.managers.RVAdapterAnimal;
+import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.user.AddressDTO;
 import pet4u.pet4u.user.AnimalDTO;
@@ -54,6 +55,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private ArrayList<AnimalDTO> animals;
     private RVAdapterAnimal animalAdapter;
     private ArrayList<AnimalCard> animalCards;
+    private UserManager userManager;
 
     private Drawable catDrawable;
     private Drawable dogDrawable;
@@ -88,6 +90,8 @@ public class UserProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         accountDTO = (AccountDTO) intent.getSerializableExtra("account");
         clientDTO = (ClientDTO) intent.getSerializableExtra("client");
+        userManager = (UserManager) intent.getSerializableExtra("userManager");
+
         if(clientDTO!=null) addressDTO = clientDTO.getMoradaDTO();
         else Log.e("UserProfileActivity","ClientDTO is null!");
         this.animals = (ArrayList<AnimalDTO>) intent.getSerializableExtra("animals");
@@ -158,16 +162,20 @@ public class UserProfileActivity extends AppCompatActivity {
 
 
         RVAdapter adapter = new RVAdapter(cards);
-        rv.setAdapter(adapter);
+        rv.setAdapter(adapter);*/
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.edit_info);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        //.setAction("Action", null).show();
+                Intent intent = new Intent(UserProfileActivity.this,EditUserProfileActivity.class);
+                intent.putExtra("cliente",clientDTO);
+                intent.putExtra("userManager", userManager);
+                startActivity(intent);
             }
-        });*/
+        });
     }
 
 

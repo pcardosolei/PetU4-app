@@ -1,6 +1,7 @@
 package pet4u.pet4u.managers;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import pet4u.pet4u.callbacks.RegisterCallback;
@@ -51,7 +52,7 @@ public class RegisterManager {
                 int code = response.code();
 
                 if (code == 200 || code == 201) {
-                    Toast.makeText(context, "User created", Toast.LENGTH_LONG);
+                    Toast.makeText(context, "User created", Toast.LENGTH_LONG).show();
 
                 } else {
                     registerCallback.onFailureRegister(new Throwable("ERROR" + code + ", " + response.raw().message()));
@@ -61,6 +62,7 @@ public class RegisterManager {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 //todo: tratar
+                Log.e("RegisterManager","call.enqueue failed!");
             }
         });
     }

@@ -3,12 +3,15 @@ package pet4u.pet4u.activities;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,9 +24,12 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.callbacks.LoginCallback;
 import pet4u.pet4u.user.RegisterClienteDTO;
 import pet4u.pet4u.callbacks.RegisterCallback;
 import pet4u.pet4u.managers.RegisterManager;
+
+import static java.lang.Thread.sleep;
 
 
 public class RegisterActivity extends AppCompatActivity implements RegisterCallback {
@@ -88,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
      * If there are form errors (invalid username, missing fields, etc.), the
      * errors are presented and no actual Add attempt is made.
      */
-    private void attemptRegister(View v) {
+    private void attemptRegister(final View v) {
         // Reset errors.
         username.setError(null);
         password.setError(null);
@@ -133,15 +139,35 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
 
         registerCliente.setPassword(passwordDTO);
 
+        System.out.println("Registo cliente: "+ registerCliente.toString());
+
 
         if (cancel) {
             focusView.requestFocus();
         } else {
             showProgress(true);
             RegisterManager.getInstance(v.getContext()).registerAccount(RegisterActivity.this, registerCliente);
-            Intent i = new Intent(v.getContext(), LoginActivity.class);
-            startActivity(i);
-            Toast.makeText(getApplicationContext(), "Creado nuevo usuario " + registerCliente.getLogin(), Toast.LENGTH_LONG);
+
+            //Toast.makeText(getApplicationContext(), "Criado novo utilizador: " + registerCliente.getLogin(), Toast.LENGTH_LONG).show();
+            // User chose the "Settings" item, show the app settings UI...
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(RegisterActivity.this);
+            AlertDialog alertDialog;
+            // set dialog message
+            alertDialogBuilder.setMessage("Utilizador criado, verifique o email.");
+
+            // create alert dialog
+            alertDialog = alertDialogBuilder.create();
+            // show it
+            alertDialog.show();
+
+            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                public void onDismiss(final DialogInterface dialog) {
+                    Intent i = new Intent(v.getContext(), LoginActivity.class);
+                    startActivity(i);
+                }
+            });
+
+
         }
     }
 

@@ -2,8 +2,6 @@ package pet4u.pet4u.managers;
 
 import android.util.Log;
 
-import pet4u.pet4u.UserToken;
-
 import pet4u.pet4u.callbacks.LoginCallback;
 import retrofit2.Call;
 import retrofit2.Callback;

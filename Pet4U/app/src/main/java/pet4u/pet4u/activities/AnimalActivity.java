@@ -48,7 +48,7 @@ public class AnimalActivity extends AppCompatActivity implements EventosCallback
         display_nascimento = (TextView)findViewById(R.id.tv_display_nascimento);
         display_genero = (TextView)findViewById(R.id.tv_display_genero);
         display_peso = (TextView)findViewById(R.id.tv_display_peso);
-        display_porte = (TextView)findViewById(R.id.tv_display_porte);
+        //display_porte = (TextView)findViewById(R.id.tv_display_porte);
         display_raca = (TextView)findViewById(R.id.tv_display_raca);
         display_historico = (TextView)findViewById(R.id.tv_eventos);
         foto_animal =(ImageView) findViewById(R.id.foto_animal);

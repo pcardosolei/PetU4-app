@@ -1,4 +1,4 @@
-package pet4u.pet4u;
+package pet4u.pet4u.managers;
 
 import com.google.gson.annotations.SerializedName;
 

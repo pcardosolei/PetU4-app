@@ -41,7 +41,7 @@ import pet4u.pet4u.managers.DownloadImageTask;
 import pet4u.pet4u.managers.RVAdapter;
 import pet4u.pet4u.managers.RVAdapterAnimal;
 import pet4u.pet4u.user.AccountDTO;
-import pet4u.pet4u.UserToken;
+import pet4u.pet4u.managers.UserToken;
 import pet4u.pet4u.callbacks.AccountCallback;
 import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.AddressDTO;
@@ -407,6 +407,7 @@ public class MainScreenDono
         if(accountDTO!=null) intent.putExtra("account", accountDTO);
         if(clientDTO!=null) intent.putExtra("client", clientDTO);
         if(animals!=null) intent.putExtra("animals", animals);
+        if(userManager!=null) intent.putExtra("userManager", userManager);
         startActivity(intent);
     }
 

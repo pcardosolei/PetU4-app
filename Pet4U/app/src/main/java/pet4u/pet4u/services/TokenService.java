@@ -1,6 +1,6 @@
 package pet4u.pet4u.services;
 
-import pet4u.pet4u.UserToken;
+import pet4u.pet4u.managers.UserToken;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

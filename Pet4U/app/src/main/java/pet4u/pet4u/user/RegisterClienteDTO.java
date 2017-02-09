@@ -1,10 +1,12 @@
 package pet4u.pet4u.user;
 
+import java.io.Serializable;
+
 /**
  * Created by carlosmorais on 16/12/2016.
  */
 
-public class RegisterClienteDTO {
+public class RegisterClienteDTO implements Serializable{
     private String login;
     private String email;
     private String password;

@@ -5,7 +5,6 @@ import android.util.Log;
 
 
 import pet4u.pet4u.services.TokenService;
-import pet4u.pet4u.UserToken;
 import pet4u.pet4u.AppProperties;
 
 import java.io.UnsupportedEncodingException;

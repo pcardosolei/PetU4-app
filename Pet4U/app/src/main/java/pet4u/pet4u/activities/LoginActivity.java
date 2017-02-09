@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import pet4u.pet4u.R;
-import pet4u.pet4u.UserToken;
+import pet4u.pet4u.managers.UserToken;
 import pet4u.pet4u.callbacks.LoginCallback;
 import pet4u.pet4u.managers.UserLoginManager;
 
@@ -63,6 +63,14 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
             @Override
             public void onClick(View view) {
                 attemptLogin();
+            }
+        });
+
+        Button registerButton = (Button) findViewById(R.id.b_register);
+        registerButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toRegisterActivity();
             }
         });
 
@@ -136,7 +144,7 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
         }
     }
 
-    private void toRegisterAct(View view){
+    private void toRegisterActivity(){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
