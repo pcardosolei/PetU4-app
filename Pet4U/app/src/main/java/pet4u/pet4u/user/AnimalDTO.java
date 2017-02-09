@@ -24,6 +24,19 @@ public class AnimalDTO implements Serializable{
     private String tipo ;
     private ArrayList<FotoDTO> fotos;
 
+    public AnimalDTO(){
+        dataNasc = "1900-01-01";
+        genero="masculino";
+        nome="";
+        peso=0;
+        nome="";
+        racaId=0;
+        racaNome="";
+        tipo="Cão";
+        fotos=null;
+
+    }
+
     public ArrayList<FotoDTO> getFotos() {
         return fotos;
     }

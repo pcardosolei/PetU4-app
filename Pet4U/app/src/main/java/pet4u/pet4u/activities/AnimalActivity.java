@@ -2,8 +2,6 @@ package pet4u.pet4u.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -76,7 +74,7 @@ public class AnimalActivity
 
 
         if(animal == null) Log.e("AnimalActivity","Animal is null!");
-        else userManager.getEventos(AnimalActivity.this, animal.getId());
+        else userManager.getEventosAnimal(AnimalActivity.this, animal.getId());
 
         //TODO : Carregar os dados do animal
         display_nome.setText(animal.getNome());

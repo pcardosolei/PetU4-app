@@ -3,7 +3,6 @@ package pet4u.pet4u.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -33,11 +32,11 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import pet4u.pet4u.R;
-import pet4u.pet4u.ViewTypes;
 import pet4u.pet4u.callbacks.AnimalsCallback;
 import pet4u.pet4u.callbacks.ClientCallback;
 import pet4u.pet4u.callbacks.ConsultaCallback;
 import pet4u.pet4u.callbacks.EventosCallback;
+import pet4u.pet4u.callbacks.EventosClienteCallBack;
 import pet4u.pet4u.managers.AnimalCard;
 import pet4u.pet4u.managers.Card;
 import pet4u.pet4u.managers.DownloadImageTask;
@@ -56,8 +55,6 @@ import pet4u.pet4u.user.FotoDTO;
 import pet4u.pet4u.user.RecyclerViewClickListener;
 import pet4u.pet4u.user.RecyclerViewClickListenerAnimal;
 
-import static android.R.attr.type;
-
 public class MainScreenDono
         extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -67,7 +64,8 @@ public class MainScreenDono
         EventosCallback,
         RecyclerViewClickListener,
         RecyclerViewClickListenerAnimal,
-        ConsultaCallback{
+        ConsultaCallback,
+        EventosClienteCallBack{
 
 
     private UserManager userManager;
@@ -77,6 +75,7 @@ public class MainScreenDono
     private AddressDTO addressDTO;
     private ArrayList<AnimalDTO> animals;
     private ArrayList<EventoDTO> eventoDTOs;
+    private ArrayList<EventoDTO> userEvents;
     private ArrayList<AnimalCard> animalCards;
     private ArrayList<Card> eventoCards;
     private RVAdapterAnimal animalAdapter;
@@ -326,6 +325,7 @@ public class MainScreenDono
         // TODO: 31/01/2017 Teste, remover.
         System.out.println("\n\nTest ClientDTO:\n" + clientDTO.toString()+ "\n\n");
         userManager.getAnimals(MainScreenDono.this, clientDTO.getId());
+        userManager.getEventosCliente(MainScreenDono.this, clientDTO.getId());
     }
 
     @Override
@@ -340,7 +340,7 @@ public class MainScreenDono
         this.animals = animals;
 
         AnimalDTO ani = this.animals.get(0);
-        userManager.getEventos(MainScreenDono.this, ani.getId());
+        userManager.getEventosAnimal(MainScreenDono.this, ani.getId());
 
         System.out.println("\n\nTest Animals:\n" + animals.toString()+ "\n\n");
 
@@ -484,6 +484,16 @@ public class MainScreenDono
     public void onFailureConsulta(Throwable t) {
         Log.e("MainScreenDono->", "Consulta->onFailure ERROR " + t.getMessage());
 
+    }
+
+    @Override
+    public void onSuccessEventosCliente(ArrayList<EventoDTO> eventos) {
+        userEvents=eventos;
+    }
+
+    @Override
+    public void onFailureEventosCliente(Throwable t) {
+        Log.e("MainScreenDono->", "ClienteEventos->onFailure ERROR " + t.getMessage());
     }
 }
 

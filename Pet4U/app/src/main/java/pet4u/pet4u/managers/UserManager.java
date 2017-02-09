@@ -13,17 +13,21 @@ import pet4u.pet4u.callbacks.ClientCallback;
 import pet4u.pet4u.callbacks.ClientUpdateCallback;
 import pet4u.pet4u.callbacks.ConsultaCallback;
 import pet4u.pet4u.callbacks.EventosCallback;
+import pet4u.pet4u.callbacks.EventosClienteCallBack;
+import pet4u.pet4u.callbacks.RacasAllCallback;
 import pet4u.pet4u.services.AnimalsService;
 
 import pet4u.pet4u.services.ClientService;
 import pet4u.pet4u.services.ConsultaService;
 import pet4u.pet4u.services.EventosService;
+import pet4u.pet4u.services.RacaService;
 import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.services.AccountService;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.ConsultaDTO;
 import pet4u.pet4u.user.EventoDTO;
+import pet4u.pet4u.user.RacaDTO;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,7 +49,9 @@ public class UserManager implements Serializable{
     private ClientDTO clientDTO;
     private ArrayList<AnimalDTO> animals;
     private ArrayList<EventoDTO> eventos;
+    private ArrayList<EventoDTO> eventosCliente;
     private ConsultaDTO consultaDTO;
+    private ArrayList<RacaDTO> racas;
 
 
     public UserManager (){
@@ -63,6 +69,101 @@ public class UserManager implements Serializable{
         }
 
         return ourInstance;
+    }
+
+    public synchronized void getAllRaces(final RacasAllCallback racasAllCallback){
+        racas = new ArrayList<>();
+        Retrofit retrofit;
+        final RacaService racaService;
+
+        try {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(AppProperties.baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            racaService = retrofit.create(RacaService.class);
+        }catch  (Exception e) {
+            Log.e("UserManager->", "constructor->source.getBytes('UTF-8') ERROR: " + e);
+            return;
+        }
+
+        //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        Call<ArrayList<RacaDTO>> call = racaService.getAllRacas("Bearer " + userToken.getAccessToken());
+
+        call.enqueue(new Callback<ArrayList<RacaDTO>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RacaDTO>> call, Response<ArrayList<RacaDTO>> response) {
+                Log.i("UserManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
+                racas = response.body();
+
+                int code = response.code();
+                //System.out.println("RESPONSE: " + response.toString());
+
+                //System.out.println(response.toString());
+
+                if (code == 200 || code == 201) {
+                    //bearerToken = "Bearer " + userToken.getAccessToken();
+                    racasAllCallback.onSuccessRacasAll(racas);
+                } else {
+                    racasAllCallback.onFailureRacasAll(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<RacaDTO>> call, Throwable t) {
+                Log.e("UserLoginManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+                racasAllCallback.onFailureRacasAll(t);
+            }
+        });
+    }
+
+
+    public synchronized void getEventosCliente(final EventosClienteCallBack eventosClienteCallBack, int clienteID){
+        eventosCliente = new ArrayList<>();
+        Retrofit retrofit;
+        final EventosService eventosService;
+
+        try {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(AppProperties.baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            eventosService = retrofit.create(EventosService.class);
+        }catch  (Exception e) {
+            Log.e("UserManager->", "constructor->source.getBytes('UTF-8') ERROR: " + e);
+            return;
+        }
+
+        //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        Call<ArrayList<EventoDTO>> call = eventosService.getEventosCliente("Bearer " + userToken.getAccessToken(), clienteID);
+
+        call.enqueue(new Callback<ArrayList<EventoDTO>>() {
+            @Override
+            public void onResponse(Call<ArrayList<EventoDTO>> call, Response<ArrayList<EventoDTO>> response) {
+                Log.i("UserManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
+                eventosCliente = response.body();
+
+                int code = response.code();
+                //System.out.println("RESPONSE: " + response.toString());
+
+                //System.out.println(response.toString());
+
+                if (code == 200 || code == 201) {
+                    //bearerToken = "Bearer " + userToken.getAccessToken();
+                    eventosClienteCallBack.onSuccessEventosCliente(eventosCliente);
+                } else {
+                    eventosClienteCallBack.onFailureEventosCliente(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<EventoDTO>> call, Throwable t) {
+                Log.e("UserLoginManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+                eventosClienteCallBack.onFailureEventosCliente(t);
+            }
+        });
     }
 
 
@@ -162,7 +263,7 @@ public class UserManager implements Serializable{
     }
 
 
-    public synchronized void getEventos(final EventosCallback eventosCallback, int animalID){
+    public synchronized void getEventosAnimal(final EventosCallback eventosCallback, int animalID){
         eventos = new ArrayList<>();
         Retrofit retrofit;
         EventosService eventosService;

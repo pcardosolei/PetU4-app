@@ -19,4 +19,11 @@ public interface EventosService {
             @Header("Authorization") String Authorization,
             @Path("animalId") int animalId
     );
+
+
+    @GET("/api/cliente/eventos/{id}")
+    Call<ArrayList<EventoDTO>> getEventosCliente(
+            @Header("Authorization") String Authorization,
+            @Path("clienteID") int clienteID
+    );
 }
