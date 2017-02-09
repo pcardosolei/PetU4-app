@@ -7,6 +7,7 @@
     <string name="title_activity_main_screen_dono">Main Screen Dono</string>
     <string name="title_activity_plano_vacinacao">Plano de Vacinacao</string>
     <string name="title_activity_consultas">Consultas</string>
+    <string name="loading">A carregar...</string>
 
     <!-- Strings related to splash screen -->
     <string name="filter_title_view_pet4u">Filter</string>

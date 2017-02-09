@@ -3,6 +3,7 @@ package pet4u.pet4u.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -58,16 +59,19 @@ public class EditUserProfileActivity extends AppCompatActivity {
             }
         });
 
+        Log.d("clientDTO",clientDTO.toString());
+
         display_nome.setText(clientDTO.getNome());
         display_dataNasc.setText(clientDTO.getDataNasc());
-        display_telemovel.setText(clientDTO.getTelemovel());
+        display_telemovel.setText(Integer.toString(clientDTO.getTelemovel()));
         display_rua.setText(clientDTO.getMoradaDTO().getRua());
         display_cidade.setText(clientDTO.getMoradaDTO().getCidade());
         display_pais.setText(clientDTO.getMoradaDTO().getPais());
         display_codPostal.setText(clientDTO.getMoradaDTO().getCodPostal());
-        if(clientDTO.getGenero() == "Masculino" || clientDTO.getGenero() == "masculino")
-        display_genero.setSelection(0);
-        else display_genero.setSelection(1);
+        if(clientDTO.getGenero().equals("Masculino") || clientDTO.getGenero().equals("masculino"))
+            display_genero.setSelection(0);
+        else
+            display_genero.setSelection(1);
     }
 
 
@@ -89,12 +93,12 @@ public class EditUserProfileActivity extends AppCompatActivity {
         if(!dataNasc.equals("")) clientDTO.setDataNasc(dataNasc);
         if(!telemovel.equals("")) clientDTO.setTelemovel(Integer.parseInt(telemovel));
         if(!rua.equals("")) addressDTO.setRua(rua);
-        if(!cidade.equals("")) addressDTO.setCidade(nome);
-        if(!pais.equals("")) addressDTO.setPais(nome);
-        if(!codPostal.equals("")) addressDTO.setCodPostal(nome);
+        if(!cidade.equals("")) addressDTO.setCidade(cidade);
+        if(!pais.equals("")) addressDTO.setPais(pais);
+        if(!codPostal.equals("")) addressDTO.setCodPostal(codPostal);
         if(!genero.equals("")) clientDTO.setGenero(genero);
 
-
+        Log.d("clientDTO",clientDTO.toString());
 
     }
 }

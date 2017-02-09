@@ -20,249 +20,288 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10"
-        android:orientation="horizontal"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="5dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_nome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingStart="20dp"
-            android:text="Nome:"/>
-
-        <EditText
-            android:id="@+id/et_display_nome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="José Sousa"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10"
-        android:orientation="horizontal"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="5dp">
-
-        <TextView
-            android:id="@+id/tv_data_nascimento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="5dp"
-            android:paddingStart="20dp"
-            android:text="Data de Nascimento:"/>
-
-        <EditText
-            android:id="@+id/et_display_data_nascimento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:padding="5dp"
-            android:text="10/10/1994"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.11"
-        android:orientation="horizontal"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="5dp">
-
-        <TextView
-            android:id="@+id/tv_genero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="5dp"
-            android:paddingStart="20dp"
-            android:paddingEnd="10dp"
-            android:text="Género:"/>
-
-        <Spinner
-            android:id="@+id/spinner_genero"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"/>
-    </LinearLayout>
+            android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10"
-        android:orientation="horizontal"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.10"
+                android:orientation="horizontal"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp">
 
-        <TextView
-            android:id="@+id/tv_telemovel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingStart="20dp"
-            android:text="Telemovél:"/>
+                <TextView
+                    android:id="@+id/tv_nome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="20dp"
+                    android:text="Nome:"/>
 
-        <EditText
-            android:id="@+id/et_display_telemovel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="123456789"/>
+                <EditText
+                    android:id="@+id/et_display_nome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="José Sousa"/>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10"
-        android:orientation="horizontal"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="5dp">
 
-        <TextView
-            android:id="@+id/tv_rua"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingStart="20dp"
-            android:text="Rua:"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.10"
+                android:orientation="horizontal"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp">
 
-        <EditText
-            android:id="@+id/et_display_rua"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Travessa das Ruas N.º5"/>
+                <TextView
+                    android:id="@+id/tv_data_nascimento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:paddingTop="5dp"
+                    android:paddingStart="20dp"
+                    android:text="Data de Nascimento:"/>
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/et_display_data_nascimento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:padding="5dp"
+                    android:text="10/10/1994"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10"
-        android:orientation="horizontal"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="5dp">
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_cidade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingStart="20dp"
-            android:text="Cidade:"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.11"
+                android:orientation="horizontal"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp">
 
-        <EditText
-            android:id="@+id/et_display_cidade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Braga"/>
+                <TextView
+                    android:id="@+id/tv_genero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:paddingTop="5dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="10dp"
+                    android:text="Género:"/>
 
-    </LinearLayout>
+                <Spinner
+                    android:id="@+id/spinner_genero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_marginEnd="20dp"
+                    />
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10"
-        android:orientation="horizontal"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.10"
+                android:orientation="horizontal"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp">
 
-        <TextView
-            android:id="@+id/tv_pais"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingStart="20dp"
-            android:text="País:"/>
+                <TextView
+                    android:id="@+id/tv_telemovel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="20dp"
+                    android:text="Telemovél:"/>
 
-        <EditText
-            android:id="@+id/et_display_pais"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="Portugal"/>
+                <EditText
+                    android:id="@+id/et_display_telemovel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:inputType="number"
+                    android:text="123456789"/>
 
-    </LinearLayout>
+            </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.10"
-        android:orientation="horizontal"
-        android:paddingRight="5dp"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:paddingLeft="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.10"
+                android:orientation="horizontal"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp">
 
-        <TextView
-            android:id="@+id/tv_codPostal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingStart="20dp"
-            android:text="Código Postal:"/>
+                <TextView
+                    android:id="@+id/tv_rua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="20dp"
+                    android:text="Rua:"/>
 
-        <EditText
-            android:id="@+id/et_display_codPostal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="4700-100"/>
+                <EditText
+                    android:id="@+id/et_display_rua"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Travessa das Ruas N.º5"/>
 
-    </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.10"
+                android:orientation="horizontal"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:id="@+id/tv_cidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="20dp"
+                    android:text="Cidade:"/>
+
+                <EditText
+                    android:id="@+id/et_display_cidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Braga"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.10"
+                android:orientation="horizontal"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:id="@+id/tv_pais"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="20dp"
+                    android:text="País:"/>
+
+                <EditText
+                    android:id="@+id/et_display_pais"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Portugal"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.10"
+                android:orientation="horizontal"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:id="@+id/tv_codPostal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:paddingTop="10dp"
+                    android:paddingStart="20dp"
+                    android:text="Código Postal:"/>
+
+                <EditText
+                    android:id="@+id/et_display_codPostal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="4700-100"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/b_save"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="Gravar"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@color/buttonColor"
+                tools:ignore="HardcodedText"
+                android:elevation="0dp"
+                tools:targetApi="lollipop"
+                android:onClick="saveData"
+                android:paddingEnd="10dp"/>
+
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
     <!--Button
         android:id="@+id/b_change_photo"
@@ -280,22 +319,7 @@
         android:elevation="0dp"
         tools:targetApi="lollipop"  /-->
 
-    <Button
-        android:id="@+id/b_save"
-        style="?android:textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:text="Gravar"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
-        android:background="@color/buttonColor"
-        tools:ignore="HardcodedText"
-        android:elevation="0dp"
-        tools:targetApi="lollipop"
-        android:onClick="saveData"/>
+
 
 
 </LinearLayout>

@@ -104,7 +104,8 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         // display user
         display_nome.setText(clientDTO.getNome());
         display_nascimento.setText(clientDTO.getDataNasc());
-        display_genero.setText(clientDTO.getGenero());
+        String generoDisplay = clientDTO.getGenero().substring(0, 1).toUpperCase() + clientDTO.getGenero().substring(1);
+        display_genero.setText(generoDisplay);
         if(addressDTO!=null) display_morada.setText(addressDTO.getMoradaCompleta());
         System.out.println("O TELEMOVEL É: "+clientDTO.getTelemovel());
         display_telemovel.setText(Integer.toString(clientDTO.getTelemovel()));
