@@ -414,8 +414,6 @@ public class MainScreenDono
 
         }
 
-
-
     }
 
     @Override
@@ -446,7 +444,7 @@ public class MainScreenDono
         try {
             for(EventoDTO e : this.eventoDTOs) {
 
-                if (e.getId() == eventoDTOs.get(position).getId()) {
+                if (e.getId() == eventoCards.get(position).getEventid()) {
                     evento = e;
 
                     Intent intent = new Intent(MainScreenDono.this, EventoActivity.class);
