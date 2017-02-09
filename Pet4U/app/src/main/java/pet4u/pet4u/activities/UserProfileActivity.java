@@ -107,7 +107,6 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         String generoDisplay = clientDTO.getGenero().substring(0, 1).toUpperCase() + clientDTO.getGenero().substring(1);
         display_genero.setText(generoDisplay);
         if(addressDTO!=null) display_morada.setText(addressDTO.getMoradaCompleta());
-        System.out.println("O TELEMOVEL É: "+clientDTO.getTelemovel());
         display_telemovel.setText(Integer.toString(clientDTO.getTelemovel()));
         display_email.setText(accountDTO.getEmail());
 
@@ -182,6 +181,24 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refresh();
+    }
+
+    private void refresh() {
+
+        // display user
+        display_nome.setText(clientDTO.getNome());
+        display_nascimento.setText(clientDTO.getDataNasc());
+        String generoDisplay = clientDTO.getGenero().substring(0, 1).toUpperCase() + clientDTO.getGenero().substring(1);
+        display_genero.setText(generoDisplay);
+        if(addressDTO!=null) display_morada.setText(addressDTO.getMoradaCompleta());
+        display_telemovel.setText(Integer.toString(clientDTO.getTelemovel()));
+        display_email.setText(accountDTO.getEmail());
+
+    }
 
     public static Drawable drawableFromUrl(String url) throws IOException {
         Bitmap x;

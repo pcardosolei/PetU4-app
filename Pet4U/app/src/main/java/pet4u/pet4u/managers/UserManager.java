@@ -10,6 +10,7 @@ import pet4u.pet4u.callbacks.AccountCallback;
 
 import pet4u.pet4u.callbacks.AnimalsCallback;
 import pet4u.pet4u.callbacks.ClientCallback;
+import pet4u.pet4u.callbacks.ClientUpdateCallback;
 import pet4u.pet4u.callbacks.ConsultaCallback;
 import pet4u.pet4u.callbacks.EventosCallback;
 import pet4u.pet4u.services.AnimalsService;
@@ -64,6 +65,53 @@ public class UserManager implements Serializable{
         return ourInstance;
     }
 
+
+    public synchronized void updateClient(final ClientUpdateCallback clientUpdateCallback, ClientDTO clientDTO){
+        Retrofit retrofit;
+        ClientService clientService;
+
+        try {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(AppProperties.baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            clientService = retrofit.create(ClientService.class);
+        }catch  (Exception e) {
+            Log.e("UserManager", "updateClient -> constructor->source.getBytes('UTF-8') ERROR: " + e);
+            return;
+        }
+
+        //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        Call<Void> call = clientService.updateClient("Bearer " + userToken.getAccessToken(), clientDTO);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
+                //response.body();
+
+                int code = response.code();
+                //System.out.println("RESPONSE: " + response.toString());
+
+                //System.out.println(response.toString());
+
+                if (code == 200 || code == 201) {
+                    //bearerToken = "Bearer " + userToken.getAccessToken();
+                    clientUpdateCallback.onSuccessClientUpdate();
+                } else {
+                    clientUpdateCallback.onFailureClientUpdate(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+                clientUpdateCallback.onFailureClientUpdate(t);
+            }
+        });
+
+    }
 
     public synchronized void getConsulta(final ConsultaCallback consultaCallback, int consultaID){
         consultaDTO = new ConsultaDTO();

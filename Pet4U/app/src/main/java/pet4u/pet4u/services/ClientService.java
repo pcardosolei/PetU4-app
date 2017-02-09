@@ -2,6 +2,8 @@ package pet4u.pet4u.services;
 
 import pet4u.pet4u.user.ClientDTO;
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -26,7 +28,7 @@ public interface ClientService {
     @PUT("/api/clientes")
     Call<Void> updateClient(
             @Header("Authorization") String Authorization,
-            @Path("clienteDTO") ClientDTO clienteDTO
+            @Body ClientDTO clienteDTO
     );
 
 }
