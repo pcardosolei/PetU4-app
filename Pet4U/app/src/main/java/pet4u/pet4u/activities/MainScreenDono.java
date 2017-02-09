@@ -30,6 +30,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import pet4u.pet4u.R;
 import pet4u.pet4u.callbacks.AnimalsCallback;
@@ -75,7 +76,7 @@ public class MainScreenDono
     private AccountDTO accountDTO;
     private ClientDTO clientDTO;
     private AddressDTO addressDTO;
-    private ArrayList<AnimalDTO> animals;
+    private ArrayList<AnimalDTO> animals= new ArrayList<>();
     private ArrayList<EventoDTO> eventoDTOs;
     private ArrayList<EventoDTO> userEvents = new ArrayList<>();
     private ArrayList<AnimalCard> animalCards;
@@ -150,21 +151,72 @@ public class MainScreenDono
 
     }
 
+    public void generateAnimals() {
+        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
+        rv_animais.setLayoutManager(llm);
+        animalCards = new ArrayList<>();
+
+        for (AnimalDTO animal : animals){
+            if(animal.getPhotoNumber() != 0){
+                FotoDTO fotoAux = animal.getFotos().get(0);
+                InputStream is = null;
+                Drawable d = null;
+                try {
+                    d = drawableFromUrl(fotoAux.getPath());
+                } catch (Exception e1) {
+                    Log.e("MainScreenDono", "Photo fail: pet \""+animal.getNome()+"\" bad/missread url: " + e1.getMessage());
+                    e1.printStackTrace();
+                    d=dogDrawable;
+                }
+                animalCards.add(new AnimalCard(animal.getNome(), d, animal.getId()));
+            }else{
+                switch (animal.getTipo()){ // TODO: 06/02/2017 acrescentar icons nos casos de falha
+                    case("Gato"):
+                        animalCards.add(new AnimalCard(animal.getNome(), catDrawable, animal.getId()));
+                        break;
+                    case("Cão"):
+                        animalCards.add(new AnimalCard(animal.getNome(), dogDrawable, animal.getId()));
+                        break;
+                    default:
+                }
+            }
+        }
+        System.out.println("Animal cards tem: "+ animalCards.size()+" cards\n"+animalCards.toString());
+        animalAdapter = new RVAdapterAnimal(MainScreenDono.this, this, animalCards);
+        rv_animais.setAdapter(animalAdapter);
+    }
+
     public void generateEvents(){
         eventoCards = new ArrayList<>();
+
+        //order Events by date
+        try {
+            Collections.sort(userEvents);
+            Collections.reverse(userEvents);
+        } catch (Exception exeption) {}
+
+
         for (EventoDTO evento : userEvents) {
+            String animal = "";
+            //Get Animal name
+            for(AnimalDTO a : animals) {
+                if (a.getId() == evento.getAnimalId()) {
+                    animal = a.getNome();
+                }
+            }
 
 
             if (evento.getConsultaDTO() != null) {
-                eventoCards.add(new Card(getResources().getString(R.string.Consultation), evento.getData(), R.drawable.ic_colorize_black_24dp, evento.getId()));
+                eventoCards.add(new Card(getResources().getString(R.string.Consultation), animal + "    " + evento.getData(), R.drawable.ic_today_black_24dp, evento.getId()));
             }
             for (VacinaDTO v : evento.getVacinasDTO()) {
-                eventoCards.add(new Card(getResources().getString(R.string.Vaccine) +" - "+ v.getNome(), evento.getData(), R.drawable.ic_colorize_black_24dp, evento.getId()));
+                eventoCards.add(new Card(getResources().getString(R.string.Vaccine) +" - "+ v.getNome(),animal + "    " +  evento.getData(), R.drawable.ic_colorize_black_24dp, evento.getId()));
             }
-            for (DesparasitacaoDTO d : evento.getDesparasitacoesDTO()) {
-                eventoCards.add(new Card(getResources().getString(R.string.Deworming) + " - " + d.getTipo(), evento.getData() , R.drawable.ic_local_hospital_black_24dp, evento.getId()));
+            for (DesparasitacaoDTO dp : evento.getDesparasitacoesDTO()) {
+                eventoCards.add(new Card(getResources().getString(R.string.Deworming) + " - " + dp.getTipo(),animal + "    " + evento.getData() , R.drawable.ic_local_hospital_black_24dp, evento.getId()));
             }
         }
+
 
 
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
@@ -343,43 +395,12 @@ public class MainScreenDono
         AnimalDTO ani = this.animals.get(0);
         userManager.getEventosAnimal(MainScreenDono.this, ani.getId());
 
-        System.out.println("\n\nTest Animals:\n" + animals.toString()+ "\n\n");
+        //System.out.println("\n\nTest Animals:\n" + animals.toString()+ "\n\n");
 
         //userManager.getEventosAnimal(MainScreenDono.this, animals.get(0).getId());
         //System.out.println("Test Animal Foto: " + animals.get(0).getFotos().get(0).getPath());
 
-        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
-        rv_animais.setLayoutManager(llm);
-        animalCards = new ArrayList<>();
-
-        for (AnimalDTO animal : animals){
-            if(animal.getPhotoNumber() != 0){
-                FotoDTO fotoAux = animal.getFotos().get(0);
-                InputStream is = null;
-                Drawable d = null;
-                try {
-                    d = drawableFromUrl(fotoAux.getPath());
-                } catch (Exception e1) {
-                    Log.e("MainScreenDono", "Photo fail: pet \""+animal.getNome()+"\" bad/missread url: " + e1.getMessage());
-                    e1.printStackTrace();
-                    d=dogDrawable;
-                }
-                animalCards.add(new AnimalCard(animal.getNome(), d, animal.getId()));
-            }else{
-                switch (animal.getTipo()){ // TODO: 06/02/2017 acrescentar icons nos casos de falha
-                    case("Gato"):
-                        animalCards.add(new AnimalCard(animal.getNome(), catDrawable, animal.getId()));
-                        break;
-                    case("Cão"):
-                        animalCards.add(new AnimalCard(animal.getNome(), dogDrawable, animal.getId()));
-                        break;
-                    default:
-                }
-            }
-        }
-        System.out.println("Animal cards tem: "+ animalCards.size()+" cards\n"+animalCards.toString());
-        animalAdapter = new RVAdapterAnimal(MainScreenDono.this, this, animalCards);
-        rv_animais.setAdapter(animalAdapter);
+        generateAnimals();
     }
 
     public static Drawable drawableFromUrl(String url) throws IOException {
@@ -431,6 +452,7 @@ public class MainScreenDono
         super.onResume();
         displayInfo();
         generateEvents();
+        generateAnimals();
     }
 
     @Override
@@ -439,7 +461,7 @@ public class MainScreenDono
 
 
         try {
-            for(EventoDTO e : this.eventoDTOs) {
+            for(EventoDTO e : this.userEvents) {
 
                 if (e.getId() == eventoCards.get(position).getEventid()) {
                     evento = e;

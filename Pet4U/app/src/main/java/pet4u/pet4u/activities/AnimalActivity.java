@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import pet4u.pet4u.R;
@@ -103,12 +104,18 @@ public class AnimalActivity
     private void generateEvents() {
         // Carregar eventos para as cards:
         //rv.setHasFixedSize(true);
+        //order Events by date
+        try {
+            Collections.sort(eventos);
+            Collections.reverse(eventos);
+        } catch (Exception exeption) {}
+
         cards = new ArrayList<>();
         for (EventoDTO evento : eventos) {
 
 
             if (evento.getConsultaDTO() != null) {
-                cards.add(new Card(getResources().getString(R.string.Consultation), evento.getData(), R.drawable.ic_colorize_black_24dp, evento.getId()));
+                cards.add(new Card(getResources().getString(R.string.Consultation), evento.getData(), R.drawable.ic_today_black_24dp, evento.getId()));
             }
             for (VacinaDTO v : evento.getVacinasDTO()) {
                 cards.add(new Card(getResources().getString(R.string.Vaccine) +" - "+ v.getNome(), evento.getData(), R.drawable.ic_colorize_black_24dp, evento.getId()));

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Pet4U
  */
 
-public class EventoDTO implements Serializable{
+public class EventoDTO implements Serializable, Comparable<EventoDTO>{
 
     private int animalId;
     private ClinicaDTO clinicaDTO;
@@ -99,4 +99,8 @@ public class EventoDTO implements Serializable{
     }
 
 
+    @Override
+    public int compareTo(EventoDTO o) {
+        return getData().compareTo(o.getData());
+    }
 }
