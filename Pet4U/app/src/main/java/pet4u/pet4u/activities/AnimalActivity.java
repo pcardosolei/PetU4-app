@@ -121,7 +121,6 @@ public class AnimalActivity
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(llm);
 
-        System.out.println("TESTE N CARDS = " + cards.size());
     /*
         cards = new ArrayList<>();
         cards.add(new Card("Consulta", "30/01/2017", R.drawable.ic_today_black_24dp, 0));

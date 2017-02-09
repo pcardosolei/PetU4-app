@@ -50,10 +50,12 @@ import pet4u.pet4u.user.AddressDTO;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.ConsultaDTO;
+import pet4u.pet4u.user.DesparasitacaoDTO;
 import pet4u.pet4u.user.EventoDTO;
 import pet4u.pet4u.user.FotoDTO;
 import pet4u.pet4u.user.RecyclerViewClickListener;
 import pet4u.pet4u.user.RecyclerViewClickListenerAnimal;
+import pet4u.pet4u.user.VacinaDTO;
 
 public class MainScreenDono
         extends AppCompatActivity
@@ -75,7 +77,7 @@ public class MainScreenDono
     private AddressDTO addressDTO;
     private ArrayList<AnimalDTO> animals;
     private ArrayList<EventoDTO> eventoDTOs;
-    private ArrayList<EventoDTO> userEvents;
+    private ArrayList<EventoDTO> userEvents = new ArrayList<>();
     private ArrayList<AnimalCard> animalCards;
     private ArrayList<Card> eventoCards;
     private RVAdapterAnimal animalAdapter;
@@ -136,28 +138,7 @@ public class MainScreenDono
         rv_eventos = (RecyclerView)findViewById(R.id.rv_eventos);
 
 
-        // Carregar eventos para as animalCards:
-        //rv_animais.setHasFixedSize(true);
-        //rv_eventos.setHasFixedSize(true);
 
-
-        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
-        rv_eventos.setLayoutManager(llm);
-
-
-        // animalCards.add(new AnimalCard("Bobby", R.drawable.dog_icon));
-        //animalCards.add(new AnimalCard("Pantufa", R.drawable.cat_icon_black));
-        //animalCards.add(new AnimalCard("Tigrinha",R.drawable.cat_icon_black));
-        // animalCards.add(new AnimalCard("Riscas",R.drawable.cat_icon_black));
-
-
-        eventoCards = new ArrayList<>();
-
-
-
-
-        eventosAdapters = new RVAdapter(MainScreenDono.this, this, eventoCards);
-        rv_eventos.setAdapter(eventosAdapters);
 
         //System.out.println("ANTES\n");
         userToken = (UserToken) getIntent().getSerializableExtra("userToken");
@@ -169,6 +150,29 @@ public class MainScreenDono
 
     }
 
+    public void generateEvents(){
+        eventoCards = new ArrayList<>();
+        for (EventoDTO evento : userEvents) {
+
+
+            if (evento.getConsultaDTO() != null) {
+                eventoCards.add(new Card(getResources().getString(R.string.Consultation), evento.getData(), R.drawable.ic_colorize_black_24dp, evento.getId()));
+            }
+            for (VacinaDTO v : evento.getVacinasDTO()) {
+                eventoCards.add(new Card(getResources().getString(R.string.Vaccine) +" - "+ v.getNome(), evento.getData(), R.drawable.ic_colorize_black_24dp, evento.getId()));
+            }
+            for (DesparasitacaoDTO d : evento.getDesparasitacoesDTO()) {
+                eventoCards.add(new Card(getResources().getString(R.string.Deworming) + " - " + d.getTipo(), evento.getData() , R.drawable.ic_local_hospital_black_24dp, evento.getId()));
+            }
+        }
+
+
+        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
+        rv_eventos.setLayoutManager(llm);
+
+        eventosAdapters = new RVAdapter(MainScreenDono.this, this, eventoCards);
+        rv_eventos.setAdapter(eventosAdapters);
+    }
 
     @Override
     public void onBackPressed() {
@@ -426,6 +430,7 @@ public class MainScreenDono
     protected void onResume() {
         super.onResume();
         displayInfo();
+        generateEvents();
     }
 
     @Override
@@ -475,6 +480,10 @@ public class MainScreenDono
         for(EventoDTO event : eventoDTOs){
             if(event.getConsultaId() == consultaDTO.getId()) event.setConsultaDTO(consultaDTO);
         }
+        for(EventoDTO event : userEvents){
+            if(event.getConsultaId() == consultaDTO.getId()) event.setConsultaDTO(consultaDTO);
+        }
+        generateEvents();
     }
 
     @Override
@@ -486,6 +495,10 @@ public class MainScreenDono
     @Override
     public void onSuccessEventosCliente(ArrayList<EventoDTO> eventos) {
         userEvents=eventos;
+        for (EventoDTO evento : userEvents) {
+            userManager.getConsulta(MainScreenDono.this, evento.getConsultaId());
+        }
+        generateEvents();
     }
 
     @Override
