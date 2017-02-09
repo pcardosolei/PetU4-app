@@ -303,12 +303,7 @@ public class MainScreenDono
     public void onFailureGetAccount(Throwable t) {
         Log.e("MainScreenDono->", "AccountDTO->onFailure ERROR " + t.getMessage());
 
-        TextView tv = (TextView) findViewById(R.id.tv_nome);
-        tv.setText("FAILURE");  // TODO: 01/02/2017  Remove!!!! 
-
         // TODO: Manage Errors
-
-
     }
 
     @Override
