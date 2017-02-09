@@ -8,7 +8,9 @@ import java.io.Serializable;
  * Project: Pet4U.
  */
 
-public class FotoDTO implements Serializable{
+
+public class FotoDTO implements Serializable {
+
 
     private int animalId;
     private int id;

@@ -1,11 +1,13 @@
 package pet4u.pet4u.user;
 
+import java.io.Serializable;
+
 /**
  * Created by Rafael on 01/02/2017.
  * Pet4U
  */
 
-public class RacaDTO {
+public class RacaDTO implements Serializable {
 
     private int id;
     private String raca;

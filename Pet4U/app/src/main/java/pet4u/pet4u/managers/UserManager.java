@@ -35,7 +35,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Project: Pet4U.
  */
 
+
 public class UserManager implements Serializable{
+
     private static UserManager ourInstance;
     private UserToken userToken;
     private AccountDTO accountDTO;

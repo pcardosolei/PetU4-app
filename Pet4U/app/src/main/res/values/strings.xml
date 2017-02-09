@@ -37,5 +37,8 @@
     <!-- Strings related to register -->
     <string name="foto_perfil_desc">Foto de Perfil</string>
 
+    <!-- String related to names of events -->
+    <string name="Vaccine">Vacina</string>
+    <string name="Deworming">Desparasitação</string>
 
 </resources>

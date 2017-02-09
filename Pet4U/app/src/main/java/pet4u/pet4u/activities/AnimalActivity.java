@@ -24,7 +24,10 @@ import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.EventoDTO;
 
-public class AnimalActivity extends AppCompatActivity implements EventosCallback{
+import pet4u.pet4u.user.RecyclerViewClickListener;
+
+public class AnimalActivity extends AppCompatActivity implements RecyclerViewClickListener, EventosCallback{
+
     TextView display_nome;
     TextView display_nascimento;
     TextView display_genero;
@@ -88,7 +91,7 @@ public class AnimalActivity extends AppCompatActivity implements EventosCallback
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(llm);
 
-        List<Card> cards = new ArrayList<>();
+        List<Card> cards = new ArrayList<>();/*
         cards.add(new Card("Consulta", "30/01/2017", R.drawable.ic_today_black_24dp));
         cards.add(new Card("Vacina", "25/01/2017", R.drawable.ic_colorize_black_24dp));
         cards.add(new Card("Desparasitação", "20/01/2017", R.drawable.ic_local_hospital_black_24dp));
@@ -96,8 +99,8 @@ public class AnimalActivity extends AppCompatActivity implements EventosCallback
         cards.add(new Card("Vacina", "10/01/2017", R.drawable.ic_colorize_black_24dp));
         cards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp));
         cards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp));
-
-        RVAdapter adapter = new RVAdapter(cards);
+*/
+        RVAdapter adapter = new RVAdapter(AnimalActivity.this, this, cards);
         rv.setAdapter(adapter);
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.edit_info);
@@ -118,5 +121,11 @@ public class AnimalActivity extends AppCompatActivity implements EventosCallback
     @Override
     public void onFailureEventos(Throwable t) {
         Log.e("AnimalActivity","Fail abuscar evnetos do animal "+animal.getNome());
+    }
+
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
+
     }
 }

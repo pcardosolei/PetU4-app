@@ -1,5 +1,6 @@
 package pet4u.pet4u.user;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * Pet4U
  */
 
-public class ClinicaDTO {
+public class ClinicaDTO implements Serializable{
 
     private ArrayList<AnimalDTO> animais;
     private ArrayList<ClientDTO> clientes;

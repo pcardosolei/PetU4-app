@@ -1,5 +1,6 @@
 package pet4u.pet4u.managers;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.user.RecyclerViewClickListener;
+import pet4u.pet4u.user.RecyclerViewClickListenerAnimal;
 
 /**
  * Created by Rafael on 06/02/2017.
@@ -20,9 +23,13 @@ import pet4u.pet4u.R;
 public class RVAdapterAnimal  extends RecyclerView.Adapter<RVAdapterAnimal.CardViewHolderAnimal>{
 
     List<AnimalCard> cards;
+    private Context context;
+    private static RecyclerViewClickListenerAnimal itemListener;
 
-    public RVAdapterAnimal(List<AnimalCard> cards){
+    public RVAdapterAnimal(Context context, RecyclerViewClickListenerAnimal itemListener, List<AnimalCard> cards){
         this.cards = cards;
+        this.context = context;
+        this.itemListener = itemListener;
     }
 
 
@@ -53,7 +60,7 @@ public class RVAdapterAnimal  extends RecyclerView.Adapter<RVAdapterAnimal.CardV
         return cards.size();
     }
 
-    public static class CardViewHolderAnimal extends RecyclerView.ViewHolder {
+    public static class CardViewHolderAnimal extends RecyclerView.ViewHolder implements View.OnClickListener {
         CardView cv;
         TextView text;
         ImageView img;
@@ -63,6 +70,13 @@ public class RVAdapterAnimal  extends RecyclerView.Adapter<RVAdapterAnimal.CardV
             cv = (CardView) itemView.findViewById(R.id.card_view);
             text = (TextView) itemView.findViewById(R.id.card_txt);
             img = (ImageView) itemView.findViewById(R.id.card_img);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            itemListener.recyclerViewListClickedAnimal(view, this.getLayoutPosition());
         }
     }
 }

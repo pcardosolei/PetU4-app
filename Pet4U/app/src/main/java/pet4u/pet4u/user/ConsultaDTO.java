@@ -1,10 +1,12 @@
 package pet4u.pet4u.user;
 
+import java.io.Serializable;
+
 /**
  * Created by Rafael on 01/02/2017.
  */
 
-public class ConsultaDTO {
+public class ConsultaDTO implements Serializable {
 
     private String descricao;
     private int id;

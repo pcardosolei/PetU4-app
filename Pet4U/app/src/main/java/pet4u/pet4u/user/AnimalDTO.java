@@ -8,7 +8,9 @@ import java.util.ArrayList;
  * Pet4U
  */
 
+
 public class AnimalDTO implements Serializable{
+
 
 
     private String dataNasc;

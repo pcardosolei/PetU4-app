@@ -8,6 +8,7 @@ import java.util.Arrays;
  * Project: Pet4U.
  */
 
+
 public class AccountDTO implements Serializable{
 
     private boolean activated;

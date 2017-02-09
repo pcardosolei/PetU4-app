@@ -1,5 +1,6 @@
 package pet4u.pet4u.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,8 +39,9 @@ import pet4u.pet4u.user.AddressDTO;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.FotoDTO;
+import pet4u.pet4u.user.RecyclerViewClickListenerAnimal;
 
-public class UserProfileActivity extends AppCompatActivity {
+public class UserProfileActivity extends AppCompatActivity implements RecyclerViewClickListenerAnimal {
     TextView display_nome;
     TextView display_nascimento;
     TextView display_genero;
@@ -134,21 +137,21 @@ public class UserProfileActivity extends AppCompatActivity {
                     e1.printStackTrace();
                     d=dogDrawable;
                 }
-                animalCards.add(new AnimalCard(animal.getNome(), d));
+                animalCards.add(new AnimalCard(animal.getNome(), d, animal.getId()));
             }else{
                 switch (animal.getTipo()){ // TODO: 06/02/2017 acrescentar icons nos casos de falha
                     case("Gato"):
-                        animalCards.add(new AnimalCard(animal.getNome(), catDrawable));
+                        animalCards.add(new AnimalCard(animal.getNome(), catDrawable, animal.getId()));
                         break;
                     case("Cão"):
-                        animalCards.add(new AnimalCard(animal.getNome(), dogDrawable));
+                        animalCards.add(new AnimalCard(animal.getNome(), dogDrawable, animal.getId()));
                         break;
                     default:
                 }
             }
         }
         System.out.println("Animal cards tem: "+ animalCards.size()+" cards\n"+animalCards.toString());
-        animalAdapter = new RVAdapterAnimal(animalCards);
+        animalAdapter = new RVAdapterAnimal(UserProfileActivity.this, this, animalCards);
         rv_animais.setAdapter(animalAdapter);
 
 
@@ -188,5 +191,27 @@ public class UserProfileActivity extends AppCompatActivity {
 
         x = BitmapFactory.decodeStream(input);
         return new BitmapDrawable(x);
+    }
+
+    @Override
+    public void recyclerViewListClickedAnimal(View v, int position) {
+        AnimalDTO animal ;
+        Context context = UserProfileActivity.this;
+
+
+        try {
+            for (AnimalDTO a : this.animals) {
+                if (a.getId() == animalCards.get(position).getAnimal()) {
+                    animal = a;
+                    
+                    Intent intent = new Intent(context, AnimalActivity.class);
+                    intent.putExtra("animal", animal);
+                    intent.putExtra("userManager", userManager);
+                    startActivity(intent);
+                }
+            }
+        } catch (Exception exeption) {
+            Toast.makeText(context, "Pedimos desculpa mas não é possivel apresentar o animal.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

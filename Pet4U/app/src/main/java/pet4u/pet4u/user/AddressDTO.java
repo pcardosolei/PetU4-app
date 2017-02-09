@@ -7,6 +7,7 @@ import java.io.Serializable;
  * Pet4U
  */
 
+
 public class AddressDTO implements Serializable{
 
     private String cidade ;

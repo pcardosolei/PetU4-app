@@ -3,6 +3,7 @@ package pet4u.pet4u.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +33,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.ViewTypes;
 import pet4u.pet4u.callbacks.AnimalsCallback;
 import pet4u.pet4u.callbacks.ClientCallback;
 import pet4u.pet4u.callbacks.ConsultaCallback;
@@ -50,6 +53,10 @@ import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.ConsultaDTO;
 import pet4u.pet4u.user.EventoDTO;
 import pet4u.pet4u.user.FotoDTO;
+import pet4u.pet4u.user.RecyclerViewClickListener;
+import pet4u.pet4u.user.RecyclerViewClickListenerAnimal;
+
+import static android.R.attr.type;
 
 public class MainScreenDono
         extends AppCompatActivity
@@ -58,7 +65,10 @@ public class MainScreenDono
         ClientCallback,
         AnimalsCallback,
         EventosCallback,
+        RecyclerViewClickListener,
+        RecyclerViewClickListenerAnimal,
         ConsultaCallback{
+
 
     private UserManager userManager;
     private UserToken userToken;
@@ -78,7 +88,7 @@ public class MainScreenDono
     RecyclerView rv_eventos;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen_dono);
 
@@ -113,8 +123,15 @@ public class MainScreenDono
 
         //display info...
 
+        displayInfo();
+
+    }
+
+    private void displayInfo() {
+
         catDrawable = ContextCompat.getDrawable(MainScreenDono.this, R.drawable.cat_icon_black);
         dogDrawable = ContextCompat.getDrawable(MainScreenDono.this, R.drawable.dog_icon);
+
 
         rv_animais = (RecyclerView)findViewById(R.id.rv_animais);
         rv_eventos = (RecyclerView)findViewById(R.id.rv_eventos);
@@ -129,21 +146,21 @@ public class MainScreenDono
         rv_eventos.setLayoutManager(llm);
 
 
-       // animalCards.add(new AnimalCard("Bobby", R.drawable.dog_icon));
+        // animalCards.add(new AnimalCard("Bobby", R.drawable.dog_icon));
         //animalCards.add(new AnimalCard("Pantufa", R.drawable.cat_icon_black));
         //animalCards.add(new AnimalCard("Tigrinha",R.drawable.cat_icon_black));
-       // animalCards.add(new AnimalCard("Riscas",R.drawable.cat_icon_black));
+        // animalCards.add(new AnimalCard("Riscas",R.drawable.cat_icon_black));
 
 
         eventoCards = new ArrayList<>();
-        eventoCards.add(new Card("Consulta","10/10/2010",R.drawable.ic_today_black_24dp));
-        eventoCards.add(new Card("Vacina","10/10/2010", R.drawable.ic_colorize_black_24dp));
-        eventoCards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp));
-        eventoCards.add(new Card("Desparasitação", "04/01/2017", R.drawable.ic_local_hospital_black_24dp));
+        eventoCards.add(new Card("Consulta","10/10/2010",R.drawable.ic_today_black_24dp, 0));
+        eventoCards.add(new Card("Vacina","10/10/2010", R.drawable.ic_colorize_black_24dp, 1));
+        eventoCards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp, 2));
+        eventoCards.add(new Card("Desparasitação", "04/01/2017", R.drawable.ic_local_hospital_black_24dp, 3));
 
 
 
-        eventosAdapters = new RVAdapter(eventoCards);
+        eventosAdapters = new RVAdapter(MainScreenDono.this, this, eventoCards);
         rv_eventos.setAdapter(eventosAdapters);
 
         //System.out.println("ANTES\n");
@@ -327,6 +344,9 @@ public class MainScreenDono
     public void onSuccessAnimals(ArrayList<AnimalDTO> animals) {
         this.animals = animals;
 
+        AnimalDTO ani = this.animals.get(0);
+        userManager.getEventos(MainScreenDono.this, ani.getId());
+
         System.out.println("\n\nTest Animals:\n" + animals.toString()+ "\n\n");
 
         //userManager.getEventosAnimal(MainScreenDono.this, animals.get(0).getId());
@@ -348,21 +368,21 @@ public class MainScreenDono
                     e1.printStackTrace();
                     d=dogDrawable;
                 }
-                animalCards.add(new AnimalCard(animal.getNome(), d));
+                animalCards.add(new AnimalCard(animal.getNome(), d, animal.getId()));
             }else{
                 switch (animal.getTipo()){ // TODO: 06/02/2017 acrescentar icons nos casos de falha
                     case("Gato"):
-                        animalCards.add(new AnimalCard(animal.getNome(), catDrawable));
+                        animalCards.add(new AnimalCard(animal.getNome(), catDrawable, animal.getId()));
                         break;
                     case("Cão"):
-                        animalCards.add(new AnimalCard(animal.getNome(), dogDrawable));
+                        animalCards.add(new AnimalCard(animal.getNome(), dogDrawable, animal.getId()));
                         break;
                     default:
                 }
             }
         }
         System.out.println("Animal cards tem: "+ animalCards.size()+" cards\n"+animalCards.toString());
-        animalAdapter = new RVAdapterAnimal(animalCards);
+        animalAdapter = new RVAdapterAnimal(MainScreenDono.this, this, animalCards);
         rv_animais.setAdapter(animalAdapter);
     }
 
@@ -386,13 +406,14 @@ public class MainScreenDono
     public void onSuccessEventos(ArrayList<EventoDTO> eventos) {
         eventoDTOs = eventos;
 
+        System.out.println("\n\nTest Eventos:\n" + eventos.toString()+ "\n\n");
+
 
         for(EventoDTO event : eventoDTOs){
             userManager.getConsulta(MainScreenDono.this, event.getConsultaId());
 
         }
 
-        //System.out.println("\n\nTest Eventos:\n" + eventos.toString()+ "\n\n");
 
 
     }
@@ -412,6 +433,54 @@ public class MainScreenDono
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        displayInfo();
+    }
+
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
+        EventoDTO evento;
+
+
+        try {
+            for(EventoDTO e : this.eventoDTOs) {
+
+                if (e.getId() == eventoDTOs.get(position).getId()) {
+                    evento = e;
+
+                    Intent intent = new Intent(MainScreenDono.this, EventoActivity.class);
+                    intent.putExtra("evento", evento);
+                    startActivity(intent);
+                }
+            }
+            } catch (Exception exeption) {
+                Toast.makeText(MainScreenDono.this, "Pedimos desculpa mas não é possivel apresentar o evento.", Toast.LENGTH_SHORT).show();
+            }
+
+    }
+
+    @Override
+    public void recyclerViewListClickedAnimal(View v, int position) {
+        AnimalDTO animal;
+
+
+        try {
+            for (AnimalDTO a : this.animals) {
+                if (a.getId() == animalCards.get(position).getAnimal()) {
+                    animal = a;
+
+                    Intent intent = new Intent(MainScreenDono.this, AnimalActivity.class);
+                    intent.putExtra("animal", animal);
+                    intent.putExtra("userManager", userManager);
+                    startActivity(intent);
+                }
+            }
+        } catch (Exception exeption) {
+            Toast.makeText(MainScreenDono.this, "Pedimos desculpa mas não é possivel apresentar o animal.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void onSuccessConsulta(ConsultaDTO consultaDTO) {
         for(EventoDTO event : eventoDTOs){
             if(event.getConsultaId() == consultaDTO.getId()) event.setConsultaDTO(consultaDTO);
@@ -421,6 +490,7 @@ public class MainScreenDono
     @Override
     public void onFailureConsulta(Throwable t) {
         Log.e("MainScreenDono->", "Consulta->onFailure ERROR " + t.getMessage());
+
     }
 }
 

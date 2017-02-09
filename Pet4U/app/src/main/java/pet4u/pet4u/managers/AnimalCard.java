@@ -10,9 +10,15 @@ public class AnimalCard {
 
     public String nome;
     public Drawable drawable;
+    public int animal;
 
-    public AnimalCard(String nome, Drawable drawable) {
+    public AnimalCard(String nome, Drawable drawable, int animal) {
             this.nome = nome;
             this.drawable = drawable;
+            this.animal = animal;
+    }
+
+    public int getAnimal() {
+        return animal;
     }
 }
