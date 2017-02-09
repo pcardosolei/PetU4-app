@@ -76,7 +76,7 @@ public class EventoActivity extends AppCompatActivity implements RecyclerViewCli
     }
 
 
-    // TODO : fazer função
+
     private void getEventoContents(EventoDTO evento) {
         for (VacinaDTO v : evento.getVacinasDTO()) {
             cards.add(new Card(v.getNome(), getResources().getString(R.string.Vaccine), R.drawable.ic_colorize_black_24dp,0));

@@ -153,10 +153,7 @@ public class MainScreenDono
 
 
         eventoCards = new ArrayList<>();
-        eventoCards.add(new Card("Consulta","10/10/2010",R.drawable.ic_today_black_24dp, 0));
-        eventoCards.add(new Card("Vacina","10/10/2010", R.drawable.ic_colorize_black_24dp, 1));
-        eventoCards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp, 2));
-        eventoCards.add(new Card("Desparasitação", "04/01/2017", R.drawable.ic_local_hospital_black_24dp, 3));
+
 
 
 
