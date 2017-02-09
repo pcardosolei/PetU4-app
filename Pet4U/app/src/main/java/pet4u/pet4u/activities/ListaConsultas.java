@@ -58,7 +58,7 @@ public class ListaConsultas extends AppCompatActivity implements EventosCallback
 
     private void getConsultas() {
 
-        user.getEventos(ListaConsultas.this, animal.getId());
+        user.getEventosAnimal(ListaConsultas.this, animal.getId());
     }
 
     private void getSampleConsultas() {

@@ -3,7 +3,6 @@ package pet4u.pet4u.activities;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,6 @@ import pet4u.pet4u.R;
 import pet4u.pet4u.callbacks.EventosCallback;
 import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.AnimalDTO;
-import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.DateConverter;
 import pet4u.pet4u.user.EventoDTO;
 import pet4u.pet4u.user.Vacina;
@@ -68,7 +66,7 @@ public class PlanoVacinacao extends AppCompatActivity implements EventosCallback
     }
     //Get Vaccine list from DB
     private void getVacinas() {
-        user.getEventos(PlanoVacinacao.this, animal.getId());
+        user.getEventosAnimal(PlanoVacinacao.this, animal.getId());
 
     }
 
