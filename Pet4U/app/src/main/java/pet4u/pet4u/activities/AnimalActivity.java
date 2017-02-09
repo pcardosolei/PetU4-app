@@ -1,5 +1,6 @@
 package pet4u.pet4u.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,22 +12,31 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.callbacks.ConsultaCallback;
 import pet4u.pet4u.callbacks.EventosCallback;
 import pet4u.pet4u.managers.Card;
 import pet4u.pet4u.managers.DownloadImageTask;
 import pet4u.pet4u.managers.RVAdapter;
 import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.AnimalDTO;
+import pet4u.pet4u.user.ConsultaDTO;
+import pet4u.pet4u.user.DesparasitacaoDTO;
 import pet4u.pet4u.user.EventoDTO;
 
 import pet4u.pet4u.user.RecyclerViewClickListener;
+import pet4u.pet4u.user.VacinaDTO;
 
-public class AnimalActivity extends AppCompatActivity implements RecyclerViewClickListener, EventosCallback{
+public class AnimalActivity
+        extends AppCompatActivity
+        implements RecyclerViewClickListener,
+        EventosCallback,
+        ConsultaCallback {
 
     TextView display_nome;
     TextView display_nascimento;
@@ -38,9 +48,11 @@ public class AnimalActivity extends AppCompatActivity implements RecyclerViewCli
     RecyclerView rv;
     ImageView foto_animal;
 
-    ArrayList<EventoDTO> eventos;
+    ArrayList<EventoDTO> eventos = new ArrayList<>();
     UserManager userManager;
     AnimalDTO animal;
+
+    List<Card> cards = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,23 +95,46 @@ public class AnimalActivity extends AppCompatActivity implements RecyclerViewCli
         }
 
 
-        display_historico.setText("Últimos eventos do " + "Bobby");
+        display_historico.setText("Últimos eventos do " + animal.getNome());
 
+        //generateEvents();
+
+
+    }
+
+    private void generateEvents() {
         // Carregar eventos para as cards:
         //rv.setHasFixedSize(true);
+        cards = new ArrayList<>();
+        for (EventoDTO evento : eventos) {
+
+
+            if (evento.getConsultaDTO() != null) {
+                cards.add(new Card(getResources().getString(R.string.Consultation), evento.getData(), R.drawable.ic_colorize_black_24dp, evento.getId()));
+            }
+            for (VacinaDTO v : evento.getVacinasDTO()) {
+                cards.add(new Card(getResources().getString(R.string.Vaccine) +" - "+ v.getNome(), evento.getData(), R.drawable.ic_colorize_black_24dp, evento.getId()));
+            }
+            for (DesparasitacaoDTO d : evento.getDesparasitacoesDTO()) {
+                cards.add(new Card(getResources().getString(R.string.Deworming) + " - " + d.getTipo(), evento.getData() , R.drawable.ic_local_hospital_black_24dp, evento.getId()));
+            }
+        }
 
         LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(llm);
 
-        List<Card> cards = new ArrayList<>();/*
-        cards.add(new Card("Consulta", "30/01/2017", R.drawable.ic_today_black_24dp));
-        cards.add(new Card("Vacina", "25/01/2017", R.drawable.ic_colorize_black_24dp));
-        cards.add(new Card("Desparasitação", "20/01/2017", R.drawable.ic_local_hospital_black_24dp));
-        cards.add(new Card("Consulta", "15/01/2017", R.drawable.ic_today_black_24dp));
-        cards.add(new Card("Vacina", "10/01/2017", R.drawable.ic_colorize_black_24dp));
-        cards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp));
-        cards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp));
-*/
+        System.out.println("TESTE N CARDS = " + cards.size());
+    /*
+        cards = new ArrayList<>();
+        cards.add(new Card("Consulta", "30/01/2017", R.drawable.ic_today_black_24dp, 0));
+        cards.add(new Card("Vacina", "25/01/2017", R.drawable.ic_colorize_black_24dp, 0));
+        cards.add(new Card("Desparasitação", "20/01/2017", R.drawable.ic_local_hospital_black_24dp, 0));
+        cards.add(new Card("Consulta", "15/01/2017", R.drawable.ic_today_black_24dp, 0));
+        cards.add(new Card("Vacina", "10/01/2017", R.drawable.ic_colorize_black_24dp, 0));
+        cards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp, 0));
+        cards.add(new Card("Desparasitação", "05/01/2017", R.drawable.ic_local_hospital_black_24dp, 0));
+        */
+
         RVAdapter adapter = new RVAdapter(AnimalActivity.this, this, cards);
         rv.setAdapter(adapter);
 
@@ -113,9 +148,15 @@ public class AnimalActivity extends AppCompatActivity implements RecyclerViewCli
         });*/
     }
 
+
     @Override
     public void onSuccessEventos(ArrayList<EventoDTO> eventos) {
         this.eventos = eventos;
+        for (EventoDTO evento : eventos) {
+            userManager.getConsulta(AnimalActivity.this, evento.getConsultaId());
+        }
+
+        generateEvents();
     }
 
     @Override
@@ -126,6 +167,41 @@ public class AnimalActivity extends AppCompatActivity implements RecyclerViewCli
 
     @Override
     public void recyclerViewListClicked(View v, int position) {
+        EventoDTO evento;
+        Context context = AnimalActivity.this;
 
+
+        try {
+            for(EventoDTO e : this.eventos) {
+
+                if (e.getId() == cards.get(position).getEventid()) {
+                    evento = e;
+
+                    Intent intent = new Intent(context, EventoActivity.class);
+                    intent.putExtra("evento", evento);
+                    startActivity(intent);
+                }
+            }
+        } catch (Exception exeption) {
+            Toast.makeText(context, "Pedimos desculpa mas não é possivel apresentar o evento.", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        generateEvents();
+    }
+
+    @Override
+    public void onSuccessConsulta(ConsultaDTO consultaDTO) {
+        for(EventoDTO event : eventos){
+            if(event.getConsultaId() == consultaDTO.getId()) event.setConsultaDTO(consultaDTO);
+        }
+        generateEvents();
+    }
+
+    @Override
+    public void onFailureConsulta(Throwable t) {
+        Log.e("MainScreenDono->", "Consulta->onFailure ERROR " + t.getMessage());
     }
 }

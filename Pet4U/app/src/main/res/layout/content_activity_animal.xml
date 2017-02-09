@@ -23,9 +23,11 @@
 
         <ImageView
             android:id="@+id/foto_animal"
-            android:layout_width="300dp"
+            android:layout_width="200dp"
             android:layout_height="150dp"
-            android:src="@mipmap/default_dog"/>
+            android:src="@mipmap/default_dog"
+            android:layout_marginRight="50px" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
