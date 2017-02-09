@@ -63,6 +63,8 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
     private Drawable catDrawable;
     private Drawable dogDrawable;
 
+    private final int requestCodeEditUserProfile = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,14 +178,32 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
                 Intent intent = new Intent(UserProfileActivity.this,EditUserProfileActivity.class);
                 intent.putExtra("cliente",clientDTO);
                 intent.putExtra("userManager", userManager);
-                startActivity(intent);
+                startActivityForResult(intent, requestCodeEditUserProfile);
             }
         });
+    }
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == requestCodeEditUserProfile) {
+            if(resultCode == RESULT_OK){
+                this.clientDTO = (ClientDTO) data.getSerializableExtra("updatedClient");
+            }
+        }
+        refresh();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        refresh();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println(clientDTO);
         refresh();
     }
 

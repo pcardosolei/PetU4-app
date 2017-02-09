@@ -52,10 +52,12 @@
 
                 <EditText
                     android:id="@+id/et_display_nome"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="José Sousa"/>
+                    android:text="José Sousa"
+                    android:layout_marginEnd="20dp"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 
@@ -83,11 +85,13 @@
 
                 <EditText
                     android:id="@+id/et_display_data_nascimento"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="date"
                     android:padding="5dp"
-                    android:text="10/10/1994"/>
+                    android:text="10/10/1994"
+                    android:layout_marginEnd="20dp"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 
@@ -122,6 +126,7 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:layout_marginEnd="20dp"
+                    android:maxLines="1"
                     />
             </LinearLayout>
 
@@ -148,11 +153,13 @@
 
                 <EditText
                     android:id="@+id/et_display_telemovel"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:inputType="number"
-                    android:text="123456789"/>
+                    android:text="123456789"
+                    android:layout_marginEnd="20dp"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 
@@ -179,10 +186,12 @@
 
                 <EditText
                     android:id="@+id/et_display_rua"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Travessa das Ruas N.º5"/>
+                    android:text="Travessa das Ruas N.º5"
+                    android:layout_marginEnd="20dp"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 
@@ -209,10 +218,12 @@
 
                 <EditText
                     android:id="@+id/et_display_cidade"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Braga"/>
+                    android:text="Braga"
+                    android:layout_marginEnd="20dp"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 
@@ -239,10 +250,12 @@
 
                 <EditText
                     android:id="@+id/et_display_pais"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Portugal"/>
+                    android:text="Portugal"
+                    android:layout_marginEnd="20dp"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 
@@ -269,10 +282,13 @@
 
                 <EditText
                     android:id="@+id/et_display_codPostal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="4700-100"/>
+                    android:inputType="number"
+                    android:text="4700-100"
+                    android:layout_marginEnd="20dp"
+                    android:maxLines="1"/>
 
             </LinearLayout>
 

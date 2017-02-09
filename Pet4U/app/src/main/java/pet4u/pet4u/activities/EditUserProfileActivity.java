@@ -9,13 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import pet4u.pet4u.R;
+import pet4u.pet4u.callbacks.ClientCallback;
+import pet4u.pet4u.callbacks.ClientUpdateCallback;
 import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.AddressDTO;
 import pet4u.pet4u.user.ClientDTO;
 
-public class EditUserProfileActivity extends AppCompatActivity {
+public class EditUserProfileActivity extends AppCompatActivity implements ClientUpdateCallback {
 
     EditText display_nome;
     EditText display_dataNasc;
@@ -59,7 +62,7 @@ public class EditUserProfileActivity extends AppCompatActivity {
             }
         });
 
-        Log.d("clientDTO",clientDTO.toString());
+        Log.d("clientDTO before change",clientDTO.toString());
 
         display_nome.setText(clientDTO.getNome());
         display_dataNasc.setText(clientDTO.getDataNasc());
@@ -98,8 +101,28 @@ public class EditUserProfileActivity extends AppCompatActivity {
         if(!codPostal.equals("")) addressDTO.setCodPostal(codPostal);
         if(!genero.equals("")) clientDTO.setGenero(genero);
 
-        Log.d("clientDTO",clientDTO.toString());
+        Log.d("clientDTO after change",clientDTO.toString());
 
+        userManager.updateClient(EditUserProfileActivity.this, clientDTO);
+
+    }
+
+    @Override
+    public void onSuccessClientUpdate(ClientDTO clientDTO) {
+        this.clientDTO = clientDTO;
+        Log.d("EditUserProfileActivity", "Update cliente com sucesso " + clientDTO.toString());
+        Toast.makeText(EditUserProfileActivity.this, "Alterado com sucesso!", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent();
+        intent.putExtra("updatedClient",clientDTO);
+        setResult(100, intent);
+        finish();
+    }
+
+    @Override
+    public void onFailureClientUpdate(Throwable t) {
+        Log.d("EditUserProfileActivity", "Fail ao Update cliente!!!");
+        Toast.makeText(EditUserProfileActivity.this, "Falha ao alterar!", Toast.LENGTH_SHORT).show();
     }
 }
 

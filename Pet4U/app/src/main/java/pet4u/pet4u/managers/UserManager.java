@@ -83,13 +83,13 @@ public class UserManager implements Serializable{
         }
 
         //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
-        Call<Void> call = clientService.updateClient("Bearer " + userToken.getAccessToken(), clientDTO);
+        Call<ClientDTO> call = clientService.updateClient("Bearer " + userToken.getAccessToken(), clientDTO);
 
-        call.enqueue(new Callback<Void>() {
+        call.enqueue(new Callback<ClientDTO>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
+            public void onResponse(Call<ClientDTO> call, Response<ClientDTO> response) {
                 Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
-                //response.body();
+                ClientDTO client = response.body();
 
                 int code = response.code();
                 //System.out.println("RESPONSE: " + response.toString());
@@ -98,14 +98,14 @@ public class UserManager implements Serializable{
 
                 if (code == 200 || code == 201) {
                     //bearerToken = "Bearer " + userToken.getAccessToken();
-                    clientUpdateCallback.onSuccessClientUpdate();
+                    clientUpdateCallback.onSuccessClientUpdate(client);
                 } else {
                     clientUpdateCallback.onFailureClientUpdate(new Throwable("ERROR " + code + ", " + response.raw().message()));
                 }
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<ClientDTO> call, Throwable t) {
                 Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
                 clientUpdateCallback.onFailureClientUpdate(t);
             }

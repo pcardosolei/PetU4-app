@@ -26,7 +26,7 @@ public interface ClientService {
 
 
     @PUT("/api/clientes")
-    Call<Void> updateClient(
+    Call<ClientDTO> updateClient(
             @Header("Authorization") String Authorization,
             @Body ClientDTO clienteDTO
     );
