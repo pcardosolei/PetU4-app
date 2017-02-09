@@ -21,7 +21,7 @@ public interface EventosService {
     );
 
 
-    @GET("/api/cliente/eventos/{id}")
+    @GET("/api/cliente/eventos/{clienteID}")
     Call<ArrayList<EventoDTO>> getEventosCliente(
             @Header("Authorization") String Authorization,
             @Path("clienteID") int clienteID
