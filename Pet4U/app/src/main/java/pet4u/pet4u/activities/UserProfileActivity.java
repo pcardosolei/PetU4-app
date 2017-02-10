@@ -106,7 +106,8 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         // display user
         display_nome.setText(clientDTO.getNome());
         display_nascimento.setText(clientDTO.getDataNasc());
-        String generoDisplay = clientDTO.getGenero().substring(0, 1).toUpperCase() + clientDTO.getGenero().substring(1);
+        String generoDisplay = "";
+        if(clientDTO.getGenero() != null && clientDTO.getGenero().length() > 2) generoDisplay = clientDTO.getGenero().substring(0, 1).toUpperCase() + clientDTO.getGenero().substring(1);
         display_genero.setText(generoDisplay);
         if(addressDTO!=null) display_morada.setText(addressDTO.getMoradaCompleta());
         display_telemovel.setText(Integer.toString(clientDTO.getTelemovel()));
@@ -212,7 +213,8 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         // display user
         display_nome.setText(clientDTO.getNome());
         display_nascimento.setText(clientDTO.getDataNasc());
-        String generoDisplay = clientDTO.getGenero().substring(0, 1).toUpperCase() + clientDTO.getGenero().substring(1);
+        String generoDisplay = "";
+        if(clientDTO.getGenero() != null && clientDTO.getGenero().length() > 2) generoDisplay = clientDTO.getGenero().substring(0, 1).toUpperCase() + clientDTO.getGenero().substring(1);
         display_genero.setText(generoDisplay);
         if(addressDTO!=null) display_morada.setText(addressDTO.getMoradaCompleta());
         display_telemovel.setText(Integer.toString(clientDTO.getTelemovel()));

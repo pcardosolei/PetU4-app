@@ -402,8 +402,8 @@ public class MainScreenDono
     public void onSuccessAnimals(ArrayList<AnimalDTO> animals) {
         this.animals = animals;
 
-        AnimalDTO ani = this.animals.get(0);
-        userManager.getEventosAnimal(MainScreenDono.this, ani.getId());
+        //AnimalDTO ani = this.animals.get(0);
+        //userManager.getEventosAnimal(MainScreenDono.this, ani.getId());
 
         //System.out.println("\n\nTest Animals:\n" + animals.toString()+ "\n\n");
 

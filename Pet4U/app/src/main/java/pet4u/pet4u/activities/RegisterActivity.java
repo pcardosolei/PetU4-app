@@ -153,7 +153,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterCallb
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(RegisterActivity.this);
             AlertDialog alertDialog;
             // set dialog message
-            alertDialogBuilder.setMessage("Utilizador criado, verifique o email.");
+            alertDialogBuilder.setMessage("Utilizador criado!");
 
             // create alert dialog
             alertDialog = alertDialogBuilder.create();

@@ -71,10 +71,12 @@ public class EditUserProfileActivity extends AppCompatActivity implements Client
         display_cidade.setText(clientDTO.getMoradaDTO().getCidade());
         display_pais.setText(clientDTO.getMoradaDTO().getPais());
         display_codPostal.setText(clientDTO.getMoradaDTO().getCodPostal());
-        if(clientDTO.getGenero().equals("Masculino") || clientDTO.getGenero().equals("masculino"))
-            display_genero.setSelection(0);
-        else
-            display_genero.setSelection(1);
+        if(clientDTO.getGenero() != null && clientDTO.getGenero().length() > 2)
+            if(clientDTO.getGenero().equals("Masculino") || clientDTO.getGenero().equals("masculino"))
+                display_genero.setSelection(0);
+            else
+                display_genero.setSelection(1);
+        else display_genero.setSelection(0);
     }
 
 
