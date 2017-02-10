@@ -9,7 +9,9 @@ import retrofit2.http.Header;
 import retrofit2.http.Path;
 
 /**
- * Created by Rafael on 01/02/2017.
+ * Created by Rafael on 30/01/2017.
+ * Package: pet4u.pet4u.services.
+ * Project: Pet4U.
  */
 
 public interface EventosService {

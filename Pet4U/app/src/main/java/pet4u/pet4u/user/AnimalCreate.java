@@ -10,13 +10,11 @@ import java.util.ArrayList;
  */
 
 
-public class AnimalDTO implements Serializable{
-
+public class AnimalCreate implements Serializable{
 
 
     private String dataNasc;
     private String genero;
-    private int id;
     private String nome;
     private int peso ;
     private String porte ;
@@ -25,7 +23,7 @@ public class AnimalDTO implements Serializable{
     private String tipo ;
     private ArrayList<FotoDTO> fotos;
 
-    public AnimalDTO(){
+    public AnimalCreate(){
         dataNasc = "1900-01-01";
         genero="masculino";
         nome="";
@@ -52,10 +50,6 @@ public class AnimalDTO implements Serializable{
 
     public String getGenero() {
         return genero;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getNome() {
@@ -88,10 +82,6 @@ public class AnimalDTO implements Serializable{
 
     public void setGenero(String genero) {
         this.genero = genero;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setNome(String nome) {
@@ -129,7 +119,6 @@ public class AnimalDTO implements Serializable{
         return "AnimalDTO{" +
                 "dataNasc='" + dataNasc + '\'' +
                 ", genero='" + genero + '\'' +
-                ", id=" + id +
                 ", nome='" + nome + '\'' +
                 ", peso=" + peso +
                 ", porte='" + porte + '\'' +

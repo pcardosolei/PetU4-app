@@ -15,6 +15,7 @@
     <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <!--
 android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -69,7 +70,8 @@ android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.UserProfileActivity" />
         <activity android:name=".activities.EventoActivity" />
-        <activity android:name=".activities.EditUserProfileActivity"></activity>
+        <activity android:name=".activities.EditUserProfileActivity" />
+        <activity android:name=".activities.EditAnimalActivity"></activity>
     </application>
 
 </manifest>

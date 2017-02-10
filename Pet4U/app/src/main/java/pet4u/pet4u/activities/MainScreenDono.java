@@ -89,6 +89,8 @@ public class MainScreenDono
     RecyclerView rv_animais;
     RecyclerView rv_eventos;
 
+    private final int requestCodeEditAnimal = 200;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
@@ -273,13 +275,10 @@ public class MainScreenDono
             case R.id.action_addAnimal:
                 // TODO: 04/02/2017
 
-                // set dialog message
-                alertDialogBuilder.setMessage("Feature is still in development...");
+                Intent intent = new Intent(MainScreenDono.this, EditAnimalActivity.class);
+                intent.putExtra("userManager",userManager);
+                startActivityForResult(intent, requestCodeEditAnimal);
 
-                // create alert dialog
-                alertDialog = alertDialogBuilder.create();
-                // show it
-                alertDialog.show();
                 
                 return true;
 
@@ -350,6 +349,16 @@ public class MainScreenDono
         userManager.getCliente(MainScreenDono.this, accountDTO.getClienteId());
 
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == requestCodeEditAnimal) {
+            if(resultCode == RESULT_OK){
+                this.animals.add((AnimalDTO) data.getSerializableExtra("newAnimal"));
+            }
+        }
+    }
+
 
     @Override
     public void onFailureGetAccount(Throwable t) {

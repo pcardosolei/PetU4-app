@@ -14,6 +14,7 @@ import pet4u.pet4u.callbacks.ClientUpdateCallback;
 import pet4u.pet4u.callbacks.ConsultaCallback;
 import pet4u.pet4u.callbacks.EventosCallback;
 import pet4u.pet4u.callbacks.EventosClienteCallBack;
+import pet4u.pet4u.callbacks.NewAnimalCallback;
 import pet4u.pet4u.callbacks.RacasAllCallback;
 import pet4u.pet4u.services.AnimalsService;
 
@@ -23,6 +24,7 @@ import pet4u.pet4u.services.EventosService;
 import pet4u.pet4u.services.RacaService;
 import pet4u.pet4u.user.AccountDTO;
 import pet4u.pet4u.services.AccountService;
+import pet4u.pet4u.user.AnimalCreate;
 import pet4u.pet4u.user.AnimalDTO;
 import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.ConsultaDTO;
@@ -69,6 +71,53 @@ public class UserManager implements Serializable{
         }
 
         return ourInstance;
+    }
+
+    public synchronized void newAnimal(final NewAnimalCallback newAnimalCallback, AnimalCreate animalCreate){
+        Retrofit retrofit;
+        AnimalsService animalsService;
+
+        try {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(AppProperties.baseUrl)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            animalsService = retrofit.create(AnimalsService.class);
+        }catch  (Exception e) {
+            Log.e("UserManager", "newAnimal -> constructor->source.getBytes('UTF-8') ERROR: " + e);
+            return;
+        }
+
+        //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
+        Call<AnimalDTO> call = animalsService.postAnimal("Bearer " + userToken.getAccessToken(), animalCreate);
+
+        call.enqueue(new Callback<AnimalDTO>() {
+            @Override
+            public void onResponse(Call<AnimalDTO> call, Response<AnimalDTO> response) {
+                Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
+                AnimalDTO animalDTO1 = response.body();
+
+                int code = response.code();
+                //System.out.println("RESPONSE: " + response.toString());
+
+                //System.out.println(response.toString());
+
+                if (code == 200 || code == 201) {
+                    //bearerToken = "Bearer " + userToken.getAccessToken();
+                    newAnimalCallback.onSuccessAnimals(animalDTO1);
+                } else {
+                    newAnimalCallback.onFailureAnimals(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AnimalDTO> call, Throwable t) {
+                Log.e("UserManager ", " performtaks->call.enqueue->onResponse err: " + t.toString());
+                newAnimalCallback.onFailureAnimals(t);
+            }
+        });
+
     }
 
     public synchronized void getAllRaces(final RacasAllCallback racasAllCallback){
