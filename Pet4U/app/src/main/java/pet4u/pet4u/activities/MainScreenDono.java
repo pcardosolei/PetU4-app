@@ -77,10 +77,10 @@ public class MainScreenDono
     private ClientDTO clientDTO;
     private AddressDTO addressDTO;
     private ArrayList<AnimalDTO> animals= new ArrayList<>();
-    private ArrayList<EventoDTO> eventoDTOs;
+    private ArrayList<EventoDTO> eventoDTOs = new ArrayList<>();
     private ArrayList<EventoDTO> userEvents = new ArrayList<>();
-    private ArrayList<AnimalCard> animalCards;
-    private ArrayList<Card> eventoCards;
+    private ArrayList<AnimalCard> animalCards= new ArrayList<>();
+    private ArrayList<Card> eventoCards= new ArrayList<>();
     private RVAdapterAnimal animalAdapter;
     private RVAdapter eventosAdapters;
     private Drawable catDrawable;
