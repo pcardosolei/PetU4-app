@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class AnimalDTO implements Serializable{
 
 
-
+    private ClientDTO clientDTO;
     private String dataNasc;
     private String genero;
     private int id;
@@ -25,17 +25,28 @@ public class AnimalDTO implements Serializable{
     private String tipo ;
     private ArrayList<FotoDTO> fotos;
 
+
     public AnimalDTO(){
+        clientDTO = null;
         dataNasc = "1900-01-01";
         genero="masculino";
         nome="";
         peso=0;
+        id=0;
         nome="";
         racaId=0;
         racaNome="";
         tipo="Cão";
         fotos=null;
 
+    }
+
+    public ClientDTO getClientDTO() {
+        return clientDTO;
+    }
+
+    public void setClientDTO(ClientDTO clientDTO) {
+        this.clientDTO = clientDTO;
     }
 
     public ArrayList<FotoDTO> getFotos() {

@@ -6,6 +6,7 @@ import pet4u.pet4u.user.AnimalCreate;
 import pet4u.pet4u.user.AnimalDTO;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -31,7 +32,7 @@ public interface AnimalsService {
     @POST("/api/animals")
     Call<AnimalDTO> postAnimal(
             @Header("Authorization") String Authorization,
-            @Body AnimalCreate animal
+            @Body AnimalDTO animalDTO
     );
 
 }

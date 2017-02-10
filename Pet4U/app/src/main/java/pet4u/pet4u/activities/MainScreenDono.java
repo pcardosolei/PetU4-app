@@ -277,6 +277,7 @@ public class MainScreenDono
 
                 Intent intent = new Intent(MainScreenDono.this, EditAnimalActivity.class);
                 intent.putExtra("userManager",userManager);
+                intent.putExtra("client", clientDTO);
                 startActivityForResult(intent, requestCodeEditAnimal);
 
                 

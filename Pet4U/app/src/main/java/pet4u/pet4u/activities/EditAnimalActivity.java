@@ -2,6 +2,7 @@ package pet4u.pet4u.activities;
 
 import android.content.Intent;
 import android.content.SearchRecentSuggestionsProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import pet4u.pet4u.callbacks.RacasAllCallback;
 import pet4u.pet4u.managers.UserManager;
 import pet4u.pet4u.user.AnimalCreate;
 import pet4u.pet4u.user.AnimalDTO;
+import pet4u.pet4u.user.ClientDTO;
 import pet4u.pet4u.user.RacaDTO;
 
 public class EditAnimalActivity extends AppCompatActivity implements RacasAllCallback, NewAnimalCallback{
@@ -31,10 +33,9 @@ public class EditAnimalActivity extends AppCompatActivity implements RacasAllCal
     private Spinner display_tipo;
     private Spinner display_raca;
 
-
     private UserManager userManager;
-    //private AnimalDTO animalDTO;
-    private AnimalCreate animalCreate;
+    private AnimalDTO animalDTO;
+    private ClientDTO clientDTO;
 
     private ArrayList<RacaDTO> racas;
     private ArrayList<RacaDTO> racasTipo;
@@ -46,6 +47,7 @@ public class EditAnimalActivity extends AppCompatActivity implements RacasAllCal
 
         Intent intent = getIntent();
         userManager = (UserManager) intent.getSerializableExtra("userManager");
+        clientDTO = (ClientDTO) intent.getSerializableExtra("client");
 
         userManager.getAllRaces(EditAnimalActivity.this);
 
@@ -70,6 +72,18 @@ public class EditAnimalActivity extends AppCompatActivity implements RacasAllCal
     }
 
     public void saveAnimal(){
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(EditAnimalActivity.this);
+        AlertDialog alertDialog;
+
+        // set dialog message
+        alertDialogBuilder.setMessage("Feature is still in development...");
+
+        // create alert dialog
+        alertDialog = alertDialogBuilder.create();
+        // show it
+        alertDialog.show();
+/*
         String nome = display_nome.getText().toString();
         String dataNasc = display_dataNasc.getText().toString();
         String tipo = display_tipo.getSelectedItem().toString().toLowerCase();
@@ -77,19 +91,21 @@ public class EditAnimalActivity extends AppCompatActivity implements RacasAllCal
         String genero = display_genero.getSelectedItem().toString();
 
 
-        animalCreate = new AnimalCreate();
+        animalDTO = new AnimalDTO();
 
-        if(!nome.equals("")) animalCreate.setNome(nome);
-        if(!dataNasc.equals("")) animalCreate.setDataNasc(dataNasc);
-        if(!tipo.equals("")) animalCreate.setTipo(tipo);
-        if(!raça.equals("")) animalCreate.setRacaNome(raça);
-        animalCreate.setRacaId(getRaca(raça).getId());
-        if(!genero.equals("")) animalCreate.setGenero(genero);
+        if(!nome.equals("")) animalDTO.setNome(nome);
+        if(!dataNasc.equals("")) animalDTO.setDataNasc(dataNasc);
+        if(!tipo.equals("")) animalDTO.setTipo(tipo);
+        if(!raça.equals("")) animalDTO.setRacaNome(raça);
+        animalDTO.setRacaId(getRaca(raça).getId());
+        if(!genero.equals("")) animalDTO.setGenero(genero);
 
-        Log.d("animalCreate after",animalCreate.toString());
+        animalDTO.setClientDTO(clientDTO);
+
+        Log.d("animalDTO after",animalDTO.toString());
 
 
-        userManager.newAnimal(EditAnimalActivity.this, animalCreate);
+        userManager.newAnimal(EditAnimalActivity.this, animalDTO);*/
     }
 
     public ArrayList<String> getStringFromRaca(ArrayList<RacaDTO> racasAUX){

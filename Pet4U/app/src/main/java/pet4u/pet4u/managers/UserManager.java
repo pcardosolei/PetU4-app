@@ -73,7 +73,7 @@ public class UserManager implements Serializable{
         return ourInstance;
     }
 
-    public synchronized void newAnimal(final NewAnimalCallback newAnimalCallback, AnimalCreate animalCreate){
+    public synchronized void newAnimal(final NewAnimalCallback newAnimalCallback, AnimalDTO animalDTO){
         Retrofit retrofit;
         AnimalsService animalsService;
 
@@ -90,7 +90,7 @@ public class UserManager implements Serializable{
         }
 
         //System.out.println("System TOKEN: " + "Bearer " +  userToken.getAccessToken());
-        Call<AnimalDTO> call = animalsService.postAnimal("Bearer " + userToken.getAccessToken(), animalCreate);
+        Call<AnimalDTO> call = animalsService.postAnimal("Bearer " + userToken.getAccessToken(), animalDTO);
 
         call.enqueue(new Callback<AnimalDTO>() {
             @Override
