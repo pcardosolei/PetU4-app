@@ -158,6 +158,7 @@ public class AnimalActivity
         this.eventos = eventos;
         for (EventoDTO evento : eventos) {
             userManager.getConsulta(AnimalActivity.this, evento.getConsultaId());
+            System.out.println("Test Evento Animal: " + evento.toString());
         }
 
         generateEvents();

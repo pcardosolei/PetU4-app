@@ -85,6 +85,7 @@ public class MainScreenDono
     private RVAdapter eventosAdapters;
     private Drawable catDrawable;
     private Drawable dogDrawable;
+    private Drawable associationString;
 
     RecyclerView rv_animais;
     RecyclerView rv_eventos;
@@ -533,8 +534,11 @@ public class MainScreenDono
     @Override
     public void onSuccessEventosCliente(ArrayList<EventoDTO> eventos) {
         userEvents=eventos;
+
         for (EventoDTO evento : userEvents) {
             userManager.getConsulta(MainScreenDono.this, evento.getConsultaId());
+
+            System.out.println("Test Evento: " + evento.toString());
         }
         generateEvents();
     }

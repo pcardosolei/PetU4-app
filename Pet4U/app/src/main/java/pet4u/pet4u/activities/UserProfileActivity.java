@@ -49,6 +49,7 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
     TextView display_telemovel;
     TextView display_email;
     TextView display_historico;
+    TextView associationString;
     ImageView display_fotoPerfil;
     RecyclerView rv_animais;
 
@@ -80,6 +81,7 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         display_email = (TextView)findViewById(R.id.tv_display_email);
         display_historico = (TextView)findViewById(R.id.tv_eventos);
         display_fotoPerfil = (ImageView) findViewById(R.id.iv_foto_perfil);
+        associationString = (TextView) findViewById(R.id.tv_association_string);
 
 
 
@@ -106,6 +108,7 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         // display user
         display_nome.setText(clientDTO.getNome());
         display_nascimento.setText(clientDTO.getDataNasc());
+        associationString.setText(clientDTO.getCodigoassociacao());
         String generoDisplay = "";
         if(clientDTO.getGenero() != null && clientDTO.getGenero().length() > 2) generoDisplay = clientDTO.getGenero().substring(0, 1).toUpperCase() + clientDTO.getGenero().substring(1);
         display_genero.setText(generoDisplay);

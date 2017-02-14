@@ -140,6 +140,26 @@
                 android:text="exemplo@empresa.com"/>
 
             <TextView
+                android:id="@+id/tv_association"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:paddingTop="5dp"
+                android:layout_below="@id/tv_display_email"
+                android:text="Codigo de Associação:"/>
+
+
+            <TextView
+                android:id="@+id/tv_association_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_association"
+
+                android:padding="5dp"
+                android:text="exemplo@empresa.com"/>
+
+            <TextView
                 android:id="@+id/tv_display_morada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
