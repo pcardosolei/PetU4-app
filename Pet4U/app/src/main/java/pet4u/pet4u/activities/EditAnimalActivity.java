@@ -45,10 +45,14 @@ public class EditAnimalActivity extends AppCompatActivity implements RacasAllCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_animal);
 
-        Intent intent = getIntent();
-        userManager = (UserManager) intent.getSerializableExtra("userManager");
-        clientDTO = (ClientDTO) intent.getSerializableExtra("client");
-
+        try {
+            Intent intent = getIntent();
+            userManager = (UserManager) intent.getSerializableExtra("userManager");
+            clientDTO = (ClientDTO) intent.getSerializableExtra("client");
+        }catch (Exception e){
+            Log.e("EditAnimalActivity","Fatal error, info not loaded");
+            finish();
+        }
         userManager.getAllRaces(EditAnimalActivity.this);
 
 

@@ -482,7 +482,7 @@ public class MainScreenDono
                 }
             }
             } catch (Exception exeption) {
-                Toast.makeText(MainScreenDono.this, "Pedimos desculpa mas não é possivel apresentar o evento.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainScreenDono.this, "Não é possivel apresentar o evento.", Toast.LENGTH_SHORT).show();
             }
 
     }
@@ -509,13 +509,19 @@ public class MainScreenDono
     }
 
     public void onSuccessConsulta(ConsultaDTO consultaDTO) {
-        for(EventoDTO event : eventoDTOs){
-            if(event.getConsultaId() == consultaDTO.getId()) event.setConsultaDTO(consultaDTO);
-        }
-        for(EventoDTO event : userEvents){
-            if(event.getConsultaId() == consultaDTO.getId()) event.setConsultaDTO(consultaDTO);
-        }
+        if(eventoDTOs != null) {
+            for (EventoDTO event : eventoDTOs) {
+                if (event.getConsultaId() == consultaDTO.getId()) event.setConsultaDTO(consultaDTO);
+            }
+        }else Log.e("MainScreenDono", "OnSuccessConsulta->eventoDTOs é null");
+
+        if(userEvents != null) {
+            for (EventoDTO event : userEvents) {
+                if (event.getConsultaId() == consultaDTO.getId()) event.setConsultaDTO(consultaDTO);
+            }
+        }else Log.e("MainScreenDono", "Fail no OnSuccessConsulta-> userEvents é null");
         generateEvents();
+
     }
 
     @Override
